@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anna & Lukáš • RSVP</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script defer src="js/i18n.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo-link brand-text" href="index.html" aria-label="Home">
+  	Anna & Lukáš
+      </a>
+
+      <nav class="nav">
+        <a href="index.html" data-i18n="nav_home">Domov</a>
+        <a href="rsvp.html" aria-current="page" data-i18n="nav_rsvp">RSVP</a>
+        <a href="story.html" data-i18n="nav_story">Náš príbeh</a>
+        <a href="gallery.html" data-i18n="nav_gallery">Galéria</a>
+        <a href="where-when.html" data-i18n="nav_wherewhen">Kde & Kedy</a>
+      </nav>
+
+      <div class="lang">
+        <label for="langSelect" data-i18n="lang_label">Jazyk</label>
+        <select id="langSelect">
+          <option value="sk">SK</option>
+          <option value="hu">HU</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h2 class="h2" data-i18n="rsvp_title">RSVP</h2>
+      <p class="muted" data-i18n="rsvp_sub">Prosíme, dajte nám vedieť do: (doplňte dátum)</p>
+
+      <!-- Replace with your real embed -->
+      <!-- Google Forms: Send -> <> embed -> copy the iframe src -->
+      <div class="embed">
+        <iframe
+          title="RSVP form"
+          src="PASTE_YOUR_GOOGLE_FORM_EMBED_URL"
+          loading="lazy">
+        </iframe>
+      </div>
+
+      <p class="muted" data-i18n="rsvp_note" style="margin-top:12px;">
+        Tu vložte váš Google Form alebo vlastný formulár.
+      </p>
+    </section>
+
+    <div class="footer">© 2026 Anna & Lukáš</div>
+  </main>
+</body>
+</html>

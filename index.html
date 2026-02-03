@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anna & Lukáš • Home</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script defer src="js/i18n.js"></script>
+  <script defer src="js/ui.js"></script>
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo-link brand-text" href="index.html" aria-label="Home">
+  	Anna & Lukáš
+      </a>
+
+
+      <nav class="nav">
+        <a href="index.html" aria-current="page" data-i18n="nav_home">Domov</a>
+        <a href="rsvp.html" data-i18n="nav_rsvp">RSVP</a>
+        <a href="story.html" data-i18n="nav_story">Náš príbeh</a>
+        <a href="gallery.html" data-i18n="nav_gallery">Galéria</a>
+        <a href="where-when.html" data-i18n="nav_wherewhen">Kde & Kedy</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn" aria-expanded="false">Menu</button>
+
+      <div class="lang">
+        <label for="langSelect" data-i18n="lang_label">Jazyk</label>
+        <select id="langSelect">
+          <option value="sk">SK</option>
+          <option value="hu">HU</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="container mobile-nav" id="mobileNav" data-open="false" style="display:none;">
+      <a href="index.html" aria-current="page" data-i18n="nav_home">Domov</a>
+      <a href="rsvp.html" data-i18n="nav_rsvp">RSVP</a>
+      <a href="story.html" data-i18n="nav_story">Náš príbeh</a>
+      <a href="gallery.html" data-i18n="nav_gallery">Galéria</a>
+      <a href="where-when.html" data-i18n="nav_wherewhen">Kde & Kedy</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card hero">
+      <p class="kicker" data-i18n="home_kicker">Pozývame Vás na svadbu</p>
+      <div class="hero-logo-wrap" aria-hidden="false">
+        <div class="hero-logo-wrap">
+  <img
+    class="hero-logo"
+    src="assets/logo_with_names.svg"
+    alt="Anna & Lukáš"
+    role="img"
+  >
+</div>
+      </div>
+      <p class="details" data-i18n="home_sub">Sobota • 15. august 2026 • 14:00 • Budapešť, Fő utca 17.</p>
+      <p class="small muted">Elegant • minimal • warm</p>
+
+      <div class="actions">
+        <a class="btn" href="rsvp.html" data-i18n="home_btn_rsvp">Potvrdiť účasť (RSVP)</a>
+        <a class="btn secondary" href="where-when.html" data-i18n="home_btn_details">Kde & Kedy</a>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2 class="h2">Quick info</h2>
+      <div class="grid2">
+        <div class="panel">
+          <strong>RSVP</strong>
+          <p class="muted" style="margin:6px 0 0;">Link + deadline + dietary notes.</p>
+        </div>
+        <div class="panel">
+          <strong>Location</strong>
+          <p class="muted" style="margin:6px 0 0;">Map, parking, schedule.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">© 2026 Anna & Lukáš</div>
+  </main>
+</body>
+</html>
