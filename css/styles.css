@@ -28,42 +28,42 @@ body{
   line-height:1.6;
 }
 
-/* ===== Background (this is the big fix) ===== */
+/* ===== Background: clean center, decor only on edges ===== */
 .bg{
-  position:fixed;
-  inset:0;
-  z-index:-3;
-  background: radial-gradient(1200px 800px at 50% 15%, rgba(250,247,241,.85), rgba(246,242,232,.95));
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background:
+    radial-gradient(1200px 800px at 50% 15%, rgba(250,247,241,.88), rgba(246,242,232,.96));
 }
 
-/* top-left corner layer */
+/* LEFT decor */
 .bg::before{
   content:"";
   position:absolute;
   inset:0;
-  background-image:url("../assets/background.png");
-  background-repeat:no-repeat;
+  background-image: url("../assets/left.png");
+  background-repeat: no-repeat;
   background-position: left top;
-  /* show the corner, don’t crop it */
-  background-size: min(980px, 100vw) auto;
-  opacity:.95;
-  filter:saturate(1.05);
+  /* critical: keep it big enough to look like print, but never flood center */
+  background-size: clamp(380px, 34vw, 620px) auto;
+  opacity: .98;
   pointer-events:none;
 }
 
-/* bottom-right corner layer */
+/* RIGHT decor */
 .bg::after{
   content:"";
   position:absolute;
   inset:0;
-  background-image:url("../assets/background.png");
-  background-repeat:no-repeat;
+  background-image: url("../assets/right.png");
+  background-repeat: no-repeat;
   background-position: right bottom;
-  background-size: min(980px, 100vw) auto;
-  opacity:.95;
-  filter:saturate(1.05);
+  background-size: clamp(420px, 36vw, 700px) auto;
+  opacity: .98;
   pointer-events:none;
 }
+
 
 .container{
   width:min(var(--max), calc(100% - 40px));
