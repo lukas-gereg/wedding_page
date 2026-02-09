@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Anna & Lukáš • RSVP</title>
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/rsvp.css">
   <script defer src="js/i18n.js"></script>
   <script defer src="js/ui.js"></script>
+  <script defer src="js/rsvp.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -53,19 +55,111 @@
       <h2 class="h2" data-i18n="rsvp_title">RSVP</h2>
       <p class="muted" data-i18n="rsvp_sub">Prosíme, dajte nám vedieť do: (doplňte dátum)</p>
 
-      <!-- Replace with your real embed -->
-      <!-- Google Forms: Send -> <> embed -> copy the iframe src -->
-      <div class="embed">
-        <iframe
-          title="RSVP form"
-          src="PASTE_YOUR_GOOGLE_FORM_EMBED_URL"
-          loading="lazy">
-        </iframe>
-      </div>
+      <form id="rsvpForm" class="rsvp-form">
 
-      <p class="muted" data-i18n="rsvp_note" style="margin-top:12px;">
-        Tu vložte váš Google Form alebo vlastný formulár.
-      </p>
+        <!-- ATTENDANCE -->
+        <div class="panel">
+          <h3 class="h2" data-i18n="q1_title">Attendance</h3>
+
+          <label data-i18n="q1_label">I will attend:</label>
+          <select name="attendance" required>
+            <option value="" data-i18n="choose">Choose…</option>
+            <option value="Ceremony & Mass (Agape)" data-i18n="q1_a1"></option>
+            <option value="Ceremony & Dining (Agape)" data-i18n="q1_a2"></option>
+            <option value="Everything" data-i18n="q1_a3"></option>
+            <option value="I cannot come" data-i18n="q1_a4"></option>
+          </select>
+        </div>
+
+        <!-- BRING -->
+        <div class="panel">
+          <h3 class="h2" data-i18n="q2_title">I can bring</h3>
+
+          <div class="opt"><label><input type="radio" name="bring" value="Cookies" required> <span data-i18n="q2_cookies"></span></label></div>
+          <div class="opt"><label><input type="radio" name="bring" value="Salty snack"> <span data-i18n="q2_salty"></span></label></div>
+          <div class="opt"><label><input type="radio" name="bring" value="Sweet"> <span data-i18n="q2_sweet"></span></label></div>
+          <div class="opt"><label><input type="radio" name="bring" value="Dietary / special"> <span data-i18n="q2_dietary"></span></label></div>
+          <div class="opt"><label><input type="radio" name="bring" value="I cannot bring anything"> <span data-i18n="q2_nothing"></span></label></div>
+
+          <div class="opt">
+            <label><input type="radio" name="bring" value="Other"> <span data-i18n="q2_other"></span></label>
+            <input type="text" name="bring_other" placeholder="…" />
+          </div>
+        </div>
+
+        <!-- HELP -->
+        <div class="panel">
+          <h3 class="h2" data-i18n="q3_title">I can help with</h3>
+          <div class="muted" data-i18n="q3_hint"></div>
+
+          <div class="opt"><label><input type="checkbox" name="help[]" value="Decorating the day before"> <span data-i18n="q3_1"></span></label></div>
+          <div class="opt"><label><input type="checkbox" name="help[]" value="Decoration in church"> <span data-i18n="q3_2"></span></label></div>
+          <div class="opt"><label><input type="checkbox" name="help[]" value="Packing after agape"> <span data-i18n="q3_3"></span></label></div>
+          <div class="opt"><label><input type="checkbox" name="help[]" value="Kids corner"> <span data-i18n="q3_5"></span></label></div>
+
+          <input type="text" name="help_other" placeholder="Other…" />
+        </div>
+
+        <!-- ARRIVAL -->
+        <div class="panel">
+          <h3 class="h2" data-i18n="q4_title">Arrival & accommodation</h3>
+
+          <div class="opt"><label><input type="radio" name="arrival" value="Friday evening (2 days accommodation)" required> <span data-i18n="q4_1"></span></label></div>
+          <div class="opt"><label><input type="radio" name="arrival" value="Saturday morning (1 day accommodation)"> <span data-i18n="q4_2"></span></label></div>
+          <div class="opt"><label><input type="radio" name="arrival" value="I do not need accommodation"> <span data-i18n="q4_3"></span></label></div>
+        </div>
+
+        <!-- GIFT -->
+        <div class="panel">
+          <h3 class="h2" data-i18n="q8_title">Gift</h3>
+
+          <div class="opt"><label><input type="radio" name="gift" value="Money contribution" required> <span data-i18n="q8_1"></span></label></div>
+          <div class="opt"><label><input type="radio" name="gift" value="Small gift / surprise"> <span data-i18n="q8_2"></span></label></div>
+          <div class="opt"><label><input type="radio" name="gift" value="Gift + money"> <span data-i18n="q8_3"></span></label></div>
+          <div class="opt"><label><input type="radio" name="gift" value="Contribute to our home wishlist"> <span data-i18n="q8_4"></span></label></div>
+
+          <!-- Wishlist extra -->
+          <div id="wishlistFields" style="display:none;">
+            <label data-i18n="wl_item">Wishlist item</label>
+            <select id="wishlistItemSelect" name="wishlist_item_id"></select>
+
+            <div class="opt">
+              <label><input type="radio" name="wishlist_type" value="FULL"> <span data-i18n="wl_full"></span></label>
+            </div>
+            <div class="opt">
+              <label><input type="radio" name="wishlist_type" value="PLEDGE"> <span data-i18n="wl_pledge"></span></label>
+              <input type="number" name="wishlist_amount" min="1" placeholder="Amount" />
+            </div>
+
+            <input type="text" name="wishlist_note" placeholder="Note (optional)" />
+          </div>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="panel">
+          <h3 class="h2" data-i18n="q9_title">Contact</h3>
+
+          <input type="text" name="official_name" placeholder="Full name" required />
+          <input type="email" name="email" placeholder="Email" required />
+          <input type="text" name="phone" placeholder="Phone" />
+        </div>
+
+        <!-- CONSENTS -->
+        <div class="panel">
+          <label>
+            <input type="checkbox" name="consent_gdpr_media" value="Yes">
+            <span data-i18n="consent_media"></span>
+          </label>
+        </div>
+
+        <!-- SUBMIT -->
+        <div class="submit-row">
+          <button class="btn" type="submit" data-i18n="submit">Submit</button>
+          <span id="formStatus" class="muted"></span>
+        </div>
+
+      </form>
+
     </section>
 
     <div class="footer">© 2026 Anna & Lukáš</div>
