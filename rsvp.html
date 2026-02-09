@@ -175,10 +175,20 @@
           <div class="opt"><label><input type="radio" name="gift" value="Contribute to our home wishlist"> <span data-i18n="q8_4">Contribute to our home wishlist</span></label></div>
 
           <!-- Wishlist (kept as simple link input since your i18n already includes it) -->
-          <label style="display:block;margin-top:8px;">
-            <span data-i18n="q8_wishlist_link">Wishlist link (Excel)</span>:
-            <input type="text" name="wishlist_link" placeholder="https://…" />
-          </label>
+          <div id="wishlistFields" style="display:none;">
+            <label data-i18n="wl_item">Wishlist item</label>
+            <select id="wishlistItemSelect" name="wishlist_item_id"></select>
+
+            <div class="opt">
+              <label><input type="radio" name="wishlist_type" value="FULL"> <span data-i18n="wl_full"></span></label>
+            </div>
+            <div class="opt">
+              <label><input type="radio" name="wishlist_type" value="PLEDGE"> <span data-i18n="wl_pledge"></span></label>
+              <input type="number" name="wishlist_amount" min="1" placeholder="Amount" />
+            </div>
+
+            <input type="text" name="wishlist_note" placeholder="Note (optional)" />
+          </div>
         </div>
 
         <!-- 9-11 Contact -->
