@@ -29,19 +29,35 @@ function fmtEur(x) {
   return x.toFixed(2).replace(".", ",") + " €";
 }
 
-async function loadWishlist() {
+let wishlistLoadedOnce = false;
+
+async function loadWishlist({ silent = false } = {}) {
   const sel = document.getElementById("wishlistItemSelect");
   if (!sel) return;
 
-  sel.innerHTML = `<option value="">Loading…</option>`;
+  // Remember current selection so we can restore it
+  const prevSelected = sel.value;
+
+  // Only show Loading on FIRST load (or if empty)
+  const shouldShowLoading = !wishlistLoadedOnce && !silent;
+  if (shouldShowLoading) {
+    sel.innerHTML = `<option value="">Loading…</option>`;
+  }
 
   try {
-    const res = await fetch(`${SCRIPT_URL}?action=wishlist`);
+    const res = await fetch(`${SCRIPT_URL}?action=wishlist`, { cache: "no-store" });
     const data = await res.json();
-    if (!data.ok) throw new Error();
+    if (!data.ok) throw new Error(data.error || "wishlist fetch failed");
 
-    sel.innerHTML = `<option value="">Choose…</option>`;
     const lang = getLang();
+
+    // Build options in memory (no flicker), then swap once
+    const frag = document.createDocumentFragment();
+
+    const opt0 = document.createElement("option");
+    opt0.value = "";
+    opt0.textContent = "Choose…"; // i18n if you want
+    frag.appendChild(opt0);
 
     data.items.forEach(item => {
       const opt = document.createElement("option");
@@ -50,21 +66,35 @@ async function loadWishlist() {
       const remHuf = Number(item.remaining || 0);
       const remEur = hufToEur(remHuf);
 
-      // In HU show Ft first + approx €
+      // HU: HUF primary, EUR approx
       if (lang === "hu") {
-        opt.textContent = `${item.item_name} — remaining ${fmtHuf(remHuf)} (≈ ${fmtEur(remEur)})`;
-      } else {
-        // In SK keep it simple (or show both if you want)
-        opt.textContent = `${item.item_name} — zostáva ${fmtHuf(remHuf)} (≈ ${fmtEur(remEur)})`;
+        opt.textContent = `${item.item_name} — ${fmtHuf(remHuf)} (≈ ${fmtEur(remEur)})`;
+      }
+      // SK: EUR primary, HUF approx  ✅ (Slovakia uses EUR)
+      else {
+        opt.textContent = `${item.item_name} — ${fmtEur(remEur)} (≈ ${fmtHuf(remHuf)})`;
       }
 
-      // store remaining in dataset for live helper
       opt.dataset.remainingHuf = String(remHuf);
-      sel.appendChild(opt);
+      frag.appendChild(opt);
     });
 
-  } catch {
-    sel.innerHTML = `<option value="">Failed to load</option>`;
+    // Swap options in one operation (minimizes UI jump)
+    sel.replaceChildren(frag);
+
+    // Restore selection if still present
+    if (prevSelected) {
+      const exists = Array.from(sel.options).some(o => o.value === prevSelected);
+      if (exists) sel.value = prevSelected;
+    }
+
+    wishlistLoadedOnce = true;
+  } catch (err) {
+    // Only show error on first load; don’t destroy UI on background refresh
+    if (!wishlistLoadedOnce) {
+      sel.innerHTML = `<option value="">Failed to load</option>`;
+    }
+    console.error(err);
   }
 }
 
@@ -74,18 +104,18 @@ function syncWishlistCurrencyUI() {
   const currencyHidden = document.querySelector('input[name="wishlist_currency"]');
   if (!amountInput || !currencyHidden) return;
 
-  // If page is HU, guests type EUR. Otherwise type HUF.
   if (lang === "hu") {
-    amountInput.placeholder = "Amount (EUR)";
-    amountInput.step = "0.01";
-    amountInput.inputMode = "decimal";
-    currencyHidden.value = "EUR";
-  } else {
-    amountInput.placeholder = "Amount (HUF)";
-    amountInput.step = "1";
+    amountInput.placeholder = "Összeg (HUF)";
     amountInput.inputMode = "numeric";
     currencyHidden.value = "HUF";
+  } else {
+    amountInput.placeholder = "Suma (EUR)";
+    amountInput.inputMode = "decimal";
+    currencyHidden.value = "EUR";
   }
+
+  // optional: re-sanitize when switching language
+  amountInput.dispatchEvent(new Event("input", { bubbles: true }));
 }
 
 /* ================================
@@ -104,16 +134,18 @@ function formToJSON(form) {
 
   // Normalize wishlist pledge into HUF
   if (obj.wishlist_type === "PLEDGE" && obj.wishlist_amount) {
-    const currency = obj.wishlist_currency || "HUF";
-    const raw = String(obj.wishlist_amount).replace(",", ".");
-    const num = Number(raw);
+  const currency = obj.wishlist_currency || "HUF";
+  const raw = String(obj.wishlist_amount).replace(",", ".");
+  const num = Number(raw);
 
-    if (currency === "EUR") {
-      obj.wishlist_amount_huf = Math.round(eurToHuf(num));
-    } else {
-      obj.wishlist_amount_huf = Math.round(num);
-    }
+  if (!Number.isFinite(num) || num <= 0) {
+    delete obj.wishlist_amount_huf;
+  } else if (currency === "EUR") {
+    obj.wishlist_amount_huf = Math.round(eurToHuf(num));
+  } else {
+    obj.wishlist_amount_huf = Math.round(num);
   }
+}
 
   return obj;
 }
@@ -171,24 +203,67 @@ function setExtraOpen(extraEl, open) {
   });
 }
 
-function enforceNumericInputs(form) {
-  form.querySelectorAll('input[type="number"]').forEach(inp => {
-    inp.addEventListener("input", () => {
-      // replace comma with dot for decimals
-      if (inp.step && inp.step.includes(".")) {
-        inp.value = inp.value.replace(",", ".");
-      }
+function attachMoneyInputGuard(form) {
+  const amountInput = form.querySelector('input[name="wishlist_amount"]');
+  if (!amountInput) return;
 
-      // remove invalid chars
-      inp.value = inp.value.replace(/[^0-9.]/g, "");
+  const sanitize = () => {
+    const currency = document.querySelector('input[name="wishlist_currency"]')?.value || "HUF";
+    let v = amountInput.value || "";
 
-      // allow only one dot
-      const parts = inp.value.split(".");
-      if (parts.length > 2) {
-        inp.value = parts[0] + "." + parts.slice(1).join("");
+    // keep digits + separators only
+    v = v.replace(/[^\d.,]/g, "");
+
+    // normalize: allow only ONE separator -> convert commas to dots
+    v = v.replace(/,/g, ".");
+
+    // remove extra dots
+    const firstDot = v.indexOf(".");
+    if (firstDot !== -1) {
+      v =
+        v.slice(0, firstDot + 1) +
+        v.slice(firstDot + 1).replace(/\./g, "");
+    }
+
+    if (currency === "HUF") {
+      // integers only
+      v = v.replace(/\./g, "");
+    } else {
+      // EUR: allow up to 2 decimals
+      const parts = v.split(".");
+      if (parts.length === 2) {
+        parts[1] = parts[1].slice(0, 2);
+        v = parts[0] + "." + parts[1];
       }
-    });
+    }
+
+    amountInput.value = v;
+  };
+
+  // blocks bad keys early (desktop)
+  amountInput.addEventListener("keydown", (e) => {
+    const allowed = [
+      "Backspace", "Delete", "Tab", "Escape", "Enter",
+      "ArrowLeft", "ArrowRight", "Home", "End"
+    ];
+    if (allowed.includes(e.key)) return;
+
+    // allow Ctrl/Cmd shortcuts
+    if ((e.ctrlKey || e.metaKey) && ["a","c","v","x"].includes(e.key.toLowerCase())) return;
+
+    // allow digits
+    if (/^\d$/.test(e.key)) return;
+
+    // allow separators (we’ll sanitize later)
+    if (e.key === "." || e.key === ",") return;
+
+    // block everything else (letters, minus, e, etc.)
+    e.preventDefault();
   });
+
+  // sanitize on any input/paste
+  amountInput.addEventListener("input", sanitize);
+  amountInput.addEventListener("blur", sanitize);
 }
 
 function matchesCondition(form, cond) {
@@ -269,7 +344,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   setInterval(async () => {
-  await loadWishlist();
+  await loadWishlist({ silent: true });
   updateFxHint();
 }, 15000);
 
@@ -292,7 +367,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // initialize & listen
   refreshInlineExtras(form);
-  enforceNumericInputs(form);
+  attachMoneyInputGuard(form);
 
   form.addEventListener("change", () => refreshInlineExtras(form));
 
