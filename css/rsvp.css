@@ -159,3 +159,16 @@
 .inline-extra[data-open="true"]{
   display:block;
 }
+
+.rsvp-form input,
+.rsvp-form select,
+.rsvp-form textarea {
+  background: #ffffff !important;
+}
+
+/* Focus state */
+.rsvp-form input:focus,
+.rsvp-form select:focus,
+.rsvp-form textarea:focus {
+  background: #ffffff !important;
+}
