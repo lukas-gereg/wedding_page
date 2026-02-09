@@ -1,7 +1,7 @@
 /* ================================
    CONFIG
    ================================ */
-const SCRIPT_URL = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxFIw7-m_ihP7y5mmMHgM_7zCIrXwnCeyAuOoX74KQ6t5SoIur_zpPZsJpxAuQq7g0lKQ/exec";
 
 /* ================================
    WISHLIST UI
