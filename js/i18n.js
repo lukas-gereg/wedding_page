@@ -102,6 +102,10 @@ const I18N = {
         other_placeholder: "Iné…",
         amount_placeholder: "Suma",
 
+        wl_item: "Položka z wishlistu",
+        wl_full: "Kúpim v plnej sume",
+        wl_pledge: "Prispejem sumou",
+
         // Optional: if you want a label above help_other input
         q3_other_label: "Iné (dopíšte):",
 
@@ -212,6 +216,10 @@ const I18N = {
         consent_title: "Hozzájárulások",
         consent_feedback: "Hozzájárulok, hogy ~30 nappal az esemény előtt email emlékeztetőre végső visszajelzést adjak.",
         consent_media: "Hozzájárulok, hogy én (és gyermekeim) szerepelhetünk az esemény fotóin/videóin (GDPR).",
+
+        wl_item: "Wishlist tétel",
+        wl_full: "Megveszem teljes egészében",
+        wl_pledge: "Hozzájárulok egy összeggel",
 
         submit: "Küldés"
     }
