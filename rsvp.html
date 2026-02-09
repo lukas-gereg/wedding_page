@@ -86,9 +86,6 @@
             <input type="text" name="bring_other" placeholder="…" />
           </div>
 
-          <div class="opt" style="margin-top:8px;">
-            <label><input type="radio" name="bring" value="None"> <span data-i18n="q2_none">None</span></label>
-          </div>
         </div>
 
         <!-- 3) Help with -->
@@ -145,18 +142,16 @@
         <div class="panel">
           <h3 class="h2" data-i18n="q6_title">Dietary needs</h3>
 
-          <select name="diet" required>
-            <option value="" data-i18n="choose">Choose…</option>
-            <option value="No restrictions" data-i18n="q6_1">No restrictions</option>
-            <option value="Vegan" data-i18n="q6_2">Vegan</option>
-            <option value="Gluten-free" data-i18n="q6_3">Gluten-free</option>
-            <option value="Lactose-free" data-i18n="q6_4">Lactose-free</option>
-            <option value="Dairy-free" data-i18n="q6_5">Dairy-free</option>
-            <option value="Other" data-i18n="q6_other">Other</option>
-          </select>
+          <div class="opt"><label><input type="radio" name="diet" value="No restrictions" required> <span data-i18n="q6_1">No restrictions</span></label></div>
+          <div class="opt"><label><input type="radio" name="diet" value="Vegan" required> <span data-i18n="q6_2">Vegan</span></label></div>
+          <div class="opt"><label><input type="radio" name="diet" value="Gluten-free" required> <span data-i18n="q6_3">Gluten-free</span></label></div>
+          <div class="opt"><label><input type="radio" name="diet" value="Lactose-free" required> <span data-i18n="q6_4">Lactose-free</span></label></div>
+          <div class="opt"><label><input type="radio" name="diet" value="Dairy-free" required> <span data-i18n="q6_5">Dairy-free</span></label></div>
 
-          <div style="height:10px;"></div>
-          <input type="text" name="diet_other" placeholder="…" />
+          <div class="opt" style="margin-top:8px;">
+            <label><input type="radio" name="diet" value="Other"> <span data-i18n="q6_other">Other</span></label>
+            <input type="text" name="diet_other" placeholder="…" />
+          </div>
         </div>
 
         <!-- 7) Allergy responsibility -->
@@ -177,7 +172,6 @@
 
           <div class="opt"><label><input type="radio" name="gift" value="Money contribution" required> <span data-i18n="q8_1">Money contribution</span></label></div>
           <div class="opt"><label><input type="radio" name="gift" value="Small gift / surprise"> <span data-i18n="q8_2">Small gift / surprise</span></label></div>
-          <div class="opt"><label><input type="radio" name="gift" value="Gift + money"> <span data-i18n="q8_3">Gift + money</span></label></div>
           <div class="opt"><label><input type="radio" name="gift" value="Contribute to our home wishlist"> <span data-i18n="q8_4">Contribute to our home wishlist</span></label></div>
 
           <!-- Wishlist (kept as simple link input since your i18n already includes it) -->
