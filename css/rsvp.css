@@ -151,3 +151,11 @@
     padding: 16px 16px;
   }
 }
+
+.inline-extra{
+  display:none;
+  margin-top:8px;
+}
+.inline-extra[data-open="true"]{
+  display:block;
+}

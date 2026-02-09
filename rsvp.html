@@ -82,10 +82,15 @@
           <div class="opt"><label><input type="radio" name="bring" value="I cannot bring anything"> <span data-i18n="q2_nothing">I cannot bring anything</span></label></div>
 
           <div class="opt" style="margin-top:8px;">
-            <label><input type="radio" name="bring" value="Other"> <span data-i18n="q2_other">Other</span></label>
-            <input type="text" name="bring_other" placeholder="…" />
-          </div>
+            <label>
+              <input type="radio" name="bring" value="Other">
+              <span data-i18n="q2_other">Other</span>
+            </label>
 
+            <div class="inline-extra" data-show-when="bring=Other">
+              <input type="text" name="bring_other" placeholder="…" />
+            </div>
+          </div>
         </div>
 
         <!-- 3) Help with -->
@@ -105,10 +110,16 @@
             <div class="opt"><label><input type="checkbox" name="help[]" value="Shuttling people"> <span data-i18n="q3_9">Shuttling people</span></label></div>
             <div class="opt"><label><input type="checkbox" name="help[]" value="Packing the morning after"> <span data-i18n="q3_10">Packing the morning after</span></label></div>
 
-            <label style="display:block;margin-top:8px;">
-              <span data-i18n="q3_other">Other</span>:
-              <input type="text" name="help_other" />
-            </label>
+            <div class="opt" style="margin-top:8px;">
+              <label>
+                <input type="checkbox" name="help[]" value="Other" id="helpOtherCheck">
+                <span data-i18n="q3_other">Other</span>
+              </label>
+
+              <div class="inline-extra" data-show-when="help[]=Other">
+                <input type="text" name="help_other" placeholder="…" />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -127,7 +138,7 @@
 
           <label>
             <span data-i18n="q5_spaces">Free seats in my car</span>:
-            <input type="number" min="0" name="car_free_seats" />
+            <input type="number" min="0" value="0" name="car_free_seats" />
           </label>
 
           <div style="height:10px;"></div>
@@ -149,8 +160,14 @@
           <div class="opt"><label><input type="radio" name="diet" value="Dairy-free" required> <span data-i18n="q6_5">Dairy-free</span></label></div>
 
           <div class="opt" style="margin-top:8px;">
-            <label><input type="radio" name="diet" value="Other"> <span data-i18n="q6_other">Other</span></label>
-            <input type="text" name="diet_other" placeholder="…" />
+            <label>
+              <input type="radio" name="diet" value="Other">
+              <span data-i18n="q6_other">Other</span>
+            </label>
+
+            <div class="inline-extra" data-show-when="diet=Other">
+              <input type="text" name="diet_other" placeholder="…" />
+            </div>
           </div>
         </div>
 
@@ -175,16 +192,20 @@
           <div class="opt"><label><input type="radio" name="gift" value="Contribute to our home wishlist"> <span data-i18n="q8_4">Contribute to our home wishlist</span></label></div>
 
           <!-- Wishlist (kept as simple link input since your i18n already includes it) -->
-          <div id="wishlistFields" style="display:none;">
+          <div id="wishlistFields" class="inline-extra" data-show-when="gift=Contribute to our home wishlist">
             <label data-i18n="wl_item">Wishlist item</label>
             <select id="wishlistItemSelect" name="wishlist_item_id"></select>
 
             <div class="opt">
               <label><input type="radio" name="wishlist_type" value="FULL"> <span data-i18n="wl_full"></span></label>
             </div>
+
             <div class="opt">
               <label><input type="radio" name="wishlist_type" value="PLEDGE"> <span data-i18n="wl_pledge"></span></label>
-              <input type="number" name="wishlist_amount" min="1" placeholder="Amount" />
+
+              <div class="inline-extra" data-show-when="wishlist_type=PLEDGE">
+                <input type="number" name="wishlist_amount" min="1" placeholder="Amount" />
+              </div>
             </div>
 
             <input type="text" name="wishlist_note" placeholder="Note (optional)" />
