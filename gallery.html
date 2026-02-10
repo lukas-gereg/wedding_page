@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Anna & Lukáš • Gallery</title>
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/gallery.css" />
   <script defer src="js/i18n.js"></script>
   <script defer src="js/ui.js"></script>
+  <script defer src="js/gallery.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -52,11 +54,40 @@
       <h2 class="h2" data-i18n="gallery_title">Galéria</h2>
       <p class="muted" data-i18n="gallery_sub">Fotky pridáme čoskoro.</p>
 
-      <div class="gallery" aria-label="Gallery placeholders">
-        <div class="gph"></div><div class="gph"></div><div class="gph"></div>
-        <div class="gph"></div><div class="gph"></div><div class="gph"></div>
+      <div class="gallery-switch" role="tablist" aria-label="Gallery switch">
+        <button
+          class="tab is-active"
+          type="button"
+          role="tab"
+          aria-selected="true"
+          data-gallery="pro"
+          data-i18n="gallery_tab_pro"
+        >Profesionálne</button>
+
+        <button
+          class="tab"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          data-gallery="guests"
+          data-i18n="gallery_tab_guests"
+        >Od hostí</button>
+      </div>
+
+      <!-- Status / errors -->
+      <div id="galleryStatus" class="muted" aria-live="polite"></div>
+
+      <!-- Grid -->
+      <div id="galleryGrid" class="gallery" aria-label="Gallery"></div>
+
+      <!-- Pagination -->
+      <div class="gallery-actions">
+        <button id="loadMoreBtn" class="btn" type="button" style="display:none;" data-i18n="gallery_load_more">
+          Načítať viac
+        </button>
       </div>
     </section>
+
 
     <div class="footer">© 2026 Anna & Lukáš</div>
   </main>
