@@ -138,15 +138,41 @@
   position:absolute;
   top: 10px;
   right: 12px;
-  border: none;
-  background: rgba(0,0,0,.08);
-  width: 40px;
-  height: 40px;
+
+  width: 42px;
+  height: 42px;
   border-radius: 999px;
+
+  /* ✅ higher contrast on any photo */
+  background: rgba(250,247,241,.05);       /* “ivory glass” */
+  border: 2px solid rgba(15,61,46,.28);    /* emerald ring */
+
+  /* optional but very nice on photos */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
   cursor: pointer;
-  font-size: 22px;
-  line-height: 40px;
+  font-size: 24px;
+  line-height: 42px;
   color: var(--ink);
+
+  display: grid;
+  place-items: center;
+}
+
+/* ✅ a bit more feedback */
+.lightbox__close:hover{
+  background: rgba(250,247,241,.1);
+  transform: translateY(-1px);
+}
+
+.lightbox__close:active{
+  transform: translateY(0px) scale(.98);
+}
+
+/* ✅ keyboard accessibility */
+.lightbox__close:focus-visible{
+  outline: none;
 }
 
 .lightbox__name{
