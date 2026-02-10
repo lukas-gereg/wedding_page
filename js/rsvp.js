@@ -8,11 +8,6 @@ const BASE_CCY = "HUF";
 // Fixed rate (simple + stable). You can update whenever.
 const FX_EUR_HUF = 385; // 1 EUR = 385 HUF
 
-
-function getLang() {
-  return localStorage.getItem("lang") || "sk";
-}
-
 function hufToEur(huf) {
   return huf / FX_EUR_HUF;
 }
@@ -476,6 +471,8 @@ function showToast({ type = "info", title = "", message = "", autoHideMs = 10000
    INIT
    ================================ */
 document.addEventListener("DOMContentLoaded", () => {
+  getLang();
+
   loadWishlist().then(() => {
     syncWishlistCurrencyUI();
     updateFxHint();

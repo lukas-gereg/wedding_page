@@ -252,8 +252,19 @@ const I18N = {
 };
 
 function getLang() {
-    return localStorage.getItem("lang") || "sk";
+  const stored = localStorage.getItem("lang");
+  if (stored) return stored;
+
+  const sel = document.getElementById("langSelect");
+  const fromSelect = sel && sel.value ? sel.value : null;
+
+  const fromHtml = document.documentElement.lang || null;
+
+  const lang = fromSelect || fromHtml || "sk";
+  localStorage.setItem("lang", lang);
+  return lang;
 }
+
 
 function setLang(lang) {
     localStorage.setItem("lang", lang);
