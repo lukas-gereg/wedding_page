@@ -1,7 +1,7 @@
 /* ================================
    CONFIG
    ================================ */
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbySTjCt1gO3-aVT5pso9MZ_Yh5ylyIISOzdZN0HhPV0TMSnSVPj8fRrF2lE6UKEBI6Xog/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxa--waWzKbxIyx0D-8FTT-bY3Vsd1mov1kO4YMC3kmmJxglftJCGT-1Rn0OzlHZwRhhA/exec";
 
 const BASE_CCY = "HUF";
 
@@ -96,17 +96,14 @@ async function loadWishlist({ silent = false } = {}) {
 function syncWishlistCurrencyUI() {
   const lang = getLang();
   const amountInput = document.querySelector('input[name="wishlist_amount"]');
-  const currencyHidden = document.querySelector('input[name="wishlist_currency"]');
-  if (!amountInput || !currencyHidden) return;
+  if (!amountInput) return;
 
   if (lang === "hu") {
     amountInput.placeholder = "Összeg (HUF)";
     amountInput.inputMode = "numeric";
-    currencyHidden.value = "HUF";
   } else {
     amountInput.placeholder = "Suma (EUR)";
     amountInput.inputMode = "decimal";
-    currencyHidden.value = "EUR";
   }
 
   // optional: re-sanitize when switching language
@@ -129,7 +126,7 @@ function formToJSON(form) {
 
   // Normalize wishlist pledge into HUF
   if (obj.wishlist_type === "PLEDGE" && obj.wishlist_amount) {
-  const currency = obj.wishlist_currency || "HUF";
+  const currency = getLang() === "sk" ? "EUR": "HUF";
   const raw = String(obj.wishlist_amount).replace(",", ".");
   const num = Number(raw);
 
@@ -224,7 +221,7 @@ function attachMoneyInputGuard(form) {
   if (!amountInput) return;
 
   const sanitize = () => {
-    const currency = document.querySelector('input[name="wishlist_currency"]')?.value || "HUF";
+    const currency = getLang() === "sk" ? "EUR": "HUF";
     let v = amountInput.value || "";
 
     // keep digits + separators only
@@ -324,7 +321,7 @@ function updateFxHint() {
   const hint = document.getElementById("pledgeFxHint");
   const amountInput = document.querySelector('input[name="wishlist_amount"]');
   const typeChecked = document.querySelector('input[name="wishlist_type"]:checked')?.value;
-  const currency = document.querySelector('input[name="wishlist_currency"]')?.value || "HUF";
+  const currency = getLang() === "sk" ? "EUR": "HUF";
   if (!hint || !amountInput) return;
 
   // only show when pledge is selected and wishlist visible
@@ -428,7 +425,13 @@ function showToast({ type = "info", title = "", message = "", autoHideMs = 10000
 
   const h = document.createElement("p");
   h.className = "toast__title";
-  h.textContent = title || (type === "success" ? "Success" : type === "error" ? "Error" : "Info");
+
+  const fallbackTitle =
+    type === "success" ? t("toast_success_fallback") :
+    type === "error"   ? t("toast_error_fallback") :
+                         t("toast_info_fallback");
+
+  h.textContent = title || fallbackTitle;
 
   const p = document.createElement("p");
   p.className = "toast__msg";
@@ -441,7 +444,7 @@ function showToast({ type = "info", title = "", message = "", autoHideMs = 10000
     const btn = document.createElement("button");
     btn.className = "toast__close";
     btn.type = "button";
-    btn.setAttribute("aria-label", "Close");
+    btn.setAttribute("aria-label", t("toast_close"));
     btn.innerHTML = "×";
     btn.addEventListener("click", () => toast.remove());
     toast.appendChild(btn);
@@ -467,11 +470,90 @@ function showToast({ type = "info", title = "", message = "", autoHideMs = 10000
   return toast;
 }
 
+function applyPlaceholders() {
+  const phone = document.querySelector('input[name="phone"]');
+  if (phone) phone.placeholder = t("phone_placeholder");
+
+  // if you want others too, add them here the same way
+  // const name = document.querySelector('input[name="official_name"]');
+  // if (name) name.placeholder = t("name_placeholder");
+}
+
+function attachPhoneGuard(form) {
+  const phone = form.querySelector('input[name="phone"]');
+  if (!phone) return;
+
+  const sanitize = () => {
+    // allow + at start, digits, spaces, dashes, parentheses
+    let v = phone.value || "";
+    v = v.replace(/[^\d+\s\-()]/g, "");
+    // only one + and only at beginning
+    v = v.replace(/\+/g, (m, offset) => (offset === 0 ? "+" : ""));
+    phone.value = v;
+  };
+
+  phone.addEventListener("input", sanitize);
+  phone.addEventListener("blur", sanitize);
+}
+
+function attachEmailConfirm(form) {
+  const email = form.querySelector('input[name="email"]');
+  const email2 = form.querySelector('input[name="email_confirm"]');
+  if (!email || !email2) return;
+
+  const validate = () => {
+    const a = (email.value || "").trim();
+    const b = (email2.value || "").trim();
+
+    // reset visuals if empty
+    if (!a && !b) {
+      email.classList.remove("field-ok","field-bad");
+      email2.classList.remove("field-ok","field-bad");
+      email2.setCustomValidity("");
+      return;
+    }
+
+    const ok = a && b && a.toLowerCase() === b.toLowerCase();
+
+    email.classList.toggle("field-ok", ok);
+    email2.classList.toggle("field-ok", ok);
+    email.classList.toggle("field-bad", !ok && b.length > 0);
+    email2.classList.toggle("field-bad", !ok && b.length > 0);
+
+    email2.setCustomValidity(ok ? "" : "EMAIL_MISMATCH");
+  };
+
+  email.addEventListener("input", validate);
+  email2.addEventListener("input", validate);
+  email2.addEventListener("blur", validate);
+
+  // translate browser validation message via toast on submit
+  form.addEventListener("submit", (e) => {
+    validate();
+    if (!form.checkValidity()) {
+      e.preventDefault();
+      const msgKey = (email2.validationMessage === "EMAIL_MISMATCH")
+        ? "toast_email_mismatch"
+        : "toast_invalid_form";
+      showToast({
+        type: "error",
+        title: `❌ ${t("toast_error_title")}`,
+        message: t(msgKey),
+        autoHideMs: 10000,
+        dismissible: true
+      });
+    }
+  }, true);
+}
+
+
 /* ================================
    INIT
    ================================ */
 document.addEventListener("DOMContentLoaded", () => {
   getLang();
+
+  applyPlaceholders();
 
   loadWishlist().then(() => {
     syncWishlistCurrencyUI();
@@ -489,10 +571,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const langSelect = document.getElementById("langSelect");
   if (langSelect) {
     langSelect.addEventListener("change", () => {
-      // i18n.js will update localStorage, so wait a tick
       setTimeout(() => {
+        applyPlaceholders();
         syncWishlistCurrencyUI();
-        loadWishlist(); // re-render labels with correct language
+        loadWishlist();
         updateFxHint();
       }, 0);
     });
@@ -503,6 +585,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // initialize & listen
   refreshInlineExtras(form);
   attachMoneyInputGuard(form);
+  attachPhoneGuard(form);
+  attachEmailConfirm(form);
 
   form.addEventListener("change", () => refreshInlineExtras(form));
 

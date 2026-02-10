@@ -111,6 +111,13 @@ const I18N = {
 
         submit: "Odoslať",
 
+        sending_label: "Odosielam…",
+
+        toast_close: "Zavrieť",
+        toast_success_fallback: "Úspech", // sk
+        toast_error_fallback: "Chyba",    // sk
+        toast_info_fallback: "Info",
+
         toast_success_title: "Odoslané",
         toast_success_msg: "Ďakujeme! Odpoveď bola uložená.",
         toast_error_title: "Chyba",
@@ -123,6 +130,12 @@ const I18N = {
         toast_overfill: "Zadaná suma je príliš vysoká. Zostáva ešte: {remaining}.",
         toast_full_will_fund_remaining: "Táto položka bude dofinancovaná zvyšnou sumou: {remaining}.",
         toast_invalid_amount: "Neplatná suma. Skontrolujte prosím formát.",
+
+        phone_placeholder: "+421 9xx xxx xxx",
+        q10_email_confirm: "Email ešte raz",
+
+        toast_email_mismatch: "Email adresy sa nezhodujú.",
+        toast_invalid_form: "Prosím skontrolujte formulár (chýbajúce alebo neplatné polia).",
     },
 
     hu: {
@@ -236,6 +249,13 @@ const I18N = {
 
         submit: "Küldés",
 
+        sending_label: "Küldés…",
+
+        toast_close: "Bezárás",
+        toast_success_fallback: "Siker",  // hu
+        toast_error_fallback: "Hiba",     // hu
+        toast_info_fallback: "Info",
+
         toast_success_title: "Elküldve",
         toast_success_msg: "Köszönjük! A válaszodat elmentettük.",
         toast_error_title: "Hiba",
@@ -248,6 +268,12 @@ const I18N = {
         toast_overfill: "Túl magas összeget adtál meg. Még ennyi hiányzik: {remaining}.",
         toast_full_will_fund_remaining: "A tétel a fennmaradó összeggel lesz kifizetve: {remaining}.",
         toast_invalid_amount: "Érvénytelen összeg. Kérjük ellenőrizd a formát.",
+
+        phone_placeholder: "+36 20/30/70 xxx xxxx",
+        q10_email_confirm: "Email még egyszer",
+
+        toast_email_mismatch: "Az email címek nem egyeznek.",
+        toast_invalid_form: "Kérjük ellenőrizd az űrlapot (hiányzó vagy érvénytelen mezők).",
     }
 };
 
@@ -301,3 +327,4 @@ function initI18n() {
 
 document.addEventListener("DOMContentLoaded", initI18n);
 
+window.I18N = I18N;

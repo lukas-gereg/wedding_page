@@ -14,7 +14,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Put these right after <body> (top is best) -->
   <div class="loading-overlay" id="loadingOverlay" data-open="false" aria-hidden="true">
     <div class="loading-box" role="status" aria-live="polite">
       <div class="spinner" aria-hidden="true"></div>
@@ -84,15 +83,15 @@
         <div class="panel">
           <h3 class="h2" data-i18n="q2_title">I can bring</h3>
 
-          <div class="opt"><label><input type="radio" name="bring" value="Cookies" required> <span data-i18n="q2_cookies">Cookies</span></label></div>
-          <div class="opt"><label><input type="radio" name="bring" value="Salty snack"> <span data-i18n="q2_salty">Salty snack</span></label></div>
-          <div class="opt"><label><input type="radio" name="bring" value="Sweet"> <span data-i18n="q2_sweet">Sweet</span></label></div>
-          <div class="opt"><label><input type="radio" name="bring" value="Dietary / special"> <span data-i18n="q2_dietary">Dietary / special</span></label></div>
-          <div class="opt"><label><input type="radio" name="bring" value="I cannot bring anything"> <span data-i18n="q2_nothing">I cannot bring anything</span></label></div>
+          <div class="opt"><label><input type="checkbox" name="bring" value="Cookies" required> <span data-i18n="q2_cookies">Cookies</span></label></div>
+          <div class="opt"><label><input type="checkbox" name="bring" value="Salty snack"> <span data-i18n="q2_salty">Salty snack</span></label></div>
+          <div class="opt"><label><input type="checkbox" name="bring" value="Sweet"> <span data-i18n="q2_sweet">Sweet</span></label></div>
+          <div class="opt"><label><input type="checkbox" name="bring" value="Dietary / special"> <span data-i18n="q2_dietary">Dietary / special</span></label></div>
+          <div class="opt"><label><input type="checkbox" name="bring" value="I cannot bring anything"> <span data-i18n="q2_nothing">I cannot bring anything</span></label></div>
 
           <div class="opt" style="margin-top:8px;">
             <label>
-              <input type="radio" name="bring" value="Other">
+              <input type="checkbox" name="bring" value="Other">
               <span data-i18n="q2_other">Other</span>
             </label>
 
@@ -202,7 +201,6 @@
           <h3 class="h2" data-i18n="q8_title">Gift</h3>
 
           <div class="opt"><label><input type="radio" name="gift" value="Money contribution" required> <span data-i18n="q8_1">Money contribution</span></label></div>
-          <div class="opt"><label><input type="radio" name="gift" value="Small gift / surprise"> <span data-i18n="q8_2">Small gift / surprise</span></label></div>
           <div class="opt"><label><input type="radio" name="gift" value="Contribute to our home wishlist"> <span data-i18n="q8_4">Contribute to our home wishlist</span></label></div>
 
           <!-- Wishlist (kept as simple link input since your i18n already includes it) -->
@@ -230,7 +228,6 @@
 
             <input type="text" name="wishlist_note" placeholder="Note (optional)" />
 
-            <input type="hidden" name="wishlist_currency" value="HUF" />
           <input type="hidden" name="wishlist_amount_huf" value="" />
           </div>
         </div>
@@ -254,8 +251,20 @@
           <div style="height:10px;"></div>
 
           <label>
+            <span data-i18n="q10_email_confirm">Confirm email</span>
+            <input type="email" name="email_confirm" required />
+          </label>
+
+          <div style="height:10px;"></div>
+
+          <label>
             <span data-i18n="q9_phone">Phone number</span>
-            <input type="text" name="phone" />
+            <input
+                  type="tel"
+                  name="phone"
+                  inputmode="tel"
+                  autocomplete="tel"
+                />
           </label>
         </div>
 

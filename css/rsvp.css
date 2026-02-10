@@ -320,4 +320,14 @@
   justify-content: center;
   text-align: center;
 }
-#formStatus{ display:none; } /* we’ll use toasts instead */
+
+#formStatus{ display:none; }
+
+.field-ok {
+  border-color: rgba(16,185,129,.9) !important;
+  background: rgba(16,185,129,.08) !important;
+}
+.field-bad {
+  border-color: rgba(239,68,68,.95) !important;
+  background: rgba(239,68,68,.08) !important;
+}
