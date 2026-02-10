@@ -548,12 +548,65 @@ function attachEmailConfirm(form) {
   }, true);
 }
 
+function attachIntOnlyGuard(form, selector) {
+  const el = form.querySelector(selector);
+  if (!el) return;
+
+  const sanitize = () => {
+    let v = (el.value ?? "").toString();
+    v = v.replace(/[^\d]/g, "");      // digits only
+    // avoid leading zeros like "0003" (optional)
+    v = v.replace(/^0+(?=\d)/, "");
+    el.value = v;
+  };
+
+  el.addEventListener("keydown", (e) => {
+    const allowed = [
+      "Backspace", "Delete", "Tab", "Escape", "Enter",
+      "ArrowLeft", "ArrowRight", "Home", "End"
+    ];
+    if (allowed.includes(e.key)) return;
+    if ((e.ctrlKey || e.metaKey) && ["a", "c", "v", "x"].includes(e.key.toLowerCase())) return;
+    if (/^\d$/.test(e.key)) return;
+    e.preventDefault();
+  });
+
+  el.addEventListener("input", sanitize);
+  el.addEventListener("blur", sanitize);
+}
 
 /* ================================
    INIT
    ================================ */
+
+function applyRsvpDeadline() {
+  // Visible until end of 2026-06-01 (local time), hidden starting 2026-06-02 00:00
+  const deadlineEnd = new Date(2026, 5, 1, 23, 59, 59); // months are 0-based (5 = June)
+
+  const openWrap = document.getElementById("rsvpOpen");
+  const closedWrap = document.getElementById("rsvpClosed");
+  const form = document.getElementById("rsvpForm");
+
+  if (!openWrap || !closedWrap) return;
+
+  const now = new Date();
+  const isOpen = now <= deadlineEnd;
+
+  openWrap.style.display = isOpen ? "" : "none";
+  closedWrap.style.display = isOpen ? "none" : "";
+
+  // extra safety: if closed, disable all inputs so nothing can submit
+  if (!isOpen && form) {
+    form.querySelectorAll("input, select, textarea, button").forEach(el => {
+      el.disabled = true;
+    });
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   getLang();
+
+  applyRsvpDeadline()
 
   applyPlaceholders();
 
@@ -588,6 +641,7 @@ document.addEventListener("DOMContentLoaded", () => {
   refreshInlineExtras(form);
   attachMoneyInputGuard(form);
   attachPhoneGuard(form);
+  attachIntOnlyGuard(form, 'input[name="car_free_seats"]');
   attachEmailConfirm(form);
 
   form.addEventListener("change", () => refreshInlineExtras(form));

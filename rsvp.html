@@ -59,245 +59,252 @@
   </header>
 
   <main class="container">
-    <section class="panel">
+    <section class="panel" id="rsvpSection">
       <h2 class="h2" data-i18n="rsvp_title">RSVP</h2>
-      <p class="muted" data-i18n="rsvp_sub">Prosíme, dajte nám vedieť do: (doplňte dátum)</p>
 
-      <form id="rsvpForm" class="rsvp-form">
+      <div id="rsvpOpen">
+        <p class="muted" data-i18n="rsvp_sub">Prosíme, dajte nám vedieť do: 1.6.2026, 23:59</p>
 
-        <!-- 1) Attendance -->
-        <div class="panel">
-          <h3 class="h2" data-i18n="q1_title">Attendance</h3>
-          <label class="muted" data-i18n="q1_label">I will attend:</label>
+        <form id="rsvpForm" class="rsvp-form">
 
-          <select name="attendance" required>
-            <option value="" data-i18n="choose">Choose…</option>
-            <option value="Ceremony & Mass (Agape)" data-i18n="q1_a1">Ceremony & Mass (Agape)</option>
-            <option value="Ceremony & Dining (Agape)" data-i18n="q1_a2">Ceremony & Dining (Agape)</option>
-            <option value="Everything" data-i18n="q1_a3">Everything</option>
-            <option value="I cannot come" data-i18n="q1_a4">I cannot come</option>
-          </select>
-        </div>
+          <!-- 1) Attendance -->
+          <div class="panel">
+            <h3 class="h2" data-i18n="q1_title">Attendance</h3>
+            <label class="muted" data-i18n="q1_label">I will attend:</label>
 
-        <!-- 2) Bring something -->
-        <div class="panel">
-          <h3 class="h2" data-i18n="q2_title">I can bring</h3>
-          <div class="muted" data-i18n="q3_hint">Select any that apply:</div>
-
-          <div class="opt"><label><input type="checkbox" name="bring[]" value="Cookies"> <span data-i18n="q2_cookies">Cookies</span></label></div>
-          <div class="opt"><label><input type="checkbox" name="bring[]" value="Salty snack"> <span data-i18n="q2_salty">Salty snack</span></label></div>
-          <div class="opt"><label><input type="checkbox" name="bring[]" value="Sweet"> <span data-i18n="q2_sweet">Sweet</span></label></div>
-          <div class="opt"><label><input type="checkbox" name="bring[]" value="Dietary / special"> <span data-i18n="q2_dietary">Dietary / special</span></label></div>
-          <div class="opt"><label><input type="checkbox" name="bring[]" value="I cannot bring anything"> <span data-i18n="q2_nothing">I cannot bring anything</span></label></div>
-
-          <div class="opt" style="margin-top:8px;">
-            <label>
-              <input type="checkbox" name="bring[]" value="Other" id="bringOtherCheck">
-              <span data-i18n="q2_other">Other</span>
-            </label>
-
-            <div class="inline-extra" data-show-when="bring[]=Other">
-              <input type="text" name="bring_other" placeholder="…" />
-            </div>
+            <select name="attendance" required>
+              <option value="" data-i18n="choose">Choose…</option>
+              <option value="Ceremony & Mass (Agape)" data-i18n="q1_a1">Ceremony & Mass (Agape)</option>
+              <option value="Ceremony & Dining (Agape)" data-i18n="q1_a2">Ceremony & Dining (Agape)</option>
+              <option value="Everything" data-i18n="q1_a3">Everything</option>
+              <option value="I cannot come" data-i18n="q1_a4">I cannot come</option>
+            </select>
           </div>
-        </div>
 
-        <!-- 3) Help with -->
-        <div class="panel">
-          <h3 class="h2" data-i18n="q3_title">I can help with</h3>
-          <div class="muted" data-i18n="q3_hint">Select any that apply:</div>
+          <!-- 2) Bring something -->
+          <div class="panel">
+            <h3 class="h2" data-i18n="q2_title">I can bring</h3>
+            <div class="muted" data-i18n="q3_hint">Select any that apply:</div>
 
-          <div style="margin-top:10px;">
-            <div class="opt"><label><input type="checkbox" name="help[]" value="Decorating the day before"> <span data-i18n="q3_1">Decorating the day before</span></label></div>
-            <div class="opt"><label><input type="checkbox" name="help[]" value="Decoration in church"> <span data-i18n="q3_2">Decoration in church</span></label></div>
-            <div class="opt"><label><input type="checkbox" name="help[]" value="Packing after agape"> <span data-i18n="q3_3">Packing after agape</span></label></div>
-            <div class="opt"><label><input type="checkbox" name="help[]" value="Printing / handing out liturgical texts & songs"> <span data-i18n="q3_4">Printing / handing out liturgical texts & songs</span></label></div>
-            <div class="opt"><label><input type="checkbox" name="help[]" value="Kids corner (in shifts)"> <span data-i18n="q3_5">Kids corner (in shifts)</span></label></div>
-            <div class="opt"><label><input type="checkbox" name="help[]" value="Handing out sparklers / collecting items"> <span data-i18n="q3_6">Handing out sparklers / collecting items</span></label></div>
-            <div class="opt"><label><input type="checkbox" name="help[]" value="Pouring welcome drink"> <span data-i18n="q3_7">Pouring welcome drink</span></label></div>
-            <div class="opt"><label><input type="checkbox" name="help[]" value="Inviting people to the dancefloor"> <span data-i18n="q3_8">Inviting people to the dancefloor</span></label></div>
-            <div class="opt"><label><input type="checkbox" name="help[]" value="Shuttling people"> <span data-i18n="q3_9">Shuttling people</span></label></div>
-            <div class="opt"><label><input type="checkbox" name="help[]" value="Packing the morning after"> <span data-i18n="q3_10">Packing the morning after</span></label></div>
+            <div class="opt"><label><input type="checkbox" name="bring[]" value="Cookies"> <span data-i18n="q2_cookies">Cookies</span></label></div>
+            <div class="opt"><label><input type="checkbox" name="bring[]" value="Salty snack"> <span data-i18n="q2_salty">Salty snack</span></label></div>
+            <div class="opt"><label><input type="checkbox" name="bring[]" value="Sweet"> <span data-i18n="q2_sweet">Sweet</span></label></div>
+            <div class="opt"><label><input type="checkbox" name="bring[]" value="Dietary / special"> <span data-i18n="q2_dietary">Dietary / special</span></label></div>
+            <div class="opt"><label><input type="checkbox" name="bring[]" value="I cannot bring anything"> <span data-i18n="q2_nothing">I cannot bring anything</span></label></div>
 
             <div class="opt" style="margin-top:8px;">
               <label>
-                <input type="checkbox" name="help[]" value="Other" id="helpOtherCheck">
-                <span data-i18n="q3_other">Other</span>
+                <input type="checkbox" name="bring[]" value="Other" id="bringOtherCheck">
+                <span data-i18n="q2_other">Other</span>
               </label>
 
-              <div class="inline-extra" data-show-when="help[]=Other">
-                <input type="text" name="help_other" placeholder="…" />
+              <div class="inline-extra" data-show-when="bring[]=Other">
+                <input type="text" name="bring_other" placeholder="…" />
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- 4) Arrival -->
-        <div class="panel">
-          <h3 class="h2" data-i18n="q4_title">Arrival & accommodation</h3>
+          <!-- 3) Help with -->
+          <div class="panel">
+            <h3 class="h2" data-i18n="q3_title">I can help with</h3>
+            <div class="muted" data-i18n="q3_hint">Select any that apply:</div>
 
-          <div class="opt"><label><input type="radio" name="arrival" value="Friday evening (2 days accommodation)" required> <span data-i18n="q4_1">Friday evening (2 days accommodation)</span></label></div>
-          <div class="opt"><label><input type="radio" name="arrival" value="Saturday morning (1 day accommodation)"> <span data-i18n="q4_2">Saturday morning (1 day accommodation)</span></label></div>
-          <div class="opt"><label><input type="radio" name="arrival" value="I do not need accommodation"> <span data-i18n="q4_3">I do not need accommodation</span></label></div>
-        </div>
+            <div style="margin-top:10px;">
+              <div class="opt"><label><input type="checkbox" name="help[]" value="Decorating the day before"> <span data-i18n="q3_1">Decorating the day before</span></label></div>
+              <div class="opt"><label><input type="checkbox" name="help[]" value="Decoration in church"> <span data-i18n="q3_2">Decoration in church</span></label></div>
+              <div class="opt"><label><input type="checkbox" name="help[]" value="Packing after agape"> <span data-i18n="q3_3">Packing after agape</span></label></div>
+              <div class="opt"><label><input type="checkbox" name="help[]" value="Printing / handing out liturgical texts & songs"> <span data-i18n="q3_4">Printing / handing out liturgical texts & songs</span></label></div>
+              <div class="opt"><label><input type="checkbox" name="help[]" value="Kids corner (in shifts)"> <span data-i18n="q3_5">Kids corner (in shifts)</span></label></div>
+              <div class="opt"><label><input type="checkbox" name="help[]" value="Handing out sparklers / collecting items"> <span data-i18n="q3_6">Handing out sparklers / collecting items</span></label></div>
+              <div class="opt"><label><input type="checkbox" name="help[]" value="Pouring welcome drink"> <span data-i18n="q3_7">Pouring welcome drink</span></label></div>
+              <div class="opt"><label><input type="checkbox" name="help[]" value="Inviting people to the dancefloor"> <span data-i18n="q3_8">Inviting people to the dancefloor</span></label></div>
+              <div class="opt"><label><input type="checkbox" name="help[]" value="Shuttling people"> <span data-i18n="q3_9">Shuttling people</span></label></div>
+              <div class="opt"><label><input type="checkbox" name="help[]" value="Packing the morning after"> <span data-i18n="q3_10">Packing the morning after</span></label></div>
 
-        <!-- 5) Carpool -->
-        <div class="panel">
-          <h3 class="h2" data-i18n="q5_title">Carpool</h3>
+              <div class="opt" style="margin-top:8px;">
+                <label>
+                  <input type="checkbox" name="help[]" value="Other" id="helpOtherCheck">
+                  <span data-i18n="q3_other">Other</span>
+                </label>
 
-          <label>
-            <span data-i18n="q5_spaces">Free seats in my car</span>:
-            <input
-                  type="text"
-                  name="car_free_seats"
-                  inputmode="numeric"
-                  autocomplete="off"
-                />
-          </label>
+                <div class="inline-extra" data-show-when="help[]=Other">
+                  <input type="text" name="help_other" placeholder="…" />
+                </div>
+              </div>
+            </div>
+          </div>
 
-          <div style="height:10px;"></div>
+          <!-- 4) Arrival -->
+          <div class="panel">
+            <h3 class="h2" data-i18n="q4_title">Arrival & accommodation</h3>
 
-          <label>
-            <span data-i18n="q5_route">Route / path</span>:
-            <input type="text" name="car_route" />
-          </label>
-        </div>
+            <div class="opt"><label><input type="radio" name="arrival" value="Friday evening (2 days accommodation)" required> <span data-i18n="q4_1">Friday evening (2 days accommodation)</span></label></div>
+            <div class="opt"><label><input type="radio" name="arrival" value="Saturday morning (1 day accommodation)"> <span data-i18n="q4_2">Saturday morning (1 day accommodation)</span></label></div>
+            <div class="opt"><label><input type="radio" name="arrival" value="I do not need accommodation"> <span data-i18n="q4_3">I do not need accommodation</span></label></div>
+          </div>
 
-        <!-- 6) Dietary -->
-        <div class="panel">
-          <h3 class="h2" data-i18n="q6_title">Dietary needs</h3>
+          <!-- 5) Carpool -->
+          <div class="panel">
+            <h3 class="h2" data-i18n="q5_title">Carpool</h3>
 
-          <div class="opt"><label><input type="radio" name="diet" value="No restrictions" required> <span data-i18n="q6_1">No restrictions</span></label></div>
-          <div class="opt"><label><input type="radio" name="diet" value="Vegan" required> <span data-i18n="q6_2">Vegan</span></label></div>
-          <div class="opt"><label><input type="radio" name="diet" value="Gluten-free" required> <span data-i18n="q6_3">Gluten-free</span></label></div>
-          <div class="opt"><label><input type="radio" name="diet" value="Lactose-free" required> <span data-i18n="q6_4">Lactose-free</span></label></div>
-          <div class="opt"><label><input type="radio" name="diet" value="Dairy-free" required> <span data-i18n="q6_5">Dairy-free</span></label></div>
-
-          <div class="opt" style="margin-top:8px;">
             <label>
-              <input type="radio" name="diet" value="Other">
-              <span data-i18n="q6_other">Other</span>
+              <span data-i18n="q5_spaces">Free seats in my car</span>:
+              <input
+                    type="text"
+                    name="car_free_seats"
+                    inputmode="numeric"
+                    autocomplete="off"
+                  />
             </label>
 
-            <div class="inline-extra" data-show-when="diet=Other">
-              <input type="text" name="diet_other" placeholder="…" />
-            </div>
+            <div style="height:10px;"></div>
+
+            <label>
+              <span data-i18n="q5_route">Route / path</span>:
+              <input type="text" name="car_route" />
+            </label>
           </div>
-        </div>
 
-        <!-- 7) Allergy responsibility -->
-        <div class="panel">
-          <h3 class="h2" data-i18n="q7_title">Allergy responsibility</h3>
+          <!-- 6) Dietary -->
+          <div class="panel">
+            <h3 class="h2" data-i18n="q6_title">Dietary needs</h3>
 
-          <label>
-            <input type="checkbox" name="allergy_ack" value="Yes" required>
-            <span data-i18n="q7_text">
-              I understand that in case of allergic reaction I take full responsibility for my insurance and medication.
-            </span>
-          </label>
-        </div>
+            <div class="opt"><label><input type="radio" name="diet" value="No restrictions" required> <span data-i18n="q6_1">No restrictions</span></label></div>
+            <div class="opt"><label><input type="radio" name="diet" value="Vegan" required> <span data-i18n="q6_2">Vegan</span></label></div>
+            <div class="opt"><label><input type="radio" name="diet" value="Gluten-free" required> <span data-i18n="q6_3">Gluten-free</span></label></div>
+            <div class="opt"><label><input type="radio" name="diet" value="Lactose-free" required> <span data-i18n="q6_4">Lactose-free</span></label></div>
+            <div class="opt"><label><input type="radio" name="diet" value="Dairy-free" required> <span data-i18n="q6_5">Dairy-free</span></label></div>
 
-        <!-- 8) Gift -->
-        <div class="panel">
-          <h3 class="h2" data-i18n="q8_title">Gift</h3>
+            <div class="opt" style="margin-top:8px;">
+              <label>
+                <input type="radio" name="diet" value="Other">
+                <span data-i18n="q6_other">Other</span>
+              </label>
 
-          <div class="opt"><label><input type="radio" name="gift" value="Money contribution"> <span data-i18n="q8_1">Money contribution</span></label></div>
-          <div class="opt"><label><input type="radio" name="gift" value="Contribute to our home wishlist"> <span data-i18n="q8_4">Contribute to our home wishlist</span></label></div>
-
-          <!-- Wishlist (kept as simple link input since your i18n already includes it) -->
-          <div id="wishlistFields" class="inline-extra" data-show-when="gift=Contribute to our home wishlist">
-            <label data-i18n="wl_item">Wishlist item</label>
-            <select id="wishlistItemSelect" name="wishlist_item_id"></select>
-
-            <div class="opt">
-              <label><input type="radio" name="wishlist_type" value="FULL"> <span data-i18n="wl_full"></span></label>
-            </div>
-
-            <div class="opt">
-              <label><input type="radio" name="wishlist_type" value="PLEDGE"> <span data-i18n="wl_pledge"></span></label>
-
-              <div class="inline-extra" data-show-when="wishlist_type=PLEDGE">
-                <input
-                      type="text"
-                      name="wishlist_amount"
-                      inputmode="decimal"
-                      autocomplete="off"
-                    />
-                <div id="pledgeFxHint" class="muted" style="margin-top:6px; display:none;"></div>
+              <div class="inline-extra" data-show-when="diet=Other">
+                <input type="text" name="diet_other" placeholder="…" />
               </div>
             </div>
-
-            <input type="text" name="wishlist_note" placeholder="Note (optional)" />
-
-          <input type="hidden" name="wishlist_amount_huf" value="" />
           </div>
-        </div>
 
-        <!-- 9-11 Contact -->
-        <div class="panel">
-          <h3 class="h2" data-i18n="q9_title">Contact</h3>
+          <!-- 7) Allergy responsibility -->
+          <div class="panel">
+            <h3 class="h2" data-i18n="q7_title">Allergy responsibility</h3>
 
-          <label>
-            <span data-i18n="q11_name">Full official name</span>
-            <input type="text" name="official_name" required />
-          </label>
+            <label>
+              <input type="checkbox" name="allergy_ack" value="Yes" required>
+              <span data-i18n="q7_text">
+                I understand that in case of allergic reaction I take full responsibility for my insurance and medication.
+              </span>
+            </label>
+          </div>
 
-          <div style="height:10px;"></div>
+          <!-- 8) Gift -->
+          <div class="panel">
+            <h3 class="h2" data-i18n="q8_title">Gift</h3>
 
-          <label>
-            <span data-i18n="q10_email">Email</span>
-            <input type="email" name="email" required />
-          </label>
+            <div class="opt"><label><input type="radio" name="gift" value="Money contribution"> <span data-i18n="q8_1">Money contribution</span></label></div>
+            <div class="opt"><label><input type="radio" name="gift" value="Contribute to our home wishlist"> <span data-i18n="q8_4">Contribute to our home wishlist</span></label></div>
 
-          <div style="height:10px;"></div>
+            <!-- Wishlist (kept as simple link input since your i18n already includes it) -->
+            <div id="wishlistFields" class="inline-extra" data-show-when="gift=Contribute to our home wishlist">
+              <label data-i18n="wl_item">Wishlist item</label>
+              <select id="wishlistItemSelect" name="wishlist_item_id"></select>
 
-          <label>
-            <span data-i18n="q10_email_confirm">Confirm email</span>
-            <input type="email" name="email_confirm" required />
-          </label>
+              <div class="opt">
+                <label><input type="radio" name="wishlist_type" value="FULL"> <span data-i18n="wl_full"></span></label>
+              </div>
 
-          <div style="height:10px;"></div>
+              <div class="opt">
+                <label><input type="radio" name="wishlist_type" value="PLEDGE"> <span data-i18n="wl_pledge"></span></label>
 
-          <label>
-            <span data-i18n="q9_phone">Phone number</span>
-            <input
-                  type="tel"
-                  name="phone"
-                  inputmode="tel"
-                  autocomplete="tel"
-                />
-          </label>
-        </div>
+                <div class="inline-extra" data-show-when="wishlist_type=PLEDGE">
+                  <input
+                        type="text"
+                        name="wishlist_amount"
+                        inputmode="decimal"
+                        autocomplete="off"
+                      />
+                  <div id="pledgeFxHint" class="muted" style="margin-top:6px; display:none;"></div>
+                </div>
+              </div>
 
-        <!-- Consents -->
-        <div class="panel">
-          <h3 class="h2" data-i18n="consent_title">Consents</h3>
+              <input type="text" name="wishlist_note" placeholder="Note (optional)" />
 
-          <label>
-            <input type="checkbox" name="consent_feedback_30d" value="Yes">
-            <span data-i18n="consent_feedback">
-              I consent to give a final feedback ~30 days before the event via email reminder.
-            </span>
-          </label>
+            <input type="hidden" name="wishlist_amount_huf" value="" />
+            </div>
+          </div>
 
-          <div style="height:10px;"></div>
+          <!-- 9-11 Contact -->
+          <div class="panel">
+            <h3 class="h2" data-i18n="q9_title">Contact</h3>
 
-          <label>
-            <input type="checkbox" name="consent_gdpr_media" value="Yes">
-            <span data-i18n="consent_media">
-              I consent that I (and my children) can appear in photos/videos of the event (GDPR).
-            </span>
-          </label>
-        </div>
+            <label>
+              <span data-i18n="q11_name">Full official name</span>
+              <input type="text" name="official_name" required />
+            </label>
 
-        <!-- SUBMIT -->
-        <div class="submit-row">
-          <button class="btn" type="submit" data-i18n="submit">Submit</button>
-          <span id="formStatus" class="muted"></span>
-        </div>
+            <div style="height:10px;"></div>
 
-      </form>
+            <label>
+              <span data-i18n="q10_email">Email</span>
+              <input type="email" name="email" required />
+            </label>
 
+            <div style="height:10px;"></div>
+
+            <label>
+              <span data-i18n="q10_email_confirm">Confirm email</span>
+              <input type="email" name="email_confirm" required />
+            </label>
+
+            <div style="height:10px;"></div>
+
+            <label>
+              <span data-i18n="q9_phone">Phone number</span>
+              <input
+                    type="tel"
+                    name="phone"
+                    inputmode="tel"
+                    autocomplete="tel"
+                  />
+            </label>
+          </div>
+
+          <!-- Consents -->
+          <div class="panel">
+            <h3 class="h2" data-i18n="consent_title">Consents</h3>
+
+            <label>
+              <input type="checkbox" name="consent_feedback_30d" value="Yes">
+              <span data-i18n="consent_feedback">
+                I consent to give a final feedback ~30 days before the event via email reminder.
+              </span>
+            </label>
+
+            <div style="height:10px;"></div>
+
+            <label>
+              <input type="checkbox" name="consent_gdpr_media" value="Yes">
+              <span data-i18n="consent_media">
+                I consent that I (and my children) can appear in photos/videos of the event (GDPR).
+              </span>
+            </label>
+          </div>
+
+          <!-- SUBMIT -->
+          <div class="submit-row">
+            <button class="btn" type="submit" data-i18n="submit">Submit</button>
+            <span id="formStatus" class="muted"></span>
+          </div>
+
+        </form>
+      </div>
+      <div id="rsvpClosed" style="display:none;">
+        <p class="muted">
+          RSVP is closed.
+        </p>
+      </div>
     </section>
 
     <div class="footer">© 2026 Anna & Lukáš</div>
