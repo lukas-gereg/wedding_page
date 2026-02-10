@@ -301,3 +301,23 @@
   from{ transform: scaleX(1); }
   to{ transform: scaleX(0); }
 }
+
+/* ===== Bigger centered submit button ===== */
+.rsvp-form .submit-row{
+  display:flex;
+  justify-content:center;   /* center row */
+  align-items:center;
+  gap: 14px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.rsvp-form .submit-row .btn{
+  min-width: min(520px, 100%);
+  padding: 14px 22px;
+  font-size: 15px;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  justify-content: center;
+  text-align: center;
+}
+#formStatus{ display:none; } /* we’ll use toasts instead */
