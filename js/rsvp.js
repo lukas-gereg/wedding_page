@@ -1,7 +1,7 @@
 /* ================================
    CONFIG
    ================================ */
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw_8ysR66_7OYhEGZ0U1GTwPx2M-SmheXdkHZXOoLEJVncDo67XX_oKFjygyrV5xJaIWQ/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby-CEaQm7ULyy_998ijOoPNhEQ1dzC0RtA0z2xMpK6X1t-sH5wDMIldB13awXkDl2pEKQ/exec";
 
 // Fixed rate (simple + stable). You can update whenever.
 const FX_EUR_HUF = 385; // 1 EUR = 385 HUF

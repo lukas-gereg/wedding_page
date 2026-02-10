@@ -1,5 +1,5 @@
 // ====== CONFIG ======
-const ENDPOINT = "https://script.google.com/macros/s/AKfycbw_8ysR66_7OYhEGZ0U1GTwPx2M-SmheXdkHZXOoLEJVncDo67XX_oKFjygyrV5xJaIWQ/exec";
+const ENDPOINT = "https://script.google.com/macros/s/AKfycby-CEaQm7ULyy_998ijOoPNhEQ1dzC0RtA0z2xMpK6X1t-sH5wDMIldB13awXkDl2pEKQ/exec";
 // Example:
 // const ENDPOINT = "https://script.google.com/macros/s/XXXX/exec";
 
