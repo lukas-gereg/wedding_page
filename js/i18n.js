@@ -136,6 +136,17 @@ const I18N = {
 
         toast_email_mismatch: "Email adresy sa nezhodujú.",
         toast_invalid_form: "Prosím skontrolujte formulár (chýbajúce alebo neplatné polia).",
+
+        gallery_tab_pro: "Profesionálne",
+        gallery_tab_guests: "Od hostí",
+        gallery_load_more: "Načítať viac",
+        gallery_download: "Stiahnuť",
+
+        gallery_loading: "Načítavam fotky…",
+        gallery_empty: "Zatiaľ tu nie sú žiadne fotky.",
+        gallery_error_load: "Nepodarilo sa načítať galériu. Skontrolujte prístup k priečinku v Google Drive.",
+        gallery_error_more: "Nepodarilo sa načítať ďalšie fotky.",
+        gallery_btn_loading: "Načítavam…",
     },
 
     hu: {
@@ -274,6 +285,17 @@ const I18N = {
 
         toast_email_mismatch: "Az email címek nem egyeznek.",
         toast_invalid_form: "Kérjük ellenőrizd az űrlapot (hiányzó vagy érvénytelen mezők).",
+
+        gallery_tab_pro: "Profi fotók",
+        gallery_tab_guests: "Vendég fotók",
+        gallery_load_more: "Továbbiak betöltése",
+        gallery_download: "Letöltés",
+
+        gallery_loading: "Fotók betöltése…",
+        gallery_empty: "Még nincsenek itt fotók.",
+        gallery_error_load: "Nem sikerült betölteni a galériát. Ellenőrizd a Google Drive mappa hozzáférését.",
+        gallery_error_more: "Nem sikerült betölteni a további fotókat.",
+        gallery_btn_loading: "Betöltés…",
     }
 };
 
@@ -328,3 +350,4 @@ function initI18n() {
 document.addEventListener("DOMContentLoaded", initI18n);
 
 window.I18N = I18N;
+window.applyI18n = applyI18n;
