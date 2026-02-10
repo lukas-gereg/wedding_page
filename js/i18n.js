@@ -153,7 +153,7 @@ const I18N = {
         home_btn_details: "Hol & Mikor",
 
         rsvp_title: "RSVP",
-        rsvp_sub: "Kérjük jelezzetek vissza eddig: 2026.6.1, 23;59",
+        rsvp_sub: "Kérjük jelezzetek vissza eddig: 2026.6.1, 23:59",
         rsvp_note: "Ide illesszétek be a Google Űrlapot vagy saját űrlapot.",
 
         story_title: "Történetünk",
