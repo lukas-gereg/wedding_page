@@ -118,8 +118,10 @@ function formToJSON(form) {
   const obj = {};
 
   obj.help = fd.getAll("help[]");
+  obj.bring = fd.getAll("bring[]");
+
   for (const [k, v] of fd.entries()) {
-    if (k !== "help[]") obj[k] = v;
+    if (k !== "help[]" && k !== "bring[]") obj[k] = v;
   }
 
   obj.lang = getLang();
@@ -281,7 +283,7 @@ function attachMoneyInputGuard(form) {
 
 function matchesCondition(form, cond) {
   // Examples:
-  // "bring=Other"
+  // "bring[]=Other"
   // "diet=Other"
   // "wishlist_type=PLEDGE"
   // "help[]=Other"
