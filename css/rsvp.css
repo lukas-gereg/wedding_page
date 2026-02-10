@@ -172,3 +172,140 @@
 .rsvp-form textarea:focus {
   background: #ffffff !important;
 }
+
+/* ===== Overlay (sending) ===== */
+.loading-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;              /* hidden by default */
+  align-items: center;
+  justify-content: center;
+  background: rgba(15,61,46,.55);  /* dark emerald-ish tint */
+  backdrop-filter: blur(3px);
+}
+.loading-overlay[data-open="true"]{ display:flex; }
+
+.loading-box{
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  gap:14px;
+  padding: 20px 22px;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(250,247,241,.92);
+  box-shadow: 0 22px 70px rgba(0,0,0,.20);
+  min-width: min(420px, 86vw);
+}
+.loading-text{
+  font-family: var(--serif);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+/* Spinner */
+.spinner{
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 3px solid rgba(15,61,46,.18);
+  border-top-color: rgba(15,61,46,.85);
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin{ to{ transform: rotate(360deg); } }
+
+/* ===== Toasts (Flask-like notifications) ===== */
+.toast-stack{
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 10000;
+  display: grid;
+  gap: 10px;
+  width: min(420px, calc(100vw - 28px));
+}
+
+.toast{
+  position: relative;
+  padding: 12px 14px 12px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: rgba(250,247,241,.95);
+  box-shadow: 0 18px 60px rgba(0,0,0,.12);
+  color: var(--ink);
+  overflow: hidden;
+}
+.toast__title{
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(15,61,46,.85);
+  margin: 0 0 4px;
+}
+.toast__msg{
+  margin: 0;
+  font-size: 13px;
+  color: rgba(15,61,46,.82);
+  padding-right: 26px;
+}
+.toast__close{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 0;
+  background: transparent;
+  color: rgba(15,61,46,.65);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* Types */
+.toast--success{ border-color: rgba(15,61,46,.24); }
+.toast--error{ border-color: rgba(242,161,161,.65); }
+.toast--info{ border-color: rgba(216,195,165,.65); }
+
+/* Auto-dismiss progress bar (10s) */
+.toast__bar{
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height:3px;
+  background: rgba(15,61,46,.12);
+}
+.toast__bar > span{
+  display:block;
+  height:100%;
+  width:100%;
+  background: rgba(15,61,46,.55);
+  transform-origin: left;
+  animation: toastbar 10s linear forwards;
+}
+.toast--error .toast__bar > span{ background: rgba(242,161,161,.85); }
+@keyframes toastbar{
+  from{ transform: scaleX(1); }
+  to{ transform: scaleX(0); }
+}
+
+/* ===== Bigger centered submit button ===== */
+.rsvp-form .submit-row{
+  display:flex;
+  justify-content:center;   /* center row */
+  align-items:center;
+  gap: 14px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.rsvp-form .submit-row .btn{
+  min-width: min(520px, 100%);
+  padding: 14px 22px;
+  font-size: 15px;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  justify-content: center;
+  text-align: center;
+}
+#formStatus{ display:none; } /* we’ll use toasts instead */

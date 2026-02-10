@@ -1,7 +1,7 @@
 /* ================================
    CONFIG
    ================================ */
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzE_axYNmfP5xuQCjwopt3aMKmj6slniOl23CWiOMRvLWEYPVF-jFcpJhnMah00Itc5Uw/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby7WN9dkHLnSssS4lXZDy9Z_zsv6ED4f8g1S2mDTfg5ACZF1RJ8rNmix5-ZlGf2ITSAgQ/exec";
 
 const BASE_CCY = "HUF";
 
@@ -153,9 +153,11 @@ function formToJSON(form) {
 async function submitForm(e) {
   e.preventDefault();
   const form = e.target;
-  const status = document.getElementById("formStatus");
 
-  status.textContent = "Sending…";
+  const btn = form.querySelector('button[type="submit"]');
+  if (btn) btn.disabled = true;
+
+  setLoading(true);
 
   try {
     const payload = formToJSON(form);
@@ -167,14 +169,33 @@ async function submitForm(e) {
     });
 
     const out = await res.json();
-    if (!out.ok) throw new Error(out.error || "Failed");
 
-    status.textContent = "✅ Sent. Thank you!";
+    if (!out.ok) {
+      const mapped = serverErrorToToast(out);
+      const msg = t(mapped.key, mapped.params || {});
+      throw new Error(mapped.fallback ? `${msg} ${mapped.fallback}` : msg);
+    }
+
+    showToast({
+      type: "success",
+      title: `✅ ${t("toast_success_title")}`,
+      message: t("toast_success_msg"),
+      autoHideMs: 10000,
+      dismissible: true
+    });
+
     form.reset();
-
   } catch (err) {
-    console.error(err);
-    status.textContent = "❌ Error. Please try again.";
+    showToast({
+      type: "error",
+      title: `❌ ${t("toast_error_title")}`,
+      message: String(err?.message || t("toast_unknown_error")),
+      autoHideMs: 10000,
+      dismissible: true
+    });
+  } finally {
+    setLoading(false);
+    if (btn) btn.disabled = false;
   }
 }
 
@@ -332,6 +353,123 @@ function updateFxHint() {
   } else {
     hint.textContent = `≈ ${fmtEur(hufToEur(num))} (rate: 1€ = ${FX_EUR_HUF} Ft)`;
   }
+}
+
+function t(key, params = {}) {
+  const lang = getLang();
+  const dict = (window.I18N && (I18N[lang] || I18N.sk)) || {};
+  let s = dict[key] || (I18N?.sk?.[key]) || key;
+
+  // simple {placeholder} replace
+  Object.entries(params).forEach(([k, v]) => {
+    s = s.replaceAll(`{${k}}`, String(v));
+  });
+  return s;
+}
+
+function formatRemainingForLang(remainingHuf) {
+  const lang = getLang();
+  const remHuf = Number(remainingHuf || 0);
+  const remEur = hufToEur(remHuf);
+
+  // HU: show HUF primary, SK: EUR primary
+  if (lang === "hu") return `${fmtHuf(remHuf)} (≈ ${fmtEur(remEur)})`;
+  return `${fmtEur(remEur)} (≈ ${fmtHuf(remHuf)})`;
+}
+
+function serverErrorToToast(out) {
+  // out: { ok:false, code:"OVERFILL", message?:..., meta?:{...} }
+  const code = out.code || "UNKNOWN";
+  const meta = out.meta || {};
+
+  switch (code) {
+    case "WISHLIST_ITEM_REQUIRED":
+      return { key: "toast_please_select_item" };
+
+    case "WISHLIST_TYPE_REQUIRED":
+      return { key: "toast_please_choose_full_or_pledge" };
+
+    case "WISHLIST_AMOUNT_REQUIRED":
+      return { key: "toast_pledge_amount_required" };
+
+    case "INVALID_AMOUNT":
+      return { key: "toast_invalid_amount" };
+
+    case "ITEM_NOT_AVAILABLE":
+      return { key: "toast_item_not_available" };
+
+    case "OVERFILL":
+      return {
+        key: "toast_overfill",
+        params: { remaining: formatRemainingForLang(meta.remaining_huf) }
+      };
+
+    // optional info message if you ever want to show it
+    case "FULL_WILL_FUND_REMAINING":
+      return {
+        key: "toast_full_will_fund_remaining",
+        params: { remaining: formatRemainingForLang(meta.remaining_huf) }
+      };
+
+    default:
+      // fallback to server provided message if you want
+      return { key: "toast_unknown_error", fallback: out.error || out.message || "" };
+  }
+}
+
+function setLoading(open) {
+  const ov = document.getElementById("loadingOverlay");
+  if (!ov) return;
+  ov.dataset.open = open ? "true" : "false";
+  ov.setAttribute("aria-hidden", open ? "false" : "true");
+}
+
+function showToast({ type = "info", title = "", message = "", autoHideMs = 10000, dismissible = true } = {}) {
+  const stack = document.getElementById("toastStack");
+  if (!stack) return;
+
+  const toast = document.createElement("div");
+  toast.className = `toast toast--${type}`;
+
+  const h = document.createElement("p");
+  h.className = "toast__title";
+  h.textContent = title || (type === "success" ? "Success" : type === "error" ? "Error" : "Info");
+
+  const p = document.createElement("p");
+  p.className = "toast__msg";
+  p.textContent = message || "";
+
+  toast.appendChild(h);
+  toast.appendChild(p);
+
+  if (dismissible) {
+    const btn = document.createElement("button");
+    btn.className = "toast__close";
+    btn.type = "button";
+    btn.setAttribute("aria-label", "Close");
+    btn.innerHTML = "×";
+    btn.addEventListener("click", () => toast.remove());
+    toast.appendChild(btn);
+  }
+
+  // progress bar (optional)
+  if (autoHideMs && autoHideMs > 0) {
+    const bar = document.createElement("div");
+    bar.className = "toast__bar";
+    const span = document.createElement("span");
+    // match animation duration to autoHideMs
+    span.style.animationDuration = `${autoHideMs}ms`;
+    bar.appendChild(span);
+    toast.appendChild(bar);
+
+    setTimeout(() => {
+      // avoid removing if already closed
+      if (toast.isConnected) toast.remove();
+    }, autoHideMs);
+  }
+
+  stack.appendChild(toast);
+  return toast;
 }
 
 /* ================================

@@ -109,7 +109,20 @@ const I18N = {
         // Optional: if you want a label above help_other input
         q3_other_label: "Iné (dopíšte):",
 
-        submit: "Odoslať"
+        submit: "Odoslať",
+
+        toast_success_title: "Odoslané",
+        toast_success_msg: "Ďakujeme! Odpoveď bola uložená.",
+        toast_error_title: "Chyba",
+        toast_unknown_error: "Nastala chyba. Skúste to prosím znova.",
+
+        toast_please_select_item: "Prosím vyberte položku z wishlistu.",
+        toast_please_choose_full_or_pledge: "Prosím vyberte „kúpim v plnej sume“ alebo „prispejem sumou“.",
+        toast_pledge_amount_required: "Prosím zadajte sumu príspevku.",
+        toast_item_not_available: "Táto položka už nie je dostupná.",
+        toast_overfill: "Zadaná suma je príliš vysoká. Zostáva ešte: {remaining}.",
+        toast_full_will_fund_remaining: "Táto položka bude dofinancovaná zvyšnou sumou: {remaining}.",
+        toast_invalid_amount: "Neplatná suma. Skontrolujte prosím formát.",
     },
 
     hu: {
@@ -221,7 +234,20 @@ const I18N = {
         wl_full: "Megveszem teljes egészében",
         wl_pledge: "Hozzájárulok egy összeggel",
 
-        submit: "Küldés"
+        submit: "Küldés",
+
+        toast_success_title: "Elküldve",
+        toast_success_msg: "Köszönjük! A válaszodat elmentettük.",
+        toast_error_title: "Hiba",
+        toast_unknown_error: "Hiba történt. Kérjük próbáld újra.",
+
+        toast_please_select_item: "Kérjük válassz wishlist tételt.",
+        toast_please_choose_full_or_pledge: "Kérjük válaszd: „Teljes összegben megveszem” vagy „Hozzájárulok egy összeggel”.",
+        toast_pledge_amount_required: "Kérjük add meg a hozzájárulás összegét.",
+        toast_item_not_available: "Ez a tétel már nem elérhető.",
+        toast_overfill: "Túl magas összeget adtál meg. Még ennyi hiányzik: {remaining}.",
+        toast_full_will_fund_remaining: "A tétel a fennmaradó összeggel lesz kifizetve: {remaining}.",
+        toast_invalid_amount: "Érvénytelen összeg. Kérjük ellenőrizd a formát.",
     }
 };
 
