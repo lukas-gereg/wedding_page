@@ -1,7 +1,7 @@
 /* ================================
    CONFIG
    ================================ */
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxa--waWzKbxIyx0D-8FTT-bY3Vsd1mov1kO4YMC3kmmJxglftJCGT-1Rn0OzlHZwRhhA/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbybqZvI1zB7TpZvumFLBfc52t2imK66yT8yEYo4Gb8SkI7qd_UGlfv3k_r5hYt1Lbc6/exec";
 
 const BASE_CCY = "HUF";
 
