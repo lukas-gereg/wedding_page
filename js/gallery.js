@@ -1,8 +1,5 @@
-// gallery.js v2026-02-10
-console.log("[gallery.js] loaded v2026-02-10");
-
 // ====== CONFIG ======
-const ENDPOINT = "https://script.google.com/macros/s/AKfycbwKfOXQR8zE6LxIyR5lrFZ6Z-R0n1RLPaJ4btAHBT4-59NmsGmYDTykGV3V3Y6CxUQsNg/exec";
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbxHS4_xo1q8aZwWCO1WYyhMCcAxoIFT6GIR_NBm3qQJ8KPqwnUcBMGn-Pv3d5L_xb5TZA/exec";
 const PAGE_SIZE = 48;
 
 // ====== STATE ======
