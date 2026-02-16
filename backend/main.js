@@ -99,6 +99,10 @@ function getGalleryPage(e) {
     const which = String((e?.parameter && e?.parameter?.gallery) || "pro").toLowerCase();
     const folderId = (which === "guests") ? GALLERY_GUESTS_FOLDER_ID : GALLERY_PRO_FOLDER_ID;
 
+    const pageSizeRaw = Number((e?.parameter && e?.parameter.pageSize) || 48);
+    const pageSize = Math.max(12, Math.min(96, pageSizeRaw));
+    const pageToken = String((e?.parameter && e?.parameter?.pageToken) || "").trim();
+
     if (!folderId) {
       const payloadObj = {
       ok: true,
@@ -113,10 +117,6 @@ function getGalleryPage(e) {
     return ContentService.createTextOutput(payload)
       .setMimeType(ContentService.MimeType.JSON);
     }
-
-    const pageSizeRaw = Number((e?.parameter && e?.parameter.pageSize) || 48);
-    const pageSize = Math.max(12, Math.min(96, pageSizeRaw));
-    const pageToken = String((e?.parameter && e?.parameter?.pageToken) || "").trim();
 
     const cache = CacheService.getScriptCache();
 
