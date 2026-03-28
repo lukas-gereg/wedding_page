@@ -323,37 +323,37 @@ const I18N = {
         gallery_btn_loading: "Betöltés…",
 
 
-        story_kicker: "How it all started",
-        story_title: "Our story",
-        story_lead: "A bit of an AI workshop, a bit of geeky facts, a bit of courage — and the rest became our story.",
+        story_kicker: "Így kezdődött minden",
+        story_title: "A történetünk",
+        story_lead: "Egy kis AI workshop, egy kis geek tény, egy kis bátorság — és a többi már a mi történetünk lett.",
 
-        story_p1: "He came to Esztergom basically just to show off this t-shirt — and somehow thought opening with post-AI workshop conversation and geek facts was a solid pickup strategy. Bold.",
+        story_p1: "Alapvetően csak azért jött Esztergomba, hogy felvágjon ezzel a pólóval — és valahogy azt gondolta, hogy egy AI workshop utáni beszélgetéssel és geek tényekkel indítani egy elég jó felszedési stratégia. Merész.",
 
-        story_p2: "She was surprised though — not just because he was funny, but because he was actually kind and strangely curious about other people’s perspectives. Even more surprising? She fired back with even more geek facts and dad jokes. He definitely didn’t expect that.",
+        story_p2: "Ő viszont meglepődött — nemcsak azért, mert vicces volt, hanem mert tényleg kedves volt, és furcsán érdeklődött mások nézőpontjai iránt. Ami még meglepőbb? Még több geek ténnyel és apás viccekkel válaszolt vissza. Erre egyáltalán nem számított.",
 
-        story_p3: "After registering late in Esztergom, he casually reinvented himself as a first-time tourist in Budapest — where somehow he managed to have a genuinely nice conversation and a proper goulash date.",
+        story_p3: "Miután későn regisztrált Esztergomba, lazán újra feltalálta magát első alkalmas turistaként Budapesten — ahol valahogy sikerült egy igazán kedves beszélgetést folytatnia és egy rendes gulyásos randit összehoznia.",
 
-        story_p4: "He also faced his fear of heights. Not just the “she’s as tall as me” kind — but the very real feeling of climbing the Freedom Bridge while thinking, “why am I actually climbing the Freedom Bridge?”, all thanks to her suggestion. Worth it.",
+        story_p4: "A tériszonyával is szembenézett. Nemcsak azzal a „ugyanolyan magas, mint én” típussal — hanem azzal a nagyon is valós érzéssel, amikor a Szabadság hídra mászva azt gondolta: „miért mászok én egyáltalán fel a Szabadság hídra?”, mindez az ő javaslatának köszönhetően. Megérte.",
 
-        story_p5: "Since then, he’s been supporting her dreams — while occasionally adding his \"okay, but let’s stay realistic\" comments. It works. She’s more grounded, he’s more adventurous, and together they’re building something like dream big, but make it real.",
+        story_p5: "Azóta támogatja az álmait — miközben időnként hozzáteszi az „oké, de maradjunk realisták” megjegyzéseit. Működik. Ő földhözragadtabb, ő kalandvágyóbb, és együtt valami olyasmit építenek, hogy álmodj nagyot, de valósítsd is meg.",
 
-        story_p6: "There was that one moment near the Gül Baba rose garden — when she switched into interrogation mode despite the rose he gave her and asked how to dream big and still stay realistic in distance relationships. This time, she anchored. He dreamed. It stayed.",
+        story_p6: "Volt az a pillanat a Gül Baba rózsakertnél — amikor a neki adott rózsa ellenére átváltott „kihallgatás módba”, és megkérdezte, hogyan lehet egyszerre nagyot álmodni és közben reálisnak maradni a távkapcsolatokban. Ezúttal ő maradt a földön. Ő álmodott. Ez megmaradt.",
 
-        story_quote: "“He taught her to dream wisely. She taught him to dream boldly.”",
-        story_quote_sub: "And somewhere in between, they built a home.",
+        story_quote: "„Ő tanította meg őt okosan álmodni. Ő tanította meg őt bátran álmodni.”",
+        story_quote_sub: "És valahol a kettő között otthonra találtak.",
 
-        story_moment1_title: "The first long conversations",
-        story_moment1_text: "A workshop turned into a conversation, a conversation into a date — and a date into something they didn’t want to let go.",
+        story_moment1_title: "Az első hosszú beszélgetések",
+        story_moment1_text: "Egy workshopból beszélgetés lett, a beszélgetésből randi — a randiból pedig valami, amit már nem akartak elengedni.",
 
-        story_moment2_title: "A bit of chaos, a lot of joy",
-        story_moment2_text: "Traveling, exploring, laughing, asking big life questions — and always planning at least one more adventure.",
+        story_moment2_title: "Egy kis káosz, sok öröm",
+        story_moment2_text: "Utazás, felfedezés, nevetés, nagy életkérdések — és mindig legalább még egy következő kaland terve.",
 
-        story_moment3_title: "And now",
-        story_moment3_text: "And now? They’re probably singing in the kitchen. Or anywhere, really.",
+        story_moment3_title: "És most",
+        story_moment3_text: "És most? Valószínűleg a konyhában énekelnek. Vagy bárhol, igazából.",
 
-        story_photo_main_caption: "From winter walks to all the little big moments in between.",
+        story_photo_main_caption: "A téli sétáktól az összes apró-nagy pillanatig közben.",
 
-        story_ending: "Some stories start with grand gestures. Ours started with a t-shirt, a question after a workshop, and two people who simply felt good together."
+        story_ending: "Vannak történetek, amelyek nagy gesztusokkal kezdődnek. A miénk egy pólóval, egy workshop utáni kérdéssel és két emberrel kezdődött, akiknek egyszerűen jó volt együtt."
     }
 };
 
