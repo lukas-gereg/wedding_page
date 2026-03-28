@@ -5,7 +5,7 @@ const I18N = {
         nav_story: "Náš príbeh",
         nav_gallery: "Galéria",
         nav_wherewhen: "Kde & Kedy",
-        lang_label: "Jazyk",
+        lang_label: "Nyelv",
 
         home_kicker: "Pozývame Vás na svadbu",
         home_title: "Anna & Lukáš",
@@ -184,7 +184,7 @@ const I18N = {
         nav_story: "Történetünk",
         nav_gallery: "Galéria",
         nav_wherewhen: "Hol & Mikor",
-        lang_label: "Nyelv",
+        lang_label: "Jazyk",
 
         home_kicker: "Szeretettel meghívunk az esküvőnkre",
         home_title: "Anna & Lukáš",
