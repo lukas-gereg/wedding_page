@@ -17,10 +17,6 @@ const I18N = {
         rsvp_sub: "Prosíme, dajte nám vedieť do: 1.6.2026, 23:59",
         rsvp_note: "Tu vložte váš Google Form alebo vlastný formulár.",
 
-        story_title: "Náš príbeh",
-        story_p1: "Sem príde váš príbeh. Krátke odseky vyzerajú na tomto štýle najkrajšie.",
-        story_p2: "Môžete doplniť aj časovú os, fotky, alebo malé citáty.",
-
         gallery_title: "Galéria",
         gallery_sub: "Fotky pridáme čoskoro.",
 
@@ -147,6 +143,39 @@ const I18N = {
         gallery_error_load: "Nepodarilo sa načítať galériu. Skontrolujte prístup k priečinku v Google Drive.",
         gallery_error_more: "Nepodarilo sa načítať ďalšie fotky.",
         gallery_btn_loading: "Načítavam…",
+
+
+        story_kicker: "Ako sa to celé začalo",
+        story_title: "Náš príbeh",
+        story_lead: "Trochu AI workshop, trochu geekovské fakty, trochu odvahy — a zvyšok už bol náš príbeh.",
+
+        story_p1: "Prišiel do Esztergomu v podstate len preto, aby sa pochválil týmto tričkom — a nejako si myslel, že začať rozhovorom po AI workshope a geekovskými faktami je skvelá baliaca stratégia. Odvážne.",
+
+        story_p2: "Bola však prekvapená — nielen preto, že bol vtipný, ale aj preto, že bol naozaj milý a zvláštne zvedavý na pohľady iných ľudí. Ešte prekvapivejšie? Odpovedala mu ešte väčšou dávkou geekovských faktov a otcovských vtipov. To naozaj nečakal.",
+
+        story_p3: "Po tom, čo sa neskoro zaregistroval do Esztergomu, sa nenápadne premenil na turistu po prvý raz v Budapešti — kde sa mu nejako podarilo viesť milý rozhovor a mať poriadne rande pri guláši.",
+
+        story_p4: "Prekonal aj svoj strach z výšok. Nielen ten typ „je rovnako vysoká ako ja“ — ale aj ten veľmi reálny pocit pri lezení na Most slobody, keď si hovoril „prečo vlastne leziem na Most slobody“, vďaka jej návrhu. Stálo to za to.",
+
+        story_p5: "Odvtedy podporuje jej sny — zatiaľ čo občas pridá svoje „okej, ale zostaňme realistickí“ poznámky. Funguje to. Ona je viac pri zemi, on je dobrodružnejší a spolu si akoby budujú niečo ako snívaj vo veľkom, ale rob to reálne.",
+
+        story_p6: "Bol tam ten jeden moment pri ružovej záhrade Gül Babu — keď prepla do výsluchového módu napriek ruži, ktorú jej dal, a spýtala sa, ako snívať vo veľkom a zároveň zostať realistická v diaľkových vzťahoch. Tentoraz sa ukotvila ona. On sníval. Zostalo to.",
+
+        story_quote: "„On ju učil snívať múdro. Ona ho učila snívať odvážne.”",
+        story_quote_sub: "A niekde medzi tým vznikol domov.",
+
+        story_moment1_title: "Prvé dlhé rozhovory",
+        story_moment1_text: "Z workshopu sa stal rozhovor, z rozhovoru rande — a z rande niečo, čo už nechceli pustiť.",
+
+        story_moment2_title: "Trochu chaosu, veľa radosti",
+        story_moment2_text: "Cestovanie, objavovanie, smiech, otázky o živote a vždy ešte aspoň jeden ďalší plán navyše.",
+
+        story_moment3_title: "A dnes",
+        story_moment3_text: "A teraz? Pravdepodobne spievajú v kuchyni. Alebo hocikde, vlastne.",
+
+        story_photo_main_caption: "Od zimných prechádzok až po všetky malé veľké momenty medzi tým.",
+
+        story_ending: "Niektoré príbehy začnú veľkým gestom. Náš sa začal tričkom, otázkou po workshope a dvoma ľuďmi, ktorým bolo spolu akosi prirodzene dobre."
     },
 
     hu: {
@@ -166,10 +195,6 @@ const I18N = {
         rsvp_title: "RSVP",
         rsvp_sub: "Kérjük jelezzetek vissza eddig: 2026.6.1, 23:59",
         rsvp_note: "Ide illesszétek be a Google Űrlapot vagy saját űrlapot.",
-
-        story_title: "Történetünk",
-        story_p1: "Ide jön a történetetek. Rövid bekezdések ehhez a stílushoz passzolnak a legjobban.",
-        story_p2: "Később lehet idővonal, képek vagy idézetek is.",
 
         gallery_title: "Galéria",
         gallery_sub: "Hamarosan jövünk a fotókkal.",
@@ -296,6 +321,39 @@ const I18N = {
         gallery_error_load: "Nem sikerült betölteni a galériát. Ellenőrizd a Google Drive mappa hozzáférését.",
         gallery_error_more: "Nem sikerült betölteni a további fotókat.",
         gallery_btn_loading: "Betöltés…",
+
+
+        story_kicker: "How it all started",
+        story_title: "Our story",
+        story_lead: "A bit of an AI workshop, a bit of geeky facts, a bit of courage — and the rest became our story.",
+
+        story_p1: "He came to Esztergom basically just to show off this t-shirt — and somehow thought opening with post-AI workshop conversation and geek facts was a solid pickup strategy. Bold.",
+
+        story_p2: "She was surprised though — not just because he was funny, but because he was actually kind and strangely curious about other people’s perspectives. Even more surprising? She fired back with even more geek facts and dad jokes. He definitely didn’t expect that.",
+
+        story_p3: "After registering late in Esztergom, he casually reinvented himself as a first-time tourist in Budapest — where somehow he managed to have a genuinely nice conversation and a proper goulash date.",
+
+        story_p4: "He also faced his fear of heights. Not just the “she’s as tall as me” kind — but the very real feeling of climbing the Freedom Bridge while thinking, “why am I actually climbing the Freedom Bridge?”, all thanks to her suggestion. Worth it.",
+
+        story_p5: "Since then, he’s been supporting her dreams — while occasionally adding his \"okay, but let’s stay realistic\" comments. It works. She’s more grounded, he’s more adventurous, and together they’re building something like dream big, but make it real.",
+
+        story_p6: "There was that one moment near the Gül Baba rose garden — when she switched into interrogation mode despite the rose he gave her and asked how to dream big and still stay realistic in distance relationships. This time, she anchored. He dreamed. It stayed.",
+
+        story_quote: "“He taught her to dream wisely. She taught him to dream boldly.”",
+        story_quote_sub: "And somewhere in between, they built a home.",
+
+        story_moment1_title: "The first long conversations",
+        story_moment1_text: "A workshop turned into a conversation, a conversation into a date — and a date into something they didn’t want to let go.",
+
+        story_moment2_title: "A bit of chaos, a lot of joy",
+        story_moment2_text: "Traveling, exploring, laughing, asking big life questions — and always planning at least one more adventure.",
+
+        story_moment3_title: "And now",
+        story_moment3_text: "And now? They’re probably singing in the kitchen. Or anywhere, really.",
+
+        story_photo_main_caption: "From winter walks to all the little big moments in between.",
+
+        story_ending: "Some stories start with grand gestures. Ours started with a t-shirt, a question after a workshop, and two people who simply felt good together."
     }
 };
 
