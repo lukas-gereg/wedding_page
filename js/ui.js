@@ -1,12 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.querySelector("#menuBtn");
-  const nav = document.querySelector("#mobileNav");
-  if (!btn || !nav) return;
+  const btn = document.getElementById("menuBtn");
+  const nav = document.getElementById("mobileNav");
 
   btn.addEventListener("click", () => {
-    const open = nav.getAttribute("data-open") === "true";
-    nav.setAttribute("data-open", String(!open));
-    nav.style.display = open ? "none" : "block";
-    btn.setAttribute("aria-expanded", String(!open));
+    const isOpen = nav.getAttribute("data-open") === "true";
+
+    nav.setAttribute("data-open", !isOpen);
+    btn.setAttribute("aria-expanded", !isOpen);
   });
 });
