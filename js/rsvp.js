@@ -579,7 +579,7 @@ function attachIntOnlyGuard(form, selector) {
 
 function applyRsvpDeadline() {
   // Visible until end of 2026-06-01 (local time), hidden starting 2026-06-02 00:00
-  const deadlineEnd = new Date(2026, 5, 1, 23, 59, 59); // months are 0-based (5 = June)
+  const deadlineEnd = new Date(2026, 6, 7, 23, 59, 59); // months are 0-based (5 = June)
 
   const openWrap = document.getElementById("rsvpOpen");
   const closedWrap = document.getElementById("rsvpClosed");
