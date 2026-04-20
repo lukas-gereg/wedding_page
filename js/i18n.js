@@ -14,7 +14,7 @@ const I18N = {
         home_btn_details: "Kde & Kedy",
 
         rsvp_title: "RSVP",
-        rsvp_sub: "Prosíme, dajte nám vedieť do: 1.6.2026, 23:59",
+        rsvp_sub: "Prosíme, dajte nám vedieť do: 7.7.2026, 23:59",
         rsvp_note: "Tu vložte váš Google Form alebo vlastný formulár.",
 
         gallery_title: "Galéria",
@@ -214,7 +214,7 @@ const I18N = {
         home_btn_details: "Hol & Mikor",
 
         rsvp_title: "RSVP",
-        rsvp_sub: "Kérjük jelezzetek vissza eddig: 2026.6.1, 23:59",
+        rsvp_sub: "Kérjük jelezzetek vissza eddig: 2026.07.07., 23:59",
         rsvp_note: "Ide illesszétek be a Google Űrlapot vagy saját űrlapot.",
 
         gallery_title: "Galéria",
