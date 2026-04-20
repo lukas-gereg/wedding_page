@@ -10,7 +10,7 @@ const I18N = {
         home_kicker: "Pozývame Vás na svadbu",
         home_title: "Anna & Lukáš",
         home_sub: "Sobota • 15. august 2026 • 14:00 • Budapešť 1011, Batthyány tér 7.",
-        home_btn_rsvp: "Potvrdiť účasť (RSVP)",
+        home_btn_rsvp: "Potvrdiť účasť (Prihlásenie)",
         home_btn_details: "Kde & Kedy",
 
         rsvp_title: "Prihlásenie",
@@ -188,7 +188,7 @@ const I18N = {
 
         ceremony_title: "Obrad",
         ceremony_text_1: "Chrám svätej Anny, Budapešť. Budeme radi, ak prídete o pár minút skôr.",
-        ceremony_text_2: "Parkovanie viete nájsť na ulici Sztehlo Gábor rkp. a Csalogány u., Budapešť",
+        ceremony_text_2: "Parkovanie viete nájsť na ulici Sztehlo Gábor rkp. a Csalogány u., Budapešť.",
 
         photos_title: "Spoločné fotky",
         photos_text: "Krátko po obrade sa presunieme na skupinové fotografie pred chrám.",
