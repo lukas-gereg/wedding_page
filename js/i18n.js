@@ -175,7 +175,28 @@ const I18N = {
 
         story_photo_main_caption: "Od zimných prechádzok až po všetky malé veľké momenty medzi tým.",
 
-        story_ending: "Niektoré príbehy začnú veľkým gestom. Náš sa začal tričkom, otázkou po workshope a dvoma ľuďmi, ktorým bolo spolu akosi prirodzene dobre."
+        story_ending: "Niektoré príbehy začnú veľkým gestom. Náš sa začal tričkom, otázkou po workshope a dvoma ľuďmi, ktorým bolo spolu akosi prirodzene dobre.",
+
+        date: "Sobota • 15. august 2026",
+
+        mass_title: "Svätá liturgia",
+        mass_text_1: "Pre tých, ktorí chcú začať deň pokojne ešte pred obradom.",
+        mass_text_2: "Svätá liturgia bude v chráme svätej Anny, Budapešť.",
+
+        ceremony_title: "Obrad",
+        ceremony_text_1: "Chrám svätej Anny, Budapešť. Budeme radi, ak prídete o pár minút skôr.",
+        ceremony_text_2: "Parkovanie viete nájsť na ulici Sztehlo Gábor rkp., Budapešť",
+
+        photos_title: "Spoločné fotky",
+        photos_text: "Krátko po obrade sa presunieme na skupinové fotografie pred chrám.",
+
+        agape_title: "Agapé & čas na vydýchnutie",
+        agape_text_1: "Malé občerstvenie, čas na rozhovory, prechádzku alebo oddych.",
+        agape_text_2: "Agapé sa bude odohrávať na adrese Aranyhal u. 1, Budapešť, asi 100m od chrámu.",
+
+        venue_title: "Oslava",
+        venue_text_1: "Tešíme sa na vašu účasť. Parkovanie viete nájsť na ulici Kinizsi u., Budapešť.",
+        venue_text_2: "Prosíme, nechajte si dostatok času na presun, aby sme mohli začať spolu načas.",
     },
 
     hu: {
@@ -353,7 +374,28 @@ const I18N = {
 
         story_photo_main_caption: "A téli sétáktól az összes apró-nagy pillanatig közben.",
 
-        story_ending: "Vannak történetek, amelyek nagy gesztusokkal kezdődnek. A miénk egy pólóval, egy workshop utáni kérdéssel és két emberrel kezdődött, akiknek egyszerűen jó volt együtt."
+        story_ending: "Vannak történetek, amelyek nagy gesztusokkal kezdődnek. A miénk egy pólóval, egy workshop utáni kérdéssel és két emberrel kezdődött, akiknek egyszerűen jó volt együtt.",
+
+        date: "Szombat • 2026. augusztus 15.",
+
+        mass_title: "Szentmise",
+        mass_text_1: "Azok számára, akik szeretnék nyugodtan kezdeni a napot még a szertartás előtt.",
+        mass_text_2: "A szentmise a Szent Anna-templomban lesz, Budapest.",
+
+        ceremony_title: "Szertartás",
+        ceremony_text_1: "Szent Anna-templom, Budapest. Örülünk, ha néhány perccel korábban érkeztek.",
+        ceremony_text_2: "Parkolás a Sztehlo Gábor rkp. utcában lehetséges, Budapest.",
+
+        photos_title: "Közös fotók",
+        photos_text: "Röviddel a szertartás után közös fényképezésre kerül sor a templom előtt.",
+
+        agape_title: "Agapé & egy kis pihenő",
+        agape_text_1: "Kis frissítő, beszélgetés, séta vagy pihenés.",
+        agape_text_2: "Az agapé az Aranyhal u. 1, Budapest címen lesz, kb. 100 méterre a templomtól.",
+
+        venue_title: "Ünneplés",
+        venue_text_1: "Örömmel várjuk a részvételeteket. Parkolás a Kinizsi u. környékén lehetséges, Budapest.",
+        venue_text_2: "Kérjük, hagyjatok elegendő időt az átszállásra, hogy időben együtt kezdhessük."
     }
 };
 

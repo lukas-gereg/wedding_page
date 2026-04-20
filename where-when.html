@@ -18,44 +18,49 @@
 <div class="bg"></div>
 
 <header class="header">
-  <div class="container header__inner">
-    <a class="logo-link brand-text" href="index.html">Anna & Lukáš</a>
+    <div class="container header__inner">
+      <a class="logo-link brand-text" href="index.html" aria-label="Home">
+        Anna & Lukáš
+      </a>
 
-    <nav class="nav">
-      <a href="index.html">Domov</a>
-      <a href="rsvp.html">RSVP</a>
-      <a href="story.html">Náš príbeh</a>
-      <a href="gallery.html">Galéria</a>
-      <a href="where-when.html" aria-current="page">Kde & Kedy</a>
-    </nav>
+  <nav class="nav">
+    <a href="index.html" data-i18n="nav_home">Domov</a>
+    <a href="rsvp.html" data-i18n="nav_rsvp">RSVP</a>
+    <a href="story.html" aria-current="page" data-i18n="nav_story">Náš príbeh</a>
+    <a href="gallery.html" data-i18n="nav_gallery">Galéria</a>
+    <a href="where-when.html" data-i18n="nav_wherewhen">Kde & Kedy</a>
+  </nav>
 
-    <button class="menu-btn" id="menuBtn">☰</button>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-label="Toggle menu">
+        ☰
+  </button>
 
-    <div class="lang">
-      <label for="langSelect" data-i18n="lang_label">Jazyk</label>
-      <select id="langSelect">
-        <option value="sk">SK</option>
-        <option value="hu">HU</option>
-      </select>
-    </div>
+  <div class="lang">
+    <label for="langSelect" data-i18n="lang_label">Jazyk</label>
+    <select id="langSelect">
+      <option value="sk">SK</option>
+      <option value="hu">HU</option>
+    </select>
   </div>
+</div>
 
-  <div class="container mobile-nav" id="mobileNav" data-open="false">
-    <a href="index.html">Domov</a>
-    <a href="rsvp.html">RSVP</a>
-    <a href="story.html">Náš príbeh</a>
-    <a href="gallery.html">Galéria</a>
-    <a href="where-when.html">Kde & Kedy</a>
-  </div>
-</header>
+<div class="container mobile-nav" id="mobileNav" data-open="false">
+  <a href="index.html" data-i18n="nav_home">Domov</a>
+  <a href="rsvp.html" data-i18n="nav_rsvp">RSVP</a>
+  <a href="story.html" aria-current="page" data-i18n="nav_story">Náš príbeh</a>
+  <a href="gallery.html" data-i18n="nav_gallery">Galéria</a>
+  <a href="where-when.html" data-i18n="nav_wherewhen">Kde & Kedy</a>
+</div>
+
+  </header>
 
 <main class="container">
 
   <section class="panel ww">
 
   <div class="ww-title">
-    <h2 class="h2">Kde & Kedy</h2>
-    <span>Sobota • 15. august 2026</span>
+    <h2 class="h2" data-i18n="nav_wherewhen">Kde & Kedy</h2>
+    <span data-i18n="date">Sobota • 15. august 2026</span>
   </div>
 
   <div class="timeline">
@@ -64,10 +69,9 @@
   <div class="t-item left">
     <div class="t-content">
       <div class="t-time">12:30</div>
-      <div class="t-head">Svätá omša</div>
-      <p>
-        Pre tých, ktorí chcú začať deň pokojne ešte pred obradom.
-      </p>
+      <div class="t-head" data-i18n="mass_title">Svätá liturgia</div>
+      <p data-i18n="mass_text_1">Pre tých, ktorí chcú začať deň pokojne ešte pred obradom.</p>
+      <p data-i18n="mass_text_2">Pre tých, ktorí chcú začať deň pokojne ešte pred obradom.</p>
     </div>
   </div>
 
@@ -75,11 +79,9 @@
   <div class="t-item right">
     <div class="t-content">
       <div class="t-time">14:00</div>
-      <div class="t-head">Obrad</div>
-      <p>
-        Chrám svätej Anny, Budapešť.<br>
-        Budeme radi, ak prídete o pár minút skôr.
-      </p>
+      <div class="t-head" data-i18n="ceremony_title">Obrad</div>
+      <p data-i18n="ceremony_text_1">Chrám svätej Anny, Budapešť.</p>
+      <p data-i18n="ceremony_text_2">Budeme radi, ak prídete o pár minút skôr.</p>
 
       <div class="embed small">
         <iframe src="https://www.google.com/maps?q=Church+of+St+Anne+Budapest+Batthyany+ter&z=17&output=embed"></iframe>
@@ -91,10 +93,8 @@
   <div class="t-item left">
     <div class="t-content">
       <div class="t-time">15:30</div>
-      <div class="t-head">Spoločné fotky</div>
-      <p>
-        Krátko po obrade sa presunieme na skupinové fotografie.
-      </p>
+      <div class="t-head" data-i18n="photos_title">Spoločné fotky</div>
+      <p data-i18n="photos_text">Krátko po obrade sa presunieme na skupinové fotografie pred chrám.</p>
     </div>
   </div>
 
@@ -102,10 +102,9 @@
   <div class="t-item right">
     <div class="t-content">
       <div class="t-time">15:45</div>
-      <div class="t-head">Agapé & oddych</div>
-      <p>
-        Malé občerstvenie, čas na rozhovory, prechádzku alebo oddych.
-      </p>
+      <div class="t-head" data-i18n="agape_title">Agapé & čas na vydýchnutie</div>
+      <p data-i18n="agape_text_1">Malé občerstvenie, čas na rozhovory, prechádzku alebo oddych.</p>
+      <p data-i18n="agape_text_2">Agapé sa bude odohrávať na adrese Aranyhal u. 1, Budapešť, asi 100m od chrámu.</p>
     </div>
   </div>
 
@@ -113,11 +112,9 @@
   <div class="t-item left important">
     <div class="t-content">
       <div class="t-time">18:30</div>
-      <div class="t-head">Presun na oslavu</div>
-      <p>
-        Prosíme, nechajte si dostatok času na presun,
-        aby sme mohli začať spolu načas.
-      </p>
+      <div class="t-head" data-i18n="venue_title">Oslava</div>
+      <p data-i18n="venue_text_1">Tešíme sa na vašu účasť. Parkovanie viete nájsť na ulici Kinizsi u., Budapešť.</p>
+      <p data-i18n="venue_text_2">Prosíme, nechajte si dostatok času na presun, aby sme mohli začať spolu načas.</p>
 
       <div class="embed small">
         <iframe src="https://www.google.com/maps?q=Patrona+Hungariae+Budapest+Knezits+utca&z=17&output=embed"></iframe>
