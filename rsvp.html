@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Anna & Lukáš • RSVP</title>
+  <title>Anna & Lukáš</title>
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/rsvp.css">
   <script defer src="js/i18n.js"></script>
@@ -43,11 +43,14 @@
       </button>
 
       <div class="lang">
-        <label for="langSelect" data-i18n="lang_label">Jazyk</label>
-        <select id="langSelect">
-          <option value="sk">SK</option>
-          <option value="hu">HU</option>
-        </select>
+        <span class="lang-label" data-i18n="lang_label">Jazyk</span>
+
+        <button id="langBtn" class="lang-btn">SK</button>
+
+        <div class="lang-dropdown" id="langDropdown" data-open="false">
+          <button data-lang="sk">SK</button>
+          <button data-lang="hu">HU</button>
+        </div>
       </div>
     </div>
 

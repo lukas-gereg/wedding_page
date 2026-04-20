@@ -1,7 +1,7 @@
 const I18N = {
     sk: {
         nav_home: "Domov",
-        nav_rsvp: "RSVP",
+        nav_rsvp: "Prihlásenie",
         nav_story: "Náš príbeh",
         nav_gallery: "Galéria",
         nav_wherewhen: "Kde & Kedy",
@@ -13,7 +13,7 @@ const I18N = {
         home_btn_rsvp: "Potvrdiť účasť (RSVP)",
         home_btn_details: "Kde & Kedy",
 
-        rsvp_title: "RSVP",
+        rsvp_title: "Prihlásenie",
         rsvp_sub: "Prosíme, dajte nám vedieť do: 7.7.2026, 23:59",
         rsvp_note: "Tu vložte váš Google Form alebo vlastný formulár.",
 
@@ -418,6 +418,22 @@ function setLang(lang) {
     localStorage.setItem("lang", lang);
 }
 
+function updatePageTitle(lang) {
+  const dict = I18N[lang] || I18N.sk;
+
+  // find current nav item
+  const current = document.querySelector(".nav a[aria-current='page']");
+
+  if (!current) return;
+
+  const key = current.getAttribute("data-i18n");
+  const pageName = dict[key];
+
+  if (!pageName) return;
+
+  document.title = `Anna & Lukáš • ${pageName}`;
+}
+
 function applyI18n(lang) {
     const dict = I18N[lang] || I18N.sk;
 
@@ -431,18 +447,54 @@ function applyI18n(lang) {
     // Update dropdown if present
     const sel = document.querySelector("#langSelect");
     if (sel) sel.value = lang;
+
+    updatePageTitle(lang);
 }
 
 function initI18n() {
     const lang = getLang();
     applyI18n(lang);
 
+    // OLD select (you can remove later if you fully switch to custom dropdown)
     const sel = document.querySelector("#langSelect");
     if (sel) {
         sel.addEventListener("change", (e) => {
             const newLang = e.target.value;
             setLang(newLang);
             applyI18n(newLang);
+        });
+    }
+
+    // ✅ NEW: language dropdown logic
+    const langBtn = document.getElementById("langBtn");
+    const langDropdown = document.getElementById("langDropdown");
+
+    if (langBtn && langDropdown) {
+
+        // toggle open
+        langBtn.addEventListener("click", () => {
+            const isOpen = langDropdown.getAttribute("data-open") === "true";
+            langDropdown.setAttribute("data-open", !isOpen);
+        });
+
+        // select language
+        langDropdown.querySelectorAll("button").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const newLang = btn.dataset.lang;
+
+                setLang(newLang);
+                applyI18n(newLang);
+
+                langBtn.textContent = newLang.toUpperCase();
+                langDropdown.setAttribute("data-open", false);
+            });
+        });
+
+        // ✅ CLOSE ON OUTSIDE CLICK (THIS IS YOUR QUESTION)
+        document.addEventListener("click", (e) => {
+            if (!langBtn.contains(e.target) && !langDropdown.contains(e.target)) {
+                langDropdown.setAttribute("data-open", false);
+            }
         });
     }
 }
