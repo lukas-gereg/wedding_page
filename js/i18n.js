@@ -232,9 +232,9 @@ const I18N = {
 
         q1_title: "Részvétel",
         q1_label: "Részt veszek:",
-        q1_a1: "Szertartás & mise (agapé)",
-        q1_a2: "Szertartás & vacsora (agapé)",
-        q1_a3: "Egész nap",
+        q1_a1: "Szertartás & agapé",
+        q1_a2: "Csak szertartás & vacsora",
+        q1_a3: "Egész nap (szentmise, szertartás, agapé, vacsora)",
         q1_a4: "Nem tudok jönni",
 
         q2_title: "Amit tudok hozni",
@@ -246,26 +246,26 @@ const I18N = {
         q2_other: "Egyéb",
         q2_none: "Semmi",
 
-        q3_title: "Tudok segíteni",
-        q3_hint: "Válassz ki bármit, ami oké:",
+        q3_title: "Amiben tudok segíteni",
+        q3_hint: "Válassz ki bármit, amiben szívesen résztveszel aktívan:",
         q3_1: "Dekorálás előző nap",
         q3_2: "Dekorálás aznap a templomban",
         q3_3: "Elpakolás az agapé után",
         q3_4: "Liturgikus szövegek és énekek nyomtatása / kiosztása",
         q3_5: "Gyereksarok felügyelet lakodalomban (felváltva)",
         q3_6: "Csillagszórók kiosztása / összegyűjtése",
-        q3_7: "Welcome drink kitöltése",
-        q3_8: "Emberek hívása a tánctérre",
+        q3_7: "Agapéban köszöntő pezsgő kitöltése",
+        q3_8: "Többi vendég felkérése a tánctérre",
         q3_9: "Fuvar / shuttle",
-        q3_10: "Pakolás másnap reggel",
+        q3_10: "Pakolás, morzsaparti másnap reggel",
         q3_other: "Egyéb",
 
-        q4_title: "Érkezés & szállás",
+        q4_title: "Érkezés & Szállás",
         q4_1: "Péntek este (2 éj szállás)",
         q4_2: "Szombat reggel (1 éj szállás)",
         q4_3: "Nem kérek szállást",
 
-        q5_title: "Autó / telekocsi",
+        q5_title: "Autó / Telekocsi",
         q5_spaces: "Szabad helyek az autómban",
         q5_route: "Útvonal / irány",
 
@@ -284,25 +284,25 @@ const I18N = {
         q8_1: "Pénzbeli hozzájárulás",
         q8_2: "Kis ajándék / meglepetés",
         q8_3: "Ajándék + pénz",
-        q8_4: "Hozzájárulás az otthoni wishlisthoz",
+        q8_4: "Hozzájárulás az otthoni wishlisthez",
         q8_wishlist_link: "Wishlist link (Excel)",
 
         q9_title: "Kapcsolat",
-        q9_phone: "Telefonszám",
-        q10_email: "Email",
-        q11_name: "Teljes hivatalos név",
+        q9_phone: "Telefonszámod",
+        q10_email: "E-mail címed",
+        q11_name: "Teljes neved",
 
         other_placeholder: "Egyéb…",
         amount_placeholder: "Összeg",
         q3_other_label: "Egyéb (írd le):",
 
         consent_title: "Hozzájárulások",
-        consent_feedback: "Hozzájárulok, hogy ~30 nappal az esemény előtt email emlékeztetőre végső visszajelzést adjak.",
+        consent_feedback: "Hozzájárulok, hogy kb. 30 nappal az esemény előtt e-mail emlékeztetőre végső visszajelzést adjak.",
         consent_media: "Hozzájárulok, hogy én (és gyermekeim) szerepelhetünk az esemény fotóin/videóin (GDPR).",
 
         wl_item: "Wishlist tétel",
         wl_full: "Megveszem teljes egészében",
-        wl_pledge: "Hozzájárulok egy összeggel",
+        wl_pledge: "Adott összeggel járulok hozzá",
 
         submit: "Küldés",
 
@@ -327,9 +327,9 @@ const I18N = {
         toast_invalid_amount: "Érvénytelen összeg. Kérjük ellenőrizd a formát.",
 
         phone_placeholder: "+36 20/30/70 xxx xxxx",
-        q10_email_confirm: "Email még egyszer",
+        q10_email_confirm: "E-mail még egyszer",
 
-        toast_email_mismatch: "Az email címek nem egyeznek.",
+        toast_email_mismatch: "Az e-mail címek nem egyeznek.",
         toast_invalid_form: "Kérjük ellenőrizd az űrlapot (hiányzó vagy érvénytelen mezők).",
 
         gallery_tab_pro: "Profi fotók",
