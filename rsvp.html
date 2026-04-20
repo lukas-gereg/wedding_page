@@ -86,10 +86,25 @@
             </select>
           </div>
 
+          <!-- 4) Arrival -->
+          <div class="panel">
+            <h3 class="h2" data-i18n="q4_title">Arrival & accommodation</h3>
+            <div class="muted" data-i18n="q4_hint">Select any that apply:</div>
+
+            <div class="opt"><label><input type="radio" name="arrival" value="Friday evening (2 days accommodation)" required> <span data-i18n="q4_1">Friday evening (2 days accommodation)</span></label></div>
+            <div class="opt"><label><input type="radio" name="arrival" value="Saturday morning (1 day accommodation)"> <span data-i18n="q4_2">Saturday morning (1 day accommodation)</span></label></div>
+            <div class="opt"><label><input type="radio" name="arrival" value="I do not need accommodation"> <span data-i18n="q4_3">I do not need accommodation</span></label></div>
+
+            <label>
+              <span data-i18n="q4_note">Route / path</span>:
+              <input type="text" name="q4_note" />
+            </label>
+          </div>
+
           <!-- 2) Bring something -->
           <div class="panel">
             <h3 class="h2" data-i18n="q2_title">I can bring</h3>
-            <div class="muted" data-i18n="q3_hint">Select any that apply:</div>
+            <div class="muted" data-i18n="q2_hint">Select any that apply:</div>
 
             <div class="opt"><label><input type="checkbox" name="bring[]" value="Cookies"> <span data-i18n="q2_cookies">Cookies</span></label></div>
             <div class="opt"><label><input type="checkbox" name="bring[]" value="Salty snack"> <span data-i18n="q2_salty">Salty snack</span></label></div>
@@ -137,15 +152,6 @@
                 </div>
               </div>
             </div>
-          </div>
-
-          <!-- 4) Arrival -->
-          <div class="panel">
-            <h3 class="h2" data-i18n="q4_title">Arrival & accommodation</h3>
-
-            <div class="opt"><label><input type="radio" name="arrival" value="Friday evening (2 days accommodation)" required> <span data-i18n="q4_1">Friday evening (2 days accommodation)</span></label></div>
-            <div class="opt"><label><input type="radio" name="arrival" value="Saturday morning (1 day accommodation)"> <span data-i18n="q4_2">Saturday morning (1 day accommodation)</span></label></div>
-            <div class="opt"><label><input type="radio" name="arrival" value="I do not need accommodation"> <span data-i18n="q4_3">I do not need accommodation</span></label></div>
           </div>
 
           <!-- 5) Carpool -->

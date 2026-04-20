@@ -38,6 +38,7 @@ const I18N = {
         q1_a4: "Nemôžem prísť",
 
         q2_title: "Môžem priniesť",
+        q2_hint: "Vyberte, čo sa hodí:",
         q2_cookies: "Koláčiky",
         q2_salty: "Slané",
         q2_sweet: "Sladké",
@@ -46,7 +47,7 @@ const I18N = {
         q2_other: "Iné",
         q2_none: "Nič",
 
-        q3_title: "Môžem pomôcť s",
+        q3_title: "Chcel by som pomôcť s",
         q3_hint: "Vyberte, čo sa hodí:",
         q3_1: "Výzdoba deň vopred",
         q3_2: "Výzdoba v kostole",
@@ -61,9 +62,11 @@ const I18N = {
         q3_other: "Iné",
 
         q4_title: "Príchod & ubytovanie",
+        q4_hint: "The accommodation is in groups of 3-4 people, in rooms that have been reconstructed about 2 years ago. If you have any special requests, we will try to honor it, but we would like to as for your understanding that we might not be able to fulfill every request.",
         q4_1: "Piatok večer (2 noci ubytovanie)",
         q4_2: "Sobota ráno (1 noc ubytovanie)",
         q4_3: "Ubytovanie nepotrebujem",
+        q4_note: "Ak máte nejakú špeciálnu požidavavku, prosím napíšte ju tu",
 
         q5_title: "Auto / spolujazda",
         q5_spaces: "Voľné miesta v aute",
@@ -238,6 +241,7 @@ const I18N = {
         q1_a4: "Nem tudok jönni",
 
         q2_title: "Amit tudok hozni",
+        q2_hint: "Válassz ki bármit, amit szívesen hozol egy tálcával:",
         q2_cookies: "Sütemény",
         q2_salty: "Sós rágcsa",
         q2_sweet: "Édesség",
@@ -246,8 +250,8 @@ const I18N = {
         q2_other: "Egyéb",
         q2_none: "Semmi",
 
-        q3_title: "Amiben tudok segíteni",
-        q3_hint: "Válassz ki bármit, amiben szívesen résztveszel aktívan:",
+        q3_title: "Amiben szívesen segítek",
+        q3_hint: "Válassz ki bármit, amiben segíteni szeretnél:",
         q3_1: "Dekorálás előző nap",
         q3_2: "Dekorálás aznap a templomban",
         q3_3: "Elpakolás az agapé után",
@@ -261,9 +265,12 @@ const I18N = {
         q3_other: "Egyéb",
 
         q4_title: "Érkezés & Szállás",
+        q4_hint: "The accommodation is in groups of 3-4 people, in rooms that have been reconstructed about 2 years ago. If you have any special requests, we will try to honor it, but we would like to as for your understanding that we might not be able to fulfill every request.",
+
         q4_1: "Péntek este (2 éj szállás)",
         q4_2: "Szombat reggel (1 éj szállás)",
         q4_3: "Nem kérek szállást",
+        q4_note: "Megjegyzés, ha van valami kérésed itt jelezheted",
 
         q5_title: "Autó / Telekocsi",
         q5_spaces: "Szabad helyek az autómban",
@@ -470,6 +477,7 @@ function initI18n() {
     const langDropdown = document.getElementById("langDropdown");
 
     if (langBtn && langDropdown) {
+        langBtn.textContent = lang.toUpperCase();
 
         // toggle open
         langBtn.addEventListener("click", () => {
