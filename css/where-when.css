@@ -1,0 +1,110 @@
+.ww-title{
+  text-align:center;
+  margin-bottom:2rem;
+}
+
+.ww-title p{
+  font-family:var(--script);
+  font-size:clamp(2.4rem,5vw,3.2rem);
+  margin:0;
+}
+
+.ww-title span{
+  display:block;
+  margin-top:0.4rem;
+  color:var(--muted);
+}
+
+
+/* ===== TIMELINE ===== */
+
+.timeline{
+  position:relative;
+  display:grid;
+  gap:clamp(2rem, 3vw, 3.5rem);
+  padding:clamp(1.5rem, 3vw, 3rem) 0;
+  width:clamp(22rem, 60vw, 65rem);
+  margin:0 auto;
+}
+
+/* one measured vertical line */
+.timeline::before{
+  content:"";
+  position:absolute;
+  left:var(--timeline-line-x, clamp(0.6rem, 1vw, 1.2rem));
+  top:var(--timeline-line-top, 0);
+  height:var(--timeline-line-height, 0);
+  transform:translateX(-50%);
+  width:0.125rem;
+  background:var(--champagne);
+}
+
+/* items */
+.t-item{
+  display:grid;
+  grid-template-columns:1fr;
+  padding-left:clamp(1.5rem, 2.5vw, 3rem);
+  padding-bottom:clamp(1.2rem, 2vw, 2rem);
+  position:relative;
+}
+
+.t-item .t-content{
+  text-align:left;
+  padding:0;
+}
+
+/* dot */
+.t-item::before{
+  content:"";
+  position:absolute;
+  left:clamp(0.6rem, 1vw, 1.2rem);
+  top:50%;
+  transform:translate(-50%, -50%);
+  width:0.75rem;
+  height:0.75rem;
+  background:var(--champagne);
+  border-radius:50%;
+}
+
+/* content */
+.t-content{
+  max-width:clamp(28rem, 55vw, 48rem);
+}
+
+/* time */
+.t-time{
+  font-family:var(--serif);
+  font-size:clamp(1.3rem, 2.5vw, 1.8rem);
+  margin-bottom:0.3rem;
+}
+
+/* heading */
+.t-head{
+  font-family:'Allura', cursive;
+  font-size:clamp(2rem, 4vw, 3.4rem);
+  line-height:1;
+  margin:0 0 0.4rem 0;
+  color:var(--accent, #b07a7a);
+}
+
+/* text */
+.t-content p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.6;
+  font-size:clamp(0.95rem, 0.9vw, 1.1rem);
+}
+
+/* map wrapper if you later use it */
+.t-map{
+  width:100%;
+  max-width:clamp(28rem, 55vw, 48rem);
+  margin-left:clamp(1rem, 2vw, 2rem);
+}
+
+.embed.small iframe{
+  width:100%;
+  height:clamp(10rem, 18vw, 16rem);
+  border-radius:0.75rem;
+  display:block;
+}
