@@ -127,72 +127,107 @@ body{
 }
 
 /* language */
+
 .lang{
-  position:relative;
-  display:flex;
-  align-items:center;
-  gap:0.5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 /* label */
 .lang-label{
-  font-size:0.75rem;
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  color:var(--muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
-/* button */
+/* main button (SK / HU) */
 .lang-btn{
-  border:1px solid var(--border);
-  background:rgba(250,247,241,.72);
-  border-radius:999px;
-  padding:0.5rem 0.75rem;
-  cursor:pointer;
-  font-size:0.8rem;
+  border: 1px solid var(--border);
+  background: rgba(250,247,241,.72);
+  border-radius: 999px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+
+  color: var(--ink);
+
+  /* 🔥 critical mobile fixes */
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* dropdown */
+.lang-btn:focus{
+  outline: none;
+}
+
+/* dropdown container */
 .lang-dropdown{
-  position:absolute;
-  top:120%;
-  right:0;
+  position: absolute;
+  top: 120%;
+  right: 0;
 
   background: rgba(250,247,241,.95);
   backdrop-filter: blur(12px);
 
-  border:1px solid var(--border);
-  border-radius:14px;
-  box-shadow:var(--shadow);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
 
-  padding:0.4rem;
-  display:flex;
-  flex-direction:column;
-  gap:0.3rem;
+  padding: 0.4rem;
 
-  opacity:0;
-  transform:translateY(8px);
-  pointer-events:none;
-  transition:0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: all 0.2s ease;
 }
 
+/* open state */
 .lang-dropdown[data-open="true"]{
-  opacity:1;
-  transform:translateY(0);
-  pointer-events:auto;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
+/* dropdown buttons */
 .lang-dropdown button{
-  border:none;
-  background:none;
-  padding:0.4rem 0.6rem;
-  border-radius:10px;
-  cursor:pointer;
-  font-size:0.8rem;
+  border: none;
+  background: none;
+
+  padding: 0.4rem 0.6rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.8rem;
+
+  color: var(--ink);
+
+  /* 🔥 mobile fixes */
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
+.lang-dropdown button:focus{
+  outline: none;
+}
+
+/* hover */
 .lang-dropdown button:hover{
   background: rgba(216,195,165,.18);
+  color: var(--ink);
+}
+
+/* active / selected (optional but nice UX) */
+.lang-dropdown button.active{
+  background: rgba(216,195,165,.28);
+  font-weight: 600;
 }
 
 /* mobile */
