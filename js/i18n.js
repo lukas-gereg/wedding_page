@@ -197,7 +197,7 @@ const I18N = {
         rsvp_note: "Ide illesszétek be a Google Űrlapot vagy saját űrlapot.",
 
         gallery_title: "Galéria",
-        gallery_sub: "Hamarosan jövünk a fotókkal.",
+        gallery_sub: "Hamarosan itt találjátok a fotókat.",
 
         ww_title: "Hol & Mikor",
         ww_ceremony: "Szertartás",
