@@ -9,7 +9,7 @@ const I18N = {
 
         home_kicker: "Pozývame Vás na svadbu",
         home_title: "Anna & Lukáš",
-        home_sub: "Sobota • 15. august 2026 • 14:00 • Budapešť, Fő utca 17.",
+        home_sub: "Sobota • 15. august 2026 • 14:00 • Budapešť, Batthyány tér 7.",
         home_btn_rsvp: "Potvrdiť účasť (RSVP)",
         home_btn_details: "Kde & Kedy",
 
@@ -188,7 +188,7 @@ const I18N = {
 
         home_kicker: "Szeretettel meghívunk az esküvőnkre",
         home_title: "Anna & Lukáš",
-        home_sub: "Szombat • 2026. augusztus 15. • 14:00 • Budapest, Fő utca 17.",
+        home_sub: "Szombat • 2026. augusztus 15. • 14:00 • Budapest, Batthyány tér 7.",
         home_btn_rsvp: "Részvétel visszajelzés (RSVP)",
         home_btn_details: "Hol & Mikor",
 
