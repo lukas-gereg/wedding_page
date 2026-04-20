@@ -9,7 +9,7 @@ const I18N = {
 
         home_kicker: "Pozývame Vás na svadbu",
         home_title: "Anna & Lukáš",
-        home_sub: "Sobota • 15. august 2026 • 14:00 • Budapešť, Batthyány tér 7.",
+        home_sub: "Sobota • 15. august 2026 • 14:00 • Budapešť 1011, Batthyány tér 7.",
         home_btn_rsvp: "Potvrdiť účasť (RSVP)",
         home_btn_details: "Kde & Kedy",
 
@@ -185,35 +185,35 @@ const I18N = {
 
         ceremony_title: "Obrad",
         ceremony_text_1: "Chrám svätej Anny, Budapešť. Budeme radi, ak prídete o pár minút skôr.",
-        ceremony_text_2: "Parkovanie viete nájsť na ulici Sztehlo Gábor rkp., Budapešť",
+        ceremony_text_2: "Parkovanie viete nájsť na ulici Sztehlo Gábor rkp. a Csalogány u., Budapešť",
 
         photos_title: "Spoločné fotky",
         photos_text: "Krátko po obrade sa presunieme na skupinové fotografie pred chrám.",
 
         agape_title: "Agapé & čas na vydýchnutie",
         agape_text_1: "Malé občerstvenie, čas na rozhovory, prechádzku alebo oddych.",
-        agape_text_2: "Agapé sa bude odohrávať na adrese Aranyhal u. 1, Budapešť, asi 100m od chrámu.",
+        agape_text_2: "Agapé sa bude odohrávať na adrese Aranyhal u. 1, Budapešť 1011, asi 100m od chrámu.",
 
         venue_title: "Oslava",
-        venue_text_1: "Tešíme sa na vašu účasť. Parkovanie viete nájsť na ulici Kinizsi u., Budapešť.",
+        venue_text_1: "Tešíme sa na vašu účasť. Parkovanie viete nájsť na ulici Kinizsi u. a Mária u., Budapešť.",
         venue_text_2: "Prosíme, nechajte si dostatok času na presun, aby sme mohli začať spolu načas.",
     },
 
     hu: {
         nav_home: "Kezdőlap",
-        nav_rsvp: "RSVP",
+        nav_rsvp: "Jelentkezés",
         nav_story: "Történetünk",
         nav_gallery: "Galéria",
         nav_wherewhen: "Hol & Mikor",
         lang_label: "Jazyk",
 
-        home_kicker: "Szeretettel meghívunk az esküvőnkre",
+        home_kicker: "Szeretettel hívunk az esküvőnkre",
         home_title: "Anna & Lukáš",
-        home_sub: "Szombat • 2026. augusztus 15. • 14:00 • Budapest, Batthyány tér 7.",
-        home_btn_rsvp: "Részvétel visszajelzés (RSVP)",
+        home_sub: "Szombat • 2026. augusztus 15. • 14:00 • Budapest 1011, Batthyány tér 7.",
+        home_btn_rsvp: "Részvételi jelentkezés (Form)",
         home_btn_details: "Hol & Mikor",
 
-        rsvp_title: "RSVP",
+        rsvp_title: "Jelentkezés",
         rsvp_sub: "Kérjük jelezzetek vissza eddig: 2026.07.07., 23:59",
         rsvp_note: "Ide illesszétek be a Google Űrlapot vagy saját űrlapot.",
 
@@ -249,11 +249,11 @@ const I18N = {
         q3_title: "Tudok segíteni",
         q3_hint: "Válassz ki bármit, ami oké:",
         q3_1: "Dekorálás előző nap",
-        q3_2: "Dekorálás a templomban",
-        q3_3: "Pakolás az agapé után",
+        q3_2: "Dekorálás aznap a templomban",
+        q3_3: "Elpakolás az agapé után",
         q3_4: "Liturgikus szövegek és énekek nyomtatása / kiosztása",
-        q3_5: "Gyereksarok (váltásban)",
-        q3_6: "Csillagszórók osztása / összegyűjtés",
+        q3_5: "Gyereksarok felügyelet lakodalomban (felváltva)",
+        q3_6: "Csillagszórók kiosztása / összegyűjtése",
         q3_7: "Welcome drink kitöltése",
         q3_8: "Emberek hívása a tánctérre",
         q3_9: "Fuvar / shuttle",
@@ -380,22 +380,22 @@ const I18N = {
 
         mass_title: "Szentmise",
         mass_text_1: "Azok számára, akik szeretnék nyugodtan kezdeni a napot még a szertartás előtt.",
-        mass_text_2: "A szentmise a Szent Anna-templomban lesz, Budapest.",
+        mass_text_2: "A szentmise a Szent Anna-templomban lesz, a Batthány térnél.",
 
         ceremony_title: "Szertartás",
-        ceremony_text_1: "Szent Anna-templom, Budapest. Örülünk, ha néhány perccel korábban érkeztek.",
-        ceremony_text_2: "Parkolás a Sztehlo Gábor rkp. utcában lehetséges, Budapest.",
+        ceremony_text_1: "Szent Anna-templom, Budapest. Kérjük ha tehetitek, érkezzetek pár perccel korábban, a parkolás időigényes.",
+        ceremony_text_2: "Parkolási lehetőséget a Sztehlo Gábor rakparton, vagy a Csalogány utcában javasoljuk.",
 
         photos_title: "Közös fotók",
         photos_text: "Röviddel a szertartás után közös fényképezésre kerül sor a templom előtt.",
 
         agape_title: "Agapé & egy kis pihenő",
         agape_text_1: "Kis frissítő, beszélgetés, séta vagy pihenés.",
-        agape_text_2: "Az agapé az Aranyhal u. 1, Budapest címen lesz, kb. 100 méterre a templomtól.",
+        agape_text_2: "Az agapé a templom plébániáján, az Aranyhal u. 1. címen lesz, kb. 100 méterre a templomtól.",
 
         venue_title: "Ünneplés",
-        venue_text_1: "Örömmel várjuk a részvételeteket. Parkolás a Kinizsi u. környékén lehetséges, Budapest.",
-        venue_text_2: "Kérjük, hagyjatok elegendő időt az átszállásra, hogy időben együtt kezdhessük."
+        venue_text_1: "Örömmel várjuk a részvételeteket! Parkolás a Kinizsi u. és Mária u. környékén lehetséges.",
+        venue_text_2: "Kérjük, hagyjatok elegendő időt az átszállásra és parkolásra, hogy időben együtt kezdhessünk."
     }
 };
 
