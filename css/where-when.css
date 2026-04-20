@@ -21,10 +21,20 @@
 .timeline{
   position:relative;
   display:grid;
+
   gap:clamp(2rem, 3vw, 3.5rem);
   padding:clamp(1.5rem, 3vw, 3rem) 0;
-  width:clamp(22rem, 60vw, 65rem);
+
+  width:100%;                    /* ← MUST be 100% */
+  max-width:clamp(28rem, 60vw, 65rem);
+
   margin:0 auto;
+}
+
+.timeline,
+.t-content,
+.t-map{
+  min-width:0; /* prevents overflow in grid */
 }
 
 /* one measured vertical line */
