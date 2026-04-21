@@ -1,5 +1,5 @@
-const RESPONSES_SHEET_ID = "1ocvRmfbARLpR6kfwQ1bU6FHIaooiClMARshWzkIBjfo";
-const RESPONSES_TAB = "Responses";
+const RESPONSES_SHEET_ID = "";
+const RESPONSES_TAB = "";
 
 const GALLERY_PRO_FOLDER_ID = "";
 const GALLERY_GUESTS_FOLDER_ID = "";
@@ -163,7 +163,7 @@ function saveResponse(data) {
 
   if (sheet.getLastRow() === 0) {
     sheet.appendRow([
-      "timestamp","attendance","bring","bring_other","help","help_other","arrival",
+      "timestamp","attendance","bring","bring_other","help","help_other","arrival", "accommodation_extra",
       "car_free_seats","car_route","diet","diet_other","allergy_acknowledgement",
       "official_name","email","phone","consent_feedback_30d","consent_gdpr_media","lang"
     ]);
@@ -177,6 +177,7 @@ function saveResponse(data) {
     Array.isArray(data.help) ? data.help.join(", ") : (data.help || ""),
     data.help_other || "",
     data.arrival || "",
+    data.accommodation_extra,
     data.car_free_seats || "",
     data.car_route || "",
     data.diet || "",
