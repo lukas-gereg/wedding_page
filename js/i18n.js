@@ -59,6 +59,7 @@ const I18N = {
         q3_8: "Pozývanie ľudí na parket",
         q3_9: "Odvoz / shuttle",
         q3_10: "Balenie ráno po svadbe",
+        q3_11: "Teraz níč, prosím.",
         q3_other: "Iné",
 
         q4_title: "Príchod & ubytovanie",
@@ -252,7 +253,7 @@ const I18N = {
         q2_none: "Semmi",
 
         q3_title: "Amiben szívesen segítek",
-        q3_hint: "Válassz ki bármit, amiben segíteni szeretnél:",
+        q3_hint: "Válassz valamit, ha szívesen segítesz nekünk:",
         q3_1: "Dekorálás előző nap",
         q3_2: "Dekorálás aznap a templomban",
         q3_3: "Elpakolás az agapé után",
@@ -263,6 +264,7 @@ const I18N = {
         q3_8: "Többi vendég felkérése a tánctérre",
         q3_9: "Fuvar / shuttle",
         q3_10: "Pakolás, morzsaparti másnap reggel",
+        q3_11: "Részt veszek, de nem vállalok extrát most.",
         q3_other: "Egyéb",
 
         q4_title: "Érkezés & Szállás",
