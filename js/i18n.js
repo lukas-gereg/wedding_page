@@ -98,7 +98,7 @@ const I18N = {
         consent_title: "Súhlasy",
         consent_feedback: "Súhlasím, že poskytnem finálnu spätnú väzbu ~30 dní pred svadbou cez emailové pripomenutie.",
         consent_media: "Súhlasím, aby som ja (a moje deti) mohli byť na fotkách/videách z udalosti (GDPR).",
-        consent_dietary: "Consent in case of dietary reaction me and my children have insurance and the usual medication during the event."
+        consent_dietary: "Consent in case of dietary reaction me and my children have insurance and the usual medication during the event. Rozumiem, že v prípade alergickej reakcie nesiem plnú zodpovednosť za svoje poistenie a lieky.",
         other_placeholder: "Iné…",
         amount_placeholder: "Suma",
 
@@ -307,7 +307,7 @@ const I18N = {
         consent_title: "Hozzájárulások",
         consent_feedback: "Hozzájárulok, hogy kb. 30 nappal az esemény előtt e-mail emlékeztetőre végső visszajelzést adjak.",
         consent_media: "Hozzájárulok, hogy én (és gyermekeim) szerepelhetünk az esemény fotóin/videóin (GDPR).",
-        consent_dietary:"Hozzájárulok, hogy én és gyermekeim lehetséges allergiás reakció esetén egészségügyi biztostással és saját szokásos gyógyszerekkel rendelkezem.",
+        consent_dietary:"Hozzájárulok, hogy én és gyermekeim lehetséges allergiás reakció esetén az esemény alatt egészségügyi biztostással és saját szokásos gyógyszerekkel rendelkezem.",
 
         wl_item: "Wishlist tétel",
         wl_full: "Megveszem teljes egészében",
