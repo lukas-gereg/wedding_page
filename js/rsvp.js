@@ -1,7 +1,7 @@
 /* ================================
    CONFIG
    ================================ */
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxH_wWFR_N9H4Bh-1jc6oJPKg9NjJAWh0ndkAD68Jc0DHlL6haDX8uOVT4vt_JKYotwxg/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzgMM6eqJoSQK8DPuz7EGmu0-6BSeoVyqjGRRGJ0_P3hKcvrwZlRgZfHOX4SXZ1Y864zw/exec";
 
 /* ================================
    FORM SUBMIT
