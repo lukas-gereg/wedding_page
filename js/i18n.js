@@ -59,11 +59,11 @@ const I18N = {
         q3_8: "Pozývanie ľudí na parket",
         q3_9: "Odvoz / shuttle",
         q3_10: "Balenie ráno po svadbe",
-        q3_11: "Teraz níč, prosím.",
+        q3_11: "Teraz nič, prosím.",
         q3_other: "Iné",
 
         q4_title: "Príchod & ubytovanie",
-        q4_hint: "The accommodation is in groups of 3-4 people, in rooms that have been reconstructed about 2 years ago. If you have any special requests, we will try to honor it, but we would like to as for your understanding that we might not be able to fulfill every request.",
+        q4_hint: "The accommodation is at the event location in groups of 3-4 people, in rooms that have been reconstructed about 2 years ago. If you have any special requests, we will try to honor it, but we would like to ask for your understanding that we might not be able to fulfill every request.",
         q4_1: "Piatok večer (2 noci ubytovanie)",
         q4_2: "Sobota ráno (1 noc ubytovanie)",
         q4_3: "Ubytovanie nepotrebujem",
@@ -74,6 +74,7 @@ const I18N = {
         q5_route: "Trasa / smer",
 
         q6_title: "Stravovanie",
+        q6_hint: "Please be aware that if you have a severe food allergy, the venue does not take responsibility for potential allergic reactions, even for dietary (vegan, dairy free) meals. For this reason, we have arranged a specialist dietary menu for allergy-friendly options, but we kindly ask that you come prepared with any personal medication (the one you usually use) just to be safe. Your health and wellbeing matter most to us — please don't hesitate to reach out if you have any concerns!",
         q6_1: "Bez obmedzení",
         q6_2: "Vegánske",
         q6_3: "Bezlepkové",
@@ -280,7 +281,8 @@ const I18N = {
         q5_route: "Útvonal / irány",
 
         q6_title: "Étkezési igények",
-        q6_1: "Nincs megkötés",
+        q6_hint: "Kérjük, vegyétek figyelembe, hogy ha valakinek súlyos ételallergiája van, a helyszín nem tud felelősséget vállalni esetleges allergiás reakciókért, még akkor sem, ha különleges (például vegán vagy tejmentes) ételeket szolgálnak fel. Emiatt külön allergiabarát menüt is biztosítunk, de szeretnénk megkérni minden érintettet, hogy biztonság kedvéért hozza magával a saját, szokásosan használt gyógyszerét. Az egészségetek és a jóllétetek a legfontosabb számunkra — bátran jelezzetek, ha bármilyen kérdésetek van.",
+        q6_1: "Teljes normál menü",
         q6_2: "Vegán",
         q6_3: "Gluténmentes",
         q6_4: "Laktózmentes",
