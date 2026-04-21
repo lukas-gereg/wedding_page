@@ -79,10 +79,10 @@ const I18N = {
         q6_4: "Bez laktózy",
         q6_5: "Bez mlieka (dairy-free)",
         q6_other: "Iné",
-
+/*
         q7_title: "Zodpovednosť za alergie",
         q7_text: "Rozumiem, že v prípade alergickej reakcie nesiem plnú zodpovednosť za svoje poistenie a lieky.",
-
+*/
         q8_title: "Dar",
         q8_1: "Finančný príspevok",
         q8_2: "Malý darček / prekvapenie",
@@ -284,10 +284,10 @@ const I18N = {
         q6_4: "Laktózmentes",
         q6_5: "Tejmentes",
         q6_other: "Egyéb",
-
+/*
         q7_title: "Allergia felelősség",
         q7_text: "Tudomásul veszem, hogy allergiás reakció esetén a saját biztosításomért és gyógyszereimért teljes felelősséget vállalok.",
-
+*/
         q8_title: "Ajándék",
         q8_1: "Pénzbeli hozzájárulás",
         q8_2: "Kis ajándék / meglepetés",
