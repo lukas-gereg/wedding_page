@@ -6,18 +6,52 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzgMM6eqJoSQK8DPuz7E
 /* ================================
    FORM SUBMIT
    ================================ */
+
+function getLabelText(form, name, value) {
+  const el = form.querySelector(`[name="${CSS.escape(name)}"]`);
+
+  if (el?.tagName === "SELECT") {
+    return el.selectedOptions[0]?.textContent.trim() || value;
+  }
+
+  const input = form.querySelector(
+    `[name="${CSS.escape(name)}"]:checked[value="${CSS.escape(value)}"]`
+  );
+
+  const label = input?.closest("label");
+  return label?.innerText.trim() || value;
+}
+
 function formToJSON(form) {
   const fd = new FormData(form);
   const obj = {};
-
-  obj.help = fd.getAll("help[]");
-  obj.bring = fd.getAll("bring[]");
+  const translated = {};
 
   for (const [k, v] of fd.entries()) {
-    if (k !== "help[]" && k !== "bring[]") obj[k] = v;
+    const key = k.replace(/\[]$/, "");
+
+    // ---- RAW VALUES ----
+    if (k.endsWith("[]")) {
+      if (!obj[key]) obj[key] = [];
+      obj[key].push(v);
+    } else {
+      obj[key] = v;
+    }
+
+    // ---- TRANSLATED ----
+    const text = getLabelText(form, k, v);
+
+    if (k.endsWith("[]")) {
+      if (!translated[key]) translated[key] = [];
+      translated[key].push(text);
+    } else {
+      translated[key] = text;
+    }
   }
 
+  obj.translated = translated;
   obj.lang = getLang();
+
   return obj;
 }
 
@@ -32,6 +66,7 @@ async function submitForm(e) {
 
   try {
     const payload = formToJSON(form);
+    console.log(payload);
 
     const res = await fetch(SCRIPT_URL, {
       method: "POST",
@@ -293,7 +328,7 @@ function attachIntOnlyGuard(form, selector) {
 
   const sanitize = () => {
     let v = (el.value ?? "").toString();
-    v = v.replace(/[^\d]/g, "");      // digits only
+    v = v.replace(/\D/g, "");      // digits only
     // avoid leading zeros like "0003" (optional)
     v = v.replace(/^0+(?=\d)/, "");
     el.value = v;
