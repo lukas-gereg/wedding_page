@@ -157,6 +157,7 @@
           <!-- 5) Carpool -->
           <div class="panel">
             <h3 class="h2" data-i18n="q5_title">Carpool</h3>
+            <div class="muted" data-i18n="q5_hint" style="margin-bottom: 10px">Select any that apply:</div>
 
             <label>
               <span data-i18n="q5_spaces">Free seats in my car</span>:
@@ -180,6 +181,8 @@
           <div class="panel">
             <h3 class="h2" data-i18n="q6_title">Dietary needs</h3>
 
+            <div class="muted" data-i18n="q6_hint" style="margin-bottom: 10px">Select any that apply:</div>
+
             <div class="opt"><label><input type="radio" name="diet" value="No restrictions" required> <span data-i18n="q6_1">No restrictions</span></label></div>
             <div class="opt"><label><input type="radio" name="diet" value="Vegan" required> <span data-i18n="q6_2">Vegan</span></label></div>
             <div class="opt"><label><input type="radio" name="diet" value="Gluten-free" required> <span data-i18n="q6_3">Gluten-free</span></label></div>
@@ -196,53 +199,22 @@
                 <input type="text" name="diet_other" placeholder="…" />
               </div>
             </div>
-          </div>
 
-          <!-- 7) Allergy responsibility -->
-          <!div class="panel">
-            <!h3 class="h2" data-i18n="q7_title">Allergy responsibility</h3>
-
-            <!label>
-              <!input type="checkbox" name="allergy_ack" value="Yes" required>
-              <!span data-i18n="q7_text">
+            <label>
+              <input type="checkbox" name="allergy_ack" value="Yes" required style="margin-top: 35px">
+              <span data-i18n="consent_dietary">
                 I understand that in case of allergic reaction I take full responsibility for my insurance and medication.
-              <!/span>
-            <!/label>
-          <!/div>
+              </span>
+            </label>
+          </div>
 
           <!-- 8) Gift -->
           <div class="panel">
             <h3 class="h2" data-i18n="q8_title">Gift</h3>
 
-            <div class="opt"><label><input type="radio" name="gift" value="Money contribution"> <span data-i18n="q8_1">Money contribution</span></label></div>
-            <div class="opt"><label><input type="radio" name="gift" value="Contribute to our home wishlist"> <span data-i18n="q8_4">Contribute to our home wishlist</span></label></div>
-
-            <!-- Wishlist (kept as simple link input since your i18n already includes it) -->
-            <div id="wishlistFields" class="inline-extra" data-show-when="gift=Contribute to our home wishlist">
-              <label data-i18n="wl_item">Wishlist item</label>
-              <select id="wishlistItemSelect" name="wishlist_item_id"></select>
-
-              <div class="opt">
-                <label><input type="radio" name="wishlist_type" value="FULL"> <span data-i18n="wl_full"></span></label>
-              </div>
-
-              <div class="opt">
-                <label><input type="radio" name="wishlist_type" value="PLEDGE"> <span data-i18n="wl_pledge"></span></label>
-
-                <div class="inline-extra" data-show-when="wishlist_type=PLEDGE">
-                  <input
-                        type="text"
-                        name="wishlist_amount"
-                        inputmode="decimal"
-                        autocomplete="off"
-                      />
-                  <div id="pledgeFxHint" class="muted" style="margin-top:6px; display:none;"></div>
-                </div>
-              </div>
-
-              <input type="text" name="wishlist_note" placeholder="Note (optional)" />
-
-            <input type="hidden" name="wishlist_amount_huf" value="" />
+            <div class="muted" data-i18n="q8_hint">Select any that apply:</div>
+            <div style="text-align: center;">
+              <a class="muted" href="https://docs.google.com/spreadsheets/d/1SJhB0AklXFEMgEYhEl8e_rW_nk65fhvXohFClWBCc88/edit?usp=sharing" target="_blank" data-i18n="q8_wishlist_link"></a>
             </div>
           </div>
 
@@ -286,6 +258,8 @@
           <div class="panel">
             <h3 class="h2" data-i18n="consent_title">Consents</h3>
 
+            <div class="muted" data-i18n="consent_feedback_hint" style="margin-bottom: 10px">Select any that apply:</div>
+
             <label>
               <input type="checkbox" name="consent_feedback_30d" value="Yes">
               <span data-i18n="consent_feedback">
@@ -295,6 +269,8 @@
 
             <div style="height:10px;"></div>
 
+            <div class="muted" data-i18n="consent_media_hint" style="margin-bottom: 10px">Select any that apply:</div>
+
             <label>
               <input type="checkbox" name="consent_gdpr_media" value="Yes">
               <span data-i18n="consent_media">
@@ -303,14 +279,6 @@
             </label>
             
              <div style="height:10px;"></div>
-
-            <label>
-              <input type="checkbox" name="consent_dietary" value="Yes">
-              <span data-i18n="consent_dietary">
-                //in case of dietary reaction 
-                I consent that I and my children have medical insurance and the usual allergic medication during the event.
-              </span>
-            </label>
           </div>
 
           <!-- SUBMIT -->

@@ -1,14 +1,8 @@
-const RESPONSES_SHEET_ID = "";
-const RESPONSES_TAB = "";
-
-const WISHLIST_SHEET_ID = "";
-const WISHLIST_TAB = "";
-const PLEDGES_TAB = "";
+const RESPONSES_SHEET_ID = "1ocvRmfbARLpR6kfwQ1bU6FHIaooiClMARshWzkIBjfo";
+const RESPONSES_TAB = "Responses";
 
 const GALLERY_PRO_FOLDER_ID = "";
 const GALLERY_GUESTS_FOLDER_ID = "";
-
-const FX_EUR_HUF = 385;
 
 function authorizeNow() {
   DriveApp.getRootFolder().getName();
@@ -53,7 +47,6 @@ function asFail(err) {
 // ========= ROUTER =========
 function doGet(e) {
   const action = (e.parameter && e.parameter.action) ? String(e.parameter.action) : "";
-  if (action === "wishlist") return getWishlistItems();
   if (action === "gallery") return getGalleryPage(e);
   return fail("UNKNOWN_ACTION", {}, "Unknown action");
 }
@@ -61,32 +54,13 @@ function doGet(e) {
 function doPost(e) {
   try {
     const data = JSON.parse(e?.postData?.contents || "{}");
-    console.log(data);
-    if (String(data.gift || "") === "Contribute to our home wishlist") {
-      const itemId = String(data.wishlist_item_id || "").trim();
-      const type = String(data.wishlist_type || "").trim(); // FULL | PLEDGE
 
-      if (!itemId) return fail("WISHLIST_ITEM_REQUIRED");
-      if (!type) return fail("WISHLIST_TYPE_REQUIRED");
-
-      if (type === "PLEDGE") {
-        const amt = Number(data.wishlist_amount_huf || 0);
-        if (!Number.isFinite(amt) || amt <= 0) return fail("WISHLIST_AMOUNT_REQUIRED");
-      }
-
-      try {
-        updateWishlistFromPledge(data);
-      } catch (err) {
-        return asFail(err);
-      }
+    try {
+      saveResponse(data);
+      sendConfirmationEmail_(data);
+    } catch (err) {
+      return asFail(err);
     }
-
-     try {
-        saveResponse(data);
-        sendConfirmationEmail_(data);
-      } catch (err) {
-        return asFail(err);
-      }
 
     return ok();
   } catch (err) {
@@ -183,43 +157,6 @@ function makeCacheKey_(prefix, which, folderId, pageSize, token) {
   return `${prefix}:${which}:ps${pageSize}:${hex}`;
 }
 
-function getWishlistItems() {
-  try {
-    const ss = SpreadsheetApp.openById(WISHLIST_SHEET_ID);
-    const sheet = ss.getSheetByName(WISHLIST_TAB);
-    if (!sheet) return fail("WISHLIST_TAB_MISSING");
-
-    const values = sheet.getDataRange().getValues();
-    if (values.length < 2) return json({ ok: true, items: [] });
-
-    const header = values[0];
-    const idx = indexMap(header, [
-      "item_id", "item_name", "link", "total_price", "pledged_total", "remaining", "status"
-    ]);
-
-    const items = [];
-    for (let i = 1; i < values.length; i++) {
-      const row = values[i];
-      const status = String(row[idx.status] || "").toUpperCase();
-      const remaining = Number(row[idx.remaining] || 0);
-
-      if (status === "OPEN" && remaining > 0) {
-        items.push({
-          item_id: String(row[idx.item_id]),
-          item_name: String(row[idx.item_name]),
-          link: String(row[idx.link] || ""),
-          total_price: Number(row[idx.total_price] || 0),
-          remaining: remaining
-        });
-      }
-    }
-
-    return json({ ok: true, items });
-  } catch (err) {
-    return asFail(err);
-  }
-}
-
 function saveResponse(data) {
   const ss = SpreadsheetApp.openById(RESPONSES_SHEET_ID);
   const sheet = ss.getSheetByName(RESPONSES_TAB) || ss.insertSheet(RESPONSES_TAB);
@@ -227,8 +164,7 @@ function saveResponse(data) {
   if (sheet.getLastRow() === 0) {
     sheet.appendRow([
       "timestamp","attendance","bring","bring_other","help","help_other","arrival",
-      "car_free_seats","car_route","diet","diet_other","allergy_acknowledgement","gift",
-      "wishlist_item_id","wishlist_type","wishlist_currency","wishlist_amount_huf","wishlist_note",
+      "car_free_seats","car_route","diet","diet_other","allergy_acknowledgement",
       "official_name","email","phone","consent_feedback_30d","consent_gdpr_media","lang"
     ]);
   }
@@ -246,12 +182,6 @@ function saveResponse(data) {
     data.diet || "",
     data.diet_other || "",
     data.allergy_ack || "",
-    data.gift || "",
-    data.wishlist_item_id || "",
-    data.wishlist_type || "",
-    data.wishlist_currency || "",
-    data.wishlist_amount_huf || "",
-    data.wishlist_note || "",
     data.official_name || "",
     data.email || "",
     data.phone || "",
@@ -259,110 +189,6 @@ function saveResponse(data) {
     data.consent_gdpr_media || "",
     data.lang || ""
   ]);
-}
-
-function updateWishlistFromPledge(data) {
-  const lock = LockService.getScriptLock();
-  lock.waitLock(10000);
-
-  try {
-    const itemId = String(data.wishlist_item_id || "").trim();
-    const type = String(data.wishlist_type || "").trim();
-    const currency = String(data.wishlist_currency || "HUF").trim();
-    const requestedAmountHuf = Number(data.wishlist_amount_huf || 0);
-
-    if (!itemId) throwCoded("WISHLIST_ITEM_REQUIRED");
-    if (!type) throwCoded("WISHLIST_TYPE_REQUIRED");
-
-    const ss = SpreadsheetApp.openById(WISHLIST_SHEET_ID);
-    const wishlist = ss.getSheetByName(WISHLIST_TAB);
-    if (!wishlist) throwCoded("WISHLIST_TAB_MISSING");
-
-    let pledges = ss.getSheetByName(PLEDGES_TAB);
-    if (!pledges) pledges = ss.insertSheet(PLEDGES_TAB);
-
-    if (pledges.getLastRow() === 0) {
-      pledges.appendRow(["timestamp","item_id","amount_huf","amount_eur","currency","guest_name","email","note"]);
-    }
-
-    // Read wishlist
-    const wishlistData = wishlist.getDataRange().getValues();
-    if (wishlistData.length < 2) throwCoded("WISHLIST_EMPTY");
-
-    const wHeader = wishlistData[0];
-    const wIdx = indexMap(wHeader, [
-      "item_id","item_name","total_price","pledged_total","remaining","status"
-    ]);
-
-    let rowIndex = -1; // 1-based row index
-    for (let i = 1; i < wishlistData.length; i++) {
-      if (String(wishlistData[i][wIdx.item_id]).trim() === itemId) {
-        rowIndex = i + 1;
-        break;
-      }
-    }
-    if (rowIndex === -1) throwCoded("WISHLIST_ITEM_NOT_FOUND");
-
-    const totalPriceHuf = Number(wishlist.getRange(rowIndex, wIdx.total_price + 1).getValue() || 0);
-
-    const pledgeData = pledges.getDataRange().getValues();
-    if (pledgeData.length < 1) throwCoded("PLEDGES_SHEET_BROKEN");
-
-    const pHeader = pledgeData[0];
-    const pIdx = indexMap(pHeader, [
-      "timestamp","item_id","amount_huf","amount_eur","currency","guest_name","email","note"
-    ]);
-
-    const currentPledgedHuf = pledgeData
-      .slice(1)
-      .filter(r => String(r[pIdx.item_id]).trim() === itemId)
-      .reduce((sum, r) => sum + Number(r[pIdx.amount_huf] || 0), 0);
-
-    const remainingHuf = totalPriceHuf - currentPledgedHuf;
-
-    if (remainingHuf <= 0) {
-      throwCoded("ITEM_NOT_AVAILABLE", { remaining_huf: 0 });
-    }
-
-    let finalAmountHuf = 0;
-
-    if (type === "FULL") {
-      finalAmountHuf = remainingHuf;
-
-    } else if (type === "PLEDGE") {
-      if (!Number.isFinite(requestedAmountHuf) || requestedAmountHuf <= 0) {
-        throwCoded("INVALID_AMOUNT");
-      }
-      if (requestedAmountHuf > remainingHuf) {
-        throwCoded("OVERFILL", { remaining_huf: remainingHuf });
-      }
-      finalAmountHuf = requestedAmountHuf;
-    } else {
-      throwCoded("WISHLIST_TYPE_REQUIRED");
-    }
-
-    const amountEur = Number((finalAmountHuf / FX_EUR_HUF).toFixed(2));
-
-    // Append pledge event
-    pledges.appendRow([
-      new Date(),
-      itemId,
-      finalAmountHuf,
-      amountEur,
-      currency,
-      data.official_name || "",
-      data.email || "",
-      data.wishlist_note || ""
-    ]);
-
-    // Update derived totals on wishlist row
-    const newTotalHuf = currentPledgedHuf + finalAmountHuf;
-
-    wishlist.getRange(rowIndex, wIdx.pledged_total + 1).setValue(newTotalHuf);
-
-  } finally {
-    lock.releaseLock();
-  }
 }
 
 function sendConfirmationEmail_(payload) {
@@ -401,20 +227,4 @@ function sendConfirmationEmail_(payload) {
     subject,
     body: lines.join("\n")
   });
-}
-
-
-function indexMap(headerRow, requiredCols) {
-  const map = {};
-  headerRow.forEach((h, i) => {
-    map[String(h).trim()] = i;
-  });
-
-  (requiredCols || []).forEach(col => {
-    if (map[col] === undefined) {
-      throwCoded("SHEET_MISSING_COLUMN", { col: col }, "Missing sheet header column: " + col);
-    }
-  });
-
-  return map;
 }

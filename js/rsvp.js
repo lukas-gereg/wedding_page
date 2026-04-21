@@ -1,112 +1,7 @@
 /* ================================
    CONFIG
    ================================ */
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbymWm6Dmw2GL5AjVoPqDgKolWuAoRA8JH9SCj4xhumQPpkbD_e6C8aPFkiSHr1ddM4img/exec";
-
-// Fixed rate (simple + stable). You can update whenever.
-const FX_EUR_HUF = 385; // 1 EUR = 385 HUF
-
-function hufToEur(huf) {
-  return huf / FX_EUR_HUF;
-}
-
-function eurToHuf(eur) {
-  return eur * FX_EUR_HUF;
-}
-
-function fmtHuf(x) {
-  return Math.round(x).toLocaleString("hu-HU") + " Ft";
-}
-
-function fmtEur(x) {
-  return x.toFixed(2).replace(".", ",") + " €";
-}
-
-let wishlistLoadedOnce = false;
-
-async function loadWishlist({ silent = false } = {}) {
-  const sel = document.getElementById("wishlistItemSelect");
-  if (!sel) return;
-
-  // Remember current selection so we can restore it
-  const prevSelected = sel.value;
-
-  // Only show Loading on FIRST load (or if empty)
-  const shouldShowLoading = !wishlistLoadedOnce && !silent;
-  if (shouldShowLoading) {
-    sel.innerHTML = `<option value="">Loading…</option>`;
-  }
-
-  try {
-    const res = await fetch(`${SCRIPT_URL}?action=wishlist`, { cache: "no-store" });
-    const data = await res.json();
-    if (!data.ok) throw new Error(data.error || "wishlist fetch failed");
-
-    const lang = getLang();
-
-    // Build options in memory (no flicker), then swap once
-    const frag = document.createDocumentFragment();
-
-    const opt0 = document.createElement("option");
-    opt0.value = "";
-    opt0.textContent = "Choose…"; // i18n if you want
-    frag.appendChild(opt0);
-
-    data.items.forEach(item => {
-      const opt = document.createElement("option");
-      opt.value = item.item_id;
-
-      const remHuf = Number(item.remaining || 0);
-      const remEur = hufToEur(remHuf);
-
-      // HU: HUF primary, EUR approx
-      if (lang === "hu") {
-        opt.textContent = `${item.item_name} — ${fmtHuf(remHuf)} (≈ ${fmtEur(remEur)})`;
-      }
-      // SK: EUR primary, HUF approx  ✅ (Slovakia uses EUR)
-      else {
-        opt.textContent = `${item.item_name} — ${fmtEur(remEur)} (≈ ${fmtHuf(remHuf)})`;
-      }
-
-      opt.dataset.remainingHuf = String(remHuf);
-      frag.appendChild(opt);
-    });
-
-    // Swap options in one operation (minimizes UI jump)
-    sel.replaceChildren(frag);
-
-    // Restore selection if still present
-    if (prevSelected) {
-      const exists = Array.from(sel.options).some(o => o.value === prevSelected);
-      if (exists) sel.value = prevSelected;
-    }
-
-    wishlistLoadedOnce = true;
-  } catch (err) {
-    // Only show error on first load; don’t destroy UI on background refresh
-    if (!wishlistLoadedOnce) {
-      sel.innerHTML = `<option value="">Failed to load</option>`;
-    }
-    console.error(err);
-  }
-}
-
-function syncWishlistCurrencyUI() {
-  const lang = getLang();
-  const amountInput = document.querySelector('input[name="wishlist_amount"]');
-  if (!amountInput) return;
-
-  if (lang === "hu") {
-    amountInput.placeholder = "Összeg (HUF)";
-    amountInput.inputMode = "numeric";
-  } else {
-    amountInput.placeholder = "Suma (EUR)";
-    amountInput.inputMode = "decimal";
-  }
-
-  // optional: re-sanitize when switching language
-  amountInput.dispatchEvent(new Event("input", { bubbles: true }));
-}
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz_R1JwYyHo3Os45XR0BNXY7OqPdovOBGLwE7CZ7jk09ftYcm1tqBWnByK0GkJ1mVxLzw/exec";
 
 /* ================================
    FORM SUBMIT
@@ -123,22 +18,6 @@ function formToJSON(form) {
   }
 
   obj.lang = getLang();
-
-  // Normalize wishlist pledge into HUF
-  if (obj.wishlist_type === "PLEDGE" && obj.wishlist_amount) {
-  const currency = getLang() === "sk" ? "EUR": "HUF";
-  const raw = String(obj.wishlist_amount).replace(",", ".");
-  const num = Number(raw);
-
-  if (!Number.isFinite(num) || num <= 0) {
-    delete obj.wishlist_amount_huf;
-  } else if (currency === "EUR") {
-    obj.wishlist_amount_huf = Math.round(eurToHuf(num));
-  } else {
-    obj.wishlist_amount_huf = Math.round(num);
-  }
-}
-
   return obj;
 }
 
@@ -216,69 +95,6 @@ function setExtraOpen(extraEl, open) {
   });
 }
 
-function attachMoneyInputGuard(form) {
-  const amountInput = form.querySelector('input[name="wishlist_amount"]');
-  if (!amountInput) return;
-
-  const sanitize = () => {
-    const currency = getLang() === "sk" ? "EUR": "HUF";
-    let v = amountInput.value || "";
-
-    // keep digits + separators only
-    v = v.replace(/[^\d.,]/g, "");
-
-    // normalize: allow only ONE separator -> convert commas to dots
-    v = v.replace(/,/g, ".");
-
-    // remove extra dots
-    const firstDot = v.indexOf(".");
-    if (firstDot !== -1) {
-      v =
-        v.slice(0, firstDot + 1) +
-        v.slice(firstDot + 1).replace(/\./g, "");
-    }
-
-    if (currency === "HUF") {
-      // integers only
-      v = v.replace(/\./g, "");
-    } else {
-      // EUR: allow up to 2 decimals
-      const parts = v.split(".");
-      if (parts.length === 2) {
-        parts[1] = parts[1].slice(0, 2);
-        v = parts[0] + "." + parts[1];
-      }
-    }
-
-    amountInput.value = v;
-  };
-
-  // blocks bad keys early (desktop)
-  amountInput.addEventListener("keydown", (e) => {
-    const allowed = [
-      "Backspace", "Delete", "Tab", "Escape", "Enter",
-      "ArrowLeft", "ArrowRight", "Home", "End"
-    ];
-    if (allowed.includes(e.key)) return;
-
-    // allow Ctrl/Cmd shortcuts
-    if ((e.ctrlKey || e.metaKey) && ["a","c","v","x"].includes(e.key.toLowerCase())) return;
-
-    // allow digits
-    if (/^\d$/.test(e.key)) return;
-
-    // allow separators (we’ll sanitize later)
-    if (e.key === "." || e.key === ",") return;
-
-    // block everything else (letters, minus, e, etc.)
-    e.preventDefault();
-  });
-
-  // sanitize on any input/paste
-  amountInput.addEventListener("input", sanitize);
-  amountInput.addEventListener("blur", sanitize);
-}
-
 function matchesCondition(form, cond) {
   // Examples:
   // "bring[]=Other"
@@ -317,36 +133,6 @@ function refreshInlineExtras(form) {
   });
 }
 
-function updateFxHint() {
-  const hint = document.getElementById("pledgeFxHint");
-  const amountInput = document.querySelector('input[name="wishlist_amount"]');
-  const typeChecked = document.querySelector('input[name="wishlist_type"]:checked')?.value;
-  const currency = getLang() === "sk" ? "EUR": "HUF";
-  if (!hint || !amountInput) return;
-
-  // only show when pledge is selected and wishlist visible
-  if (typeChecked !== "PLEDGE" || amountInput.disabled) {
-    hint.style.display = "none";
-    hint.textContent = "";
-    return;
-  }
-
-  const raw = (amountInput.value || "").replace(",", ".");
-  const num = Number(raw);
-  if (!num || num <= 0) {
-    hint.style.display = "none";
-    hint.textContent = "";
-    return;
-  }
-
-  hint.style.display = "block";
-  if (currency === "EUR") {
-    hint.textContent = `≈ ${fmtHuf(eurToHuf(num))} (rate: 1€ = ${FX_EUR_HUF} Ft)`;
-  } else {
-    hint.textContent = `≈ ${fmtEur(hufToEur(num))} (rate: 1€ = ${FX_EUR_HUF} Ft)`;
-  }
-}
-
 function t(key, params = {}) {
   const lang = getLang();
   const dict = (window.I18N && (I18N[lang] || I18N.sk)) || {};
@@ -359,54 +145,9 @@ function t(key, params = {}) {
   return s;
 }
 
-function formatRemainingForLang(remainingHuf) {
-  const lang = getLang();
-  const remHuf = Number(remainingHuf || 0);
-  const remEur = hufToEur(remHuf);
-
-  // HU: show HUF primary, SK: EUR primary
-  if (lang === "hu") return `${fmtHuf(remHuf)} (≈ ${fmtEur(remEur)})`;
-  return `${fmtEur(remEur)} (≈ ${fmtHuf(remHuf)})`;
-}
-
 function serverErrorToToast(out) {
-  // out: { ok:false, code:"OVERFILL", message?:..., meta?:{...} }
-  const code = out.code || "UNKNOWN";
-  const meta = out.meta || {};
+  return { key: "toast_unknown_error", fallback: out.error || out.message || "" };
 
-  switch (code) {
-    case "WISHLIST_ITEM_REQUIRED":
-      return { key: "toast_please_select_item" };
-
-    case "WISHLIST_TYPE_REQUIRED":
-      return { key: "toast_please_choose_full_or_pledge" };
-
-    case "WISHLIST_AMOUNT_REQUIRED":
-      return { key: "toast_pledge_amount_required" };
-
-    case "INVALID_AMOUNT":
-      return { key: "toast_invalid_amount" };
-
-    case "ITEM_NOT_AVAILABLE":
-      return { key: "toast_item_not_available" };
-
-    case "OVERFILL":
-      return {
-        key: "toast_overfill",
-        params: { remaining: formatRemainingForLang(meta.remaining_huf) }
-      };
-
-    // optional info message if you ever want to show it
-    case "FULL_WILL_FUND_REMAINING":
-      return {
-        key: "toast_full_will_fund_remaining",
-        params: { remaining: formatRemainingForLang(meta.remaining_huf) }
-      };
-
-    default:
-      // fallback to server provided message if you want
-      return { key: "toast_unknown_error", fallback: out.error || out.message || "" };
-  }
 }
 
 function setLoading(open) {
@@ -608,36 +349,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   applyPlaceholders();
 
-  loadWishlist().then(() => {
-    syncWishlistCurrencyUI();
-    updateFxHint();
-  });
-
-  setInterval(async () => {
-  await loadWishlist({ silent: true });
-  updateFxHint();
-}, 15000);
-
   const form = document.getElementById("rsvpForm");
   if (!form) return;
 
   const langSelect = document.getElementById("langSelect");
   if (langSelect) {
     langSelect.addEventListener("change", () => {
-      setTimeout(() => {
-        applyPlaceholders();
-        syncWishlistCurrencyUI();
-        loadWishlist();
-        updateFxHint();
-      }, 0);
+      setTimeout(applyPlaceholders, 0);
     });
   }
 
-  form.addEventListener("input", updateFxHint);
-
   // initialize & listen
   refreshInlineExtras(form);
-  attachMoneyInputGuard(form);
   attachPhoneGuard(form);
   attachIntOnlyGuard(form, 'input[name="car_free_seats"]');
   attachEmailConfirm(form);
