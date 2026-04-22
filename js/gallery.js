@@ -6,6 +6,7 @@ const PAGE_SIZE = 48;
 let currentGallery = "pro";
 let nextPageToken = "";
 let isLoading = false;
+let currentStatusKey = null;
 
 // ====== DOM ======
 const grid = document.getElementById("galleryGrid");
@@ -18,25 +19,21 @@ const lightboxImg = document.getElementById("lightboxImg");
 const lightboxName = document.getElementById("lightboxName");
 const lightboxDownload = document.getElementById("lightboxDownload");
 
+// ====== I18N ======
 function t(key, fallback = "") {
-  const lang = (localStorage.getItem("lang") || document.documentElement.lang || "sk");
-  return (window.I18N?.[lang]?.[key]) || (window.I18N?.sk?.[key]) || fallback || key;
+  const lang = localStorage.getItem("lang") || document.documentElement.lang || "sk";
+  return window.I18N?.[lang]?.[key] || window.I18N?.sk?.[key] || fallback || key;
 }
 
 // ====== LIGHTBOX ======
 function openLightbox({ previewSrc, name, downloadUrl }) {
-  // show overlay first (so you always see title even if image fails)
   lightbox.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
 
   lightboxName.textContent = name || "";
   lightboxImg.alt = name || "Photo";
-
-  // preview
   lightboxImg.src = previewSrc || "";
-  console.log(`this i the lightbox address: ${lightboxImg.src}`)
 
-  // download
   lightboxDownload.href = downloadUrl || "#";
 }
 
@@ -49,36 +46,33 @@ function closeLightbox() {
   lightboxDownload.href = "#";
 }
 
-// Close on backdrop / close button
 lightbox.addEventListener("click", (e) => {
   if (e.target.closest("[data-close='1']")) closeLightbox();
 });
 
-// ESC to close
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && lightbox.getAttribute("aria-hidden") === "false") {
     closeLightbox();
   }
 });
 
-// Download: for cross-origin, 'download' attribute is often ignored.
-// Opening the download URL is the most reliable.
 lightboxDownload.addEventListener("click", (e) => {
   e.preventDefault();
-  const href = lightboxDownload.href;
-  if (href && href !== "#") window.open(href, "_blank", "noopener");
+  if (lightboxDownload.href !== "#") {
+    window.open(lightboxDownload.href, "_blank", "noopener");
+  }
 });
 
 // ====== HELPERS ======
-function setStatus(msg) {
-  statusEl.textContent = msg || "";
+function setStatus(key) {
+  currentStatusKey = key;
+  statusEl.textContent = key ? t(key) : "";
 }
 
 function setActiveTab(key) {
   document.querySelectorAll(".gallery-switch .tab").forEach(btn => {
     const active = btn.dataset.gallery === key;
     btn.classList.toggle("is-active", active);
-    btn.setAttribute("aria-selected", active ? "true" : "false");
   });
 }
 
@@ -89,14 +83,7 @@ function showLoadMore(show) {
 function setLoading(loading) {
   isLoading = loading;
   loadMoreBtn.disabled = loading;
-
-  if (loading) {
-    loadMoreBtn.textContent = t("gallery_btn_loading", "Načítavam…");
-  } else {
-    // let i18n.js overwrite this later if you translate
-    const lang = localStorage.getItem("lang") || "sk";
-    if (typeof window.applyI18n === "function") window.applyI18n(lang);
-  }
+  loadMoreBtn.textContent = loading ? t("gallery_btn_loading") : t("gallery_load_more");
 }
 
 function clearGrid() {
@@ -125,7 +112,6 @@ function appendItems(items) {
     img.loading = "lazy";
     img.alt = it.name || "Photo";
     img.src = btn.dataset.thumb;
-;
 
     btn.appendChild(img);
     frag.appendChild(btn);
@@ -156,11 +142,12 @@ async function loadFirstPage(key) {
 
   currentGallery = key;
   nextPageToken = "";
+
   setActiveTab(key);
   clearGrid();
   showLoadMore(false);
 
-  setStatus(t("gallery_loading", "Načítavam fotky…"));
+  setStatus("gallery_loading");
   setLoading(true);
 
   try {
@@ -170,10 +157,10 @@ async function loadFirstPage(key) {
     nextPageToken = data.nextPageToken || "";
     showLoadMore(!!nextPageToken);
 
-    setStatus((data.items && data.items.length) ? "" : t("gallery_empty", "Zatiaľ tu nie sú žiadne fotky."));
+    setStatus(data.items?.length ? null : "gallery_empty");
   } catch (err) {
     console.error(err);
-    setStatus(t("gallery_error_load", "Nepodarilo sa načítať galériu..."));
+    setStatus("gallery_error_load");
   } finally {
     setLoading(false);
   }
@@ -182,7 +169,6 @@ async function loadFirstPage(key) {
 async function loadMore() {
   if (isLoading || !nextPageToken) return;
 
-  setStatus("");
   setLoading(true);
 
   try {
@@ -191,9 +177,8 @@ async function loadMore() {
 
     nextPageToken = data.nextPageToken || "";
     showLoadMore(!!nextPageToken);
-  } catch (err) {
-    console.error(err);
-    setStatus(t("gallery_error_more", "Nepodarilo sa načítať ďalšie fotky."));
+  } catch {
+    setStatus("gallery_error_more");
   } finally {
     setLoading(false);
   }
@@ -214,9 +199,7 @@ grid?.addEventListener("click", (e) => {
 
   if (card) {
     const name = card.dataset.name || "Photo";
-    console.log(card)
     const previewSrc = card.dataset.preview || card.dataset.thumb || "";
-    console.log(previewSrc);
     const downloadUrl = card.dataset.download || "";
     openLightbox({ previewSrc, name, downloadUrl });
   }
@@ -234,4 +217,10 @@ window.addEventListener("scroll", () => {
   if (!nextPageToken || isLoading) return;
   const nearBottom = window.innerHeight + window.scrollY > document.body.offsetHeight - 600;
   if (nearBottom) loadMore();
+});
+
+// 🔥 LANGUAGE CHANGE SUPPORT
+document.addEventListener("langChanged", () => {
+  setLoading(isLoading);
+  if (currentStatusKey) statusEl.textContent = t(currentStatusKey);
 });

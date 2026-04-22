@@ -103,7 +103,7 @@ const I18N = {
         consent_feedback: "Súhlasím, že poskytnem finálnu spätnú väzbu ~30 dní pred svadbou cez emailové pripomenutie.",
         consent_feedback_hint: "We know that plans change, and thaat yours can change as well. Therefore we would like to ask you to let us know 30 days in advance whether you will still be able to get to our wedding. Thank you in advance for your consideration in this manner!",
         consent_media: "Súhlasím, aby som ja (a moje deti) mohli byť na fotkách/videách z udalosti (GDPR).",
-        consent_media_hint: "We were asked by the photographer to allow him to use the wedding photos in his portfolio. For thi, he needs to have GDPR consent from the guests. We apologize for this inconveniece.",
+        consent_media_hint: "We were asked by the photographer to allow him to use the wedding photos in his portfolio. For this, he needs to have GDPR consent from the guests. We apologize for this inconveniece.",
         consent_dietary: "I acknowledge that I understand the venue limitations around the allergy liability, and therefore will take the responsibility onto myself.",
         other_placeholder: "Iné…",
         amount_placeholder: "Suma",
@@ -315,7 +315,7 @@ const I18N = {
         consent_feedback: "Hozzájárulok, hogy kb. 30 nappal az esemény előtt e-mail emlékeztetőre végső visszajelzést adjak.",
         consent_feedback_hint: "We know that plans change, and thaat yours can change as well. Therefore we would like to ask you to let us know 30 days in advance whether you will still be able to get to our wedding. Thank you in advance for your consideration in this manner!",
         consent_media: "Hozzájárulok, hogy én (és gyermekeim) szerepelhetünk az esemény fotóin/videóin (GDPR).",
-        consent_media_hint: "We were asked by the photographer to allow him to use the wedding photos in his portfolio. For thi, he needs to have GDPR consent from the guests. We apologize for this inconveniece.",
+        consent_media_hint: "We were asked by the photographer to allow him to use the wedding photos in his portfolio. For this, he needs to have GDPR consent from the guests. We apologize for this inconveniece.",
         consent_dietary:"I acknowledge that I understand the venue limitations around the allergy liability, and therefore will take the responsibility onto myself.",
 
         wl_item: "Wishlist tétel",
@@ -434,6 +434,8 @@ function getLang() {
 
 function setLang(lang) {
     localStorage.setItem("lang", lang);
+
+    document.dispatchEvent(new CustomEvent("langChanged", { detail: { lang } }));
 }
 
 function updatePageTitle(lang) {
@@ -522,3 +524,5 @@ document.addEventListener("DOMContentLoaded", initI18n);
 
 window.I18N = I18N;
 window.applyI18n = applyI18n;
+window.getLang = getLang;
+window.setLang = setLang;

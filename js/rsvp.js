@@ -4,7 +4,21 @@
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzgMM6eqJoSQK8DPuz7EGmu0-6BSeoVyqjGRRGJ0_P3hKcvrwZlRgZfHOX4SXZ1Y864zw/exec";
 
 /* ================================
-   FORM SUBMIT
+   I18N HELPERS
+   ================================ */
+function t(key, params = {}) {
+  const lang = window.getLang();
+  const dict = (window.I18N && (I18N[lang] || I18N.sk)) || {};
+  let s = dict[key] || (I18N?.sk?.[key]) || key;
+
+  Object.entries(params).forEach(([k, v]) => {
+    s = s.replaceAll(`{${k}}`, String(v));
+  });
+  return s;
+}
+
+/* ================================
+   FORM HELPERS
    ================================ */
 
 function getLabelText(form, name, value) {
@@ -30,7 +44,6 @@ function formToJSON(form) {
   for (const [k, v] of fd.entries()) {
     const key = k.replace(/\[]$/, "");
 
-    // ---- RAW VALUES ----
     if (k.endsWith("[]")) {
       if (!obj[key]) obj[key] = [];
       obj[key].push(v);
@@ -38,7 +51,6 @@ function formToJSON(form) {
       obj[key] = v;
     }
 
-    // ---- TRANSLATED ----
     const text = getLabelText(form, k, v);
 
     if (k.endsWith("[]")) {
@@ -50,10 +62,99 @@ function formToJSON(form) {
   }
 
   obj.translated = translated;
-  obj.lang = getLang();
+  obj.lang = window.getLang();
 
   return obj;
 }
+
+/* ================================
+   UI HELPERS
+   ================================ */
+
+function setLoading(open) {
+  const ov = document.getElementById("loadingOverlay");
+  if (!ov) return;
+  ov.dataset.open = open ? "true" : "false";
+  ov.setAttribute("aria-hidden", open ? "false" : "true");
+}
+
+function showToast({
+  type = "info",
+  titleKey = null,
+  messageKey = null,
+  autoHideMs = 10000,
+  dismissible = true
+} = {}) {
+  const stack = document.getElementById("toastStack");
+  if (!stack) return;
+
+  const toast = document.createElement("div");
+  toast.className = `toast toast--${type}`;
+
+  // store keys for live language switching
+  if (titleKey) toast.dataset.titleKey = titleKey;
+  if (messageKey) toast.dataset.messageKey = messageKey;
+
+  // ---- TITLE ----
+  const title = document.createElement("p");
+  title.className = "toast__title";
+
+  const fallbackTitle =
+    type === "success" ? t("toast_success_fallback") :
+    type === "error"   ? t("toast_error_fallback") :
+                         t("toast_info_fallback");
+
+  title.textContent = titleKey ? t(titleKey) : fallbackTitle;
+
+  // ---- MESSAGE ----
+  const msg = document.createElement("p");
+  msg.className = "toast__msg";
+  msg.textContent = messageKey ? t(messageKey) : "";
+
+  toast.appendChild(title);
+  toast.appendChild(msg);
+
+  // ---- DISMISS BUTTON ----
+  if (dismissible) {
+    const btn = document.createElement("button");
+    btn.className = "toast__close";
+    btn.type = "button";
+    btn.setAttribute("aria-label", t("toast_close"));
+    btn.innerHTML = "×";
+
+    btn.addEventListener("click", () => toast.remove());
+
+    toast.appendChild(btn);
+  }
+
+  // ---- PROGRESS BAR ----
+  if (autoHideMs && autoHideMs > 0) {
+    const bar = document.createElement("div");
+    bar.className = "toast__bar";
+
+    const span = document.createElement("span");
+    span.style.animationDuration = `${autoHideMs}ms`;
+
+    bar.appendChild(span);
+    toast.appendChild(bar);
+
+    setTimeout(() => {
+      if (toast.isConnected) toast.remove();
+    }, autoHideMs);
+  }
+
+  stack.appendChild(toast);
+  return toast;
+}
+
+function applyPlaceholders() {
+  const phone = document.querySelector('input[name="phone"]');
+  if (phone) phone.placeholder = t("phone_placeholder");
+}
+
+/* ================================
+   FORM SUBMIT
+   ================================ */
 
 async function submitForm(e) {
   e.preventDefault();
@@ -66,7 +167,6 @@ async function submitForm(e) {
 
   try {
     const payload = formToJSON(form);
-    console.log(payload);
 
     const res = await fetch(SCRIPT_URL, {
       method: "POST",
@@ -76,28 +176,21 @@ async function submitForm(e) {
 
     const out = await res.json();
 
-    if (!out.ok) {
-      const mapped = serverErrorToToast(out);
-      const msg = t(mapped.key, mapped.params || {});
-      throw new Error(mapped.fallback ? `${msg} ${mapped.fallback}` : msg);
-    }
+    if (!out.ok) throw new Error("SERVER_ERROR");
 
     showToast({
       type: "success",
-      title: `✅ ${t("toast_success_title")}`,
-      message: t("toast_success_msg"),
-      autoHideMs: 10000,
-      dismissible: true
+      titleKey: "toast_success_title",
+      messageKey: "toast_success_msg"
     });
 
     form.reset();
+
   } catch (err) {
     showToast({
       type: "error",
-      title: `❌ ${t("toast_error_title")}`,
-      message: String(err?.message || t("toast_unknown_error")),
-      autoHideMs: 10000,
-      dismissible: true
+      titleKey: "toast_error_title",
+      messageKey: "toast_unknown_error"
     });
   } finally {
     setLoading(false);
@@ -105,155 +198,9 @@ async function submitForm(e) {
   }
 }
 
-function setExtraOpen(extraEl, open) {
-  extraEl.dataset.open = open ? "true" : "false";
-
-  extraEl.querySelectorAll("input, textarea, select").forEach(inp => {
-    inp.disabled = !open;
-
-    if (!open) {
-      // Clear in a type-safe way
-      if (inp.tagName === "SELECT") {
-        inp.selectedIndex = 0;
-        return;
-      }
-
-      if (inp.type === "radio" || inp.type === "checkbox") {
-        inp.checked = false;      // ✅ clear selection
-        // DO NOT touch inp.value
-        return;
-      }
-
-      // text/number/textarea/etc.
-      inp.value = "";
-    }
-  });
-}
-
-function matchesCondition(form, cond) {
-  // Examples:
-  // "bring[]=Other"
-  // "diet=Other"
-  // "wishlist_type=PLEDGE"
-  // "help[]=Other"
-
-  const [nameRaw, expected] = cond.split("=");
-  const expectedValue = (expected || "").trim();
-
-  // Checkbox array (help[])
-  if (nameRaw.endsWith("[]")) {
-    const checkedValues = Array.from(
-      form.querySelectorAll(`input[name="${nameRaw}"]:checked`)
-    ).map(el => el.value);
-
-    return checkedValues.includes(expectedValue);
-  }
-
-  // Radio group
-  const checkedRadio = form.querySelector(
-    `input[name="${nameRaw}"]:checked`
-  );
-
-  if (!checkedRadio) return false;
-
-  return checkedRadio.value === expectedValue;
-}
-
-
-function refreshInlineExtras(form) {
-  form.querySelectorAll(".inline-extra[data-show-when]").forEach(extra => {
-    const cond = extra.getAttribute("data-show-when");
-    const open = matchesCondition(form, cond);
-    setExtraOpen(extra, open);
-  });
-}
-
-function t(key, params = {}) {
-  const lang = getLang();
-  const dict = (window.I18N && (I18N[lang] || I18N.sk)) || {};
-  let s = dict[key] || (I18N?.sk?.[key]) || key;
-
-  // simple {placeholder} replace
-  Object.entries(params).forEach(([k, v]) => {
-    s = s.replaceAll(`{${k}}`, String(v));
-  });
-  return s;
-}
-
-function serverErrorToToast(out) {
-  return { key: "toast_unknown_error", fallback: out.error || out.message || "" };
-
-}
-
-function setLoading(open) {
-  const ov = document.getElementById("loadingOverlay");
-  if (!ov) return;
-  ov.dataset.open = open ? "true" : "false";
-  ov.setAttribute("aria-hidden", open ? "false" : "true");
-}
-
-function showToast({ type = "info", title = "", message = "", autoHideMs = 10000, dismissible = true } = {}) {
-  const stack = document.getElementById("toastStack");
-  if (!stack) return;
-
-  const toast = document.createElement("div");
-  toast.className = `toast toast--${type}`;
-
-  const h = document.createElement("p");
-  h.className = "toast__title";
-
-  const fallbackTitle =
-    type === "success" ? t("toast_success_fallback") :
-    type === "error"   ? t("toast_error_fallback") :
-                         t("toast_info_fallback");
-
-  h.textContent = title || fallbackTitle;
-
-  const p = document.createElement("p");
-  p.className = "toast__msg";
-  p.textContent = message || "";
-
-  toast.appendChild(h);
-  toast.appendChild(p);
-
-  if (dismissible) {
-    const btn = document.createElement("button");
-    btn.className = "toast__close";
-    btn.type = "button";
-    btn.setAttribute("aria-label", t("toast_close"));
-    btn.innerHTML = "×";
-    btn.addEventListener("click", () => toast.remove());
-    toast.appendChild(btn);
-  }
-
-  // progress bar (optional)
-  if (autoHideMs && autoHideMs > 0) {
-    const bar = document.createElement("div");
-    bar.className = "toast__bar";
-    const span = document.createElement("span");
-    // match animation duration to autoHideMs
-    span.style.animationDuration = `${autoHideMs}ms`;
-    bar.appendChild(span);
-    toast.appendChild(bar);
-
-    setTimeout(() => {
-      // avoid removing if already closed
-      if (toast.isConnected) toast.remove();
-    }, autoHideMs);
-  }
-
-  stack.appendChild(toast);
-  return toast;
-}
-
-function applyPlaceholders() {
-  const phone = document.querySelector('input[name="phone"]');
-  if (phone) phone.placeholder = t("phone_placeholder");
-
-  // if you want others too, add them here the same way
-  // const name = document.querySelector('input[name="official_name"]');
-  // if (name) name.placeholder = t("name_placeholder");
-}
+/* ================================
+   VALIDATION HELPERS
+   ================================ */
 
 function attachPhoneGuard(form) {
   const phone = form.querySelector('input[name="phone"]');
@@ -275,6 +222,7 @@ function attachPhoneGuard(form) {
 function attachEmailConfirm(form) {
   const email = form.querySelector('input[name="email"]');
   const email2 = form.querySelector('input[name="email_confirm"]');
+
   if (!email || !email2) return;
 
   const validate = () => {
@@ -303,7 +251,6 @@ function attachEmailConfirm(form) {
   email2.addEventListener("input", validate);
   email2.addEventListener("blur", validate);
 
-  // translate browser validation message via toast on submit
   form.addEventListener("submit", (e) => {
     validate();
     if (!form.checkValidity()) {
@@ -313,10 +260,8 @@ function attachEmailConfirm(form) {
         : "toast_invalid_form";
       showToast({
         type: "error",
-        title: `❌ ${t("toast_error_title")}`,
-        message: t(msgKey),
-        autoHideMs: 10000,
-        dismissible: true
+        titleKey: "toast_error_title",
+        messageKey: msgKey,
       });
     }
   }, true);
@@ -378,7 +323,7 @@ function applyRsvpDeadline() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  getLang();
+  window.getLang();
 
   applyRsvpDeadline()
 
@@ -395,19 +340,33 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // initialize & listen
-  refreshInlineExtras(form);
   attachPhoneGuard(form);
   attachIntOnlyGuard(form, 'input[name="car_free_seats"]');
   attachEmailConfirm(form);
 
-  form.addEventListener("change", () => refreshInlineExtras(form));
+  form.addEventListener("submit", submitForm);
+});
 
-  document.querySelectorAll('input[name="gift"]').forEach(r =>
-      r.addEventListener("change", () => refreshInlineExtras(form))
-  );
+/* ================================
+   LANGUAGE CHANGE HANDLER
+   ================================ */
 
-  if (form) form.addEventListener("submit", async (e) => {
-    await submitForm(e);
-    refreshInlineExtras(form);
+document.addEventListener("langChanged", () => {
+  document.querySelectorAll(".toast").forEach(toast => {
+    const title = toast.querySelector(".toast__title");
+    const msg = toast.querySelector(".toast__msg");
+
+    if (toast.dataset.titleKey && title) {
+      title.textContent = t(toast.dataset.titleKey);
+    }
+
+    if (toast.dataset.messageKey && msg) {
+      msg.textContent = t(toast.dataset.messageKey);
+    }
+
+    const btn = toast.querySelector(".toast__close");
+    if (btn) {
+      btn.setAttribute("aria-label", t("toast_close"));
+    }
   });
 });
