@@ -1,5 +1,5 @@
 // ====== CONFIG ======
-const ENDPOINT = "https://script.google.com/macros/s/AKfycbzgMM6eqJoSQK8DPuz7EGmu0-6BSeoVyqjGRRGJ0_P3hKcvrwZlRgZfHOX4SXZ1Y864zw/exec";
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbxirLpmZ4k0yDKrQtVU9WnoQc4QKKzZU0OfWxtUm_93zKEvPi8nwMqrGsUE8kJsPfhqKw/exec";
 const PAGE_SIZE = 48;
 
 // ====== STATE ======
