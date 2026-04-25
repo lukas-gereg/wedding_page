@@ -379,7 +379,8 @@ const I18N = {
         story_p4: "Ekkor azonban a lány tette fel a reális kérdést: hogyan képzeli el a fiú ezt a kapcsolatot Kassa-Budapest távban? A fiú ekkor nagyot álmodott, és az elképzelésből működő jövőt építettek fel, ami csak ritkán érződött fényév távolságnak",
 
         story_p5: "Azóta támogatja a lány álmait — miközben időnként hozzáteszi az „oké, de maradjunk realisták” megjegyzéseit.",
-        story_p6: "  "
+        story_p6: " ♡ ",
+
         story_quote: "„A fiú megmutatta a lánynak, hogyan lehet két lábbal a földön állva álmodni. A lány megmutatta a fiúnak, milyen bátran elindulni az álmok felé.”",
         story_quote_sub: "Valahol a kettő között találtak egymásra — és azóta is ebben vannak otthonosan.",
 
