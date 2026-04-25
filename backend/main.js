@@ -163,20 +163,22 @@ function saveResponse(data) {
 
   if (sheet.getLastRow() === 0) {
     sheet.appendRow([
-      "timestamp","attendance","bring","bring_other","help","help_other","arrival", "accommodation_extra",
-      "car_free_seats","car_route","diet","diet_other","allergy_acknowledgement",
-      "official_name","email","phone","consent_feedback_30d","consent_gdpr_media","lang"
+      "timestamp", "attendance", "register_people_count", "bring", "bring_other", "help", "help_other",
+      "arrival", "accommodation_people_count", "accommodation_extra", "car_free_seats", "car_route", "diet", "diet_other",
+      "allergy_acknowledgement", "official_name", "email", "phone", "consent_feedback_30d", "consent_gdpr_media", "lang"
     ]);
   }
 
   sheet.appendRow([
     new Date(),
     data.attendance || "",
+    data.register_people_count || "",
     Array.isArray(data.bring) ? data.bring.join(", ") : (data.bring || ""),
     data.bring_other || "",
     Array.isArray(data.help) ? data.help.join(", ") : (data.help || ""),
     data.help_other || "",
     data.arrival || "",
+    data.accommodation_people_count || "",
     data.accommodation_extra,
     data.car_free_seats || "",
     data.car_route || "",
@@ -192,40 +194,233 @@ function saveResponse(data) {
   ]);
 }
 
+function buildEmailBody_sk(translated, yourContactBlock = []) {
+  const safe = (v) => (v && String(v).trim() ? String(v).trim() : null);
+  const joinList = (arr) =>
+    Array.isArray(arr) && arr.length ? arr.join(", ") : null;
+
+  const lines = [];
+
+  lines.push(`Ahoj ${safe(translated.official_name) || ""},`);
+  lines.push("");
+  lines.push("ďakujeme za tvoju spätnú väzbu! Tvoja odpoveď sa k nám dostala, a veľmi sa tešíme, ak ťa na svadbe uvidíme!");
+  lines.push("");
+  lines.push("Zhrnutie tvojej odpovede:");
+  lines.push("");
+  lines.push("────────────────────────────");
+  lines.push("");
+
+  // ÚČASŤ
+  lines.push("ÚČASŤ");
+  if (safe(translated.attendance))
+    lines.push(`• Prídem na: ${translated.attendance}`);
+  if (safe(translated.register_people_count))
+    lines.push(`• Koľkých ľudí registrujem: ${translated.register_people_count}`);
+  lines.push("");
+
+  // PRÍCHOD
+  lines.push("PRÍCHOD & UBYTOVANIE");
+  if (safe(translated.arrival))
+    lines.push(`• Ubytovanie na: ${translated.arrival}`);
+  if (safe(translated.accommodation_people_count))
+    lines.push(`• Pre koľko ľudí potrebujem ubytovanie: ${translated.accommodation_people_count}`);
+  if (safe(translated.accommodation_extra))
+    lines.push(`• Špeciálna požiadavka: ${translated.accommodation_extra}`);
+  lines.push("");
+
+  // PRÍSPEVOK
+  lines.push("ČO BY SOM VEDEL PRINIESŤ");
+  const bringList = joinList(translated.bring);
+  if (bringList)
+    lines.push(`• Prinesiem: ${bringList}`);
+  if (safe(translated.bring_other))
+    lines.push(`• Iné: ${translated.bring_other}`);
+  lines.push("");
+
+  // POMOC
+  lines.push("S ČÍM BY SOM VEDEL POMÔCŤ");
+  const helpList = joinList(translated.help);
+  if (helpList)
+    lines.push(`• Pomôžem s: ${helpList}`);
+  if (safe(translated.help_other))
+    lines.push(`• Iné: ${translated.help_other}`);
+  lines.push("");
+
+  // ODVOZ
+  lines.push("CESTOVANIE / POMOC S PREPRAVOU");
+  if (safe(translated.car_free_seats))
+    lines.push(`• Voľné miesta v mojom aute: ${translated.car_free_seats}`);
+  if (safe(translated.car_route))
+    lines.push(`• Trasa / smer z ktorého idem: ${translated.car_route}`);
+  lines.push("");
+
+  // STRAVA
+  lines.push("DIETNE OBMEDZENIA");
+  if (safe(translated.diet))
+    lines.push(`• Dietne obmedzenie: ${translated.diet}`);
+  if (safe(translated.diet_other))
+    lines.push(`• Detail: ${translated.diet_other}`);
+  if (safe(translated.allergy_ack))
+    lines.push(`• ${translated.allergy_ack}`);
+  lines.push("");
+
+  // KONTAKT
+  lines.push("KONTAKT");
+  if (safe(translated.email))
+    lines.push(`• Email: ${translated.email}`);
+  if (safe(translated.phone))
+    lines.push(`• Telefónne číslo: ${translated.phone}`);
+  lines.push("");
+
+  // SÚHLASY
+  lines.push("SÚHLASY");
+  if (safe(translated.consent_feedback_30d))
+    lines.push(`• ${translated.consent_feedback_30d}`);
+  if (safe(translated.consent_gdpr_media))
+    lines.push(`• ${translated.consent_gdpr_media}`);
+  lines.push("");
+
+  lines.push("────────────────────────────");
+  lines.push("");
+  lines.push("Ak by si potreboval čokoľvek zmeniť, pokojne nám daj vedieť.");
+  lines.push("");
+  lines.push("Tešíme sa na teba!");
+  lines.push("");
+  lines.push("Kontakt:");
+  for (const line of yourContactBlock) {
+    if (safe(line)) lines.push(line);
+  }
+  lines.push("");
+  lines.push("S pozdravom,");
+  lines.push("Anna & Lukáš");
+
+  return lines.join("\n");
+}
+
+function buildEmailBody_hu(translated, yourContactBlock = []) {
+  const safe = (v) => (v && String(v).trim() ? String(v).trim() : null);
+  const joinList = (arr) =>
+    Array.isArray(arr) && arr.length ? arr.join(", ") : null;
+
+  const lines = [];
+
+  lines.push(`Szia ${safe(translated.official_name) || ""},`);
+  lines.push("");
+  lines.push("köszönjük az RSVP visszajelzésedet! Sikeresen megkaptuk 💛");
+  lines.push("");
+  lines.push("A válaszod összefoglalója:");
+  lines.push("");
+  lines.push("────────────────────────────");
+  lines.push("");
+
+  // RÉSZVÉTEL
+  lines.push("RÉSZVÉTEL");
+  if (safe(translated.attendance))
+    lines.push(`• Részvétel: ${translated.attendance}`);
+  if (safe(translated.register_people_count))
+    lines.push(`• Személyek száma: ${translated.register_people_count}`);
+  lines.push("");
+
+  // ÉRKEZÉS
+  lines.push("ÉRKEZÉS ÉS SZÁLLÁS");
+  if (safe(translated.arrival))
+    lines.push(`• Érkezés: ${translated.arrival}`);
+  if (safe(translated.accommodation_people_count))
+    lines.push(`• Szállás: ${translated.accommodation_people_count} fő részére`);
+  if (safe(translated.accommodation_extra))
+    lines.push(`• Megjegyzés: ${translated.accommodation_extra}`);
+  lines.push("");
+
+  // HOZZÁJÁRULÁS
+  lines.push("HOZZÁJÁRULÁS");
+  const bringList = joinList(translated.bring);
+  if (bringList)
+    lines.push(`• Amit hozol: ${bringList}`);
+  if (safe(translated.bring_other))
+    lines.push(`• Egyéb: ${translated.bring_other}`);
+  lines.push("");
+
+  // SEGÍTSÉG
+  lines.push("SEGÍTSÉG");
+  const helpList = joinList(translated.help);
+  if (helpList)
+    lines.push(`• Segítesz ebben: ${helpList}`);
+  if (safe(translated.help_other))
+    lines.push(`• Egyéb: ${translated.help_other}`);
+  lines.push("");
+
+  // TELEKOCSI
+  lines.push("TELEKOCSI");
+  if (safe(translated.car_free_seats))
+    lines.push(`• Szabad helyek: ${translated.car_free_seats}`);
+  if (safe(translated.car_route))
+    lines.push(`• Útvonal: ${translated.car_route}`);
+  lines.push("");
+
+  // ÉTKEZÉS
+  lines.push("ÉTKEZÉS");
+  if (safe(translated.diet))
+    lines.push(`• Diéta: ${translated.diet}`);
+  if (safe(translated.diet_other))
+    lines.push(`• Részletek: ${translated.diet_other}`);
+  if (safe(translated.allergy_ack))
+    lines.push(`• Allergia nyilatkozat: ${translated.allergy_ack}`);
+  lines.push("");
+
+  // KAPCSOLAT
+  lines.push("KAPCSOLAT");
+  if (safe(translated.email))
+    lines.push(`• Email: ${translated.email}`);
+  if (safe(translated.phone))
+    lines.push(`• Telefonszám: ${translated.phone}`);
+  lines.push("");
+
+  // HOZZÁJÁRULÁSOK
+  lines.push("HOZZÁJÁRULÁSOK");
+  if (safe(translated.consent_feedback_30d))
+    lines.push(`• Emlékeztető: ${translated.consent_feedback_30d}`);
+  if (safe(translated.consent_gdpr_media))
+    lines.push(`• Média hozzájárulás (GDPR): ${translated.consent_gdpr_media}`);
+  lines.push("");
+
+  lines.push("────────────────────────────");
+  lines.push("");
+  lines.push("Ha bármit módosítanál, nyugodtan vedd fel velünk a kapcsolatot.");
+  lines.push("");
+  lines.push("Nagyon várjuk, hogy együtt ünnepeljünk! 😊");
+  lines.push("");
+  lines.push("Kapcsolat:");
+  for (const line of yourContactBlock) {
+    if (safe(line)) lines.push(line);
+  }
+  lines.push("");
+  lines.push("Üdvözlettel,");
+  lines.push("Anna & Lukáš");
+
+  return lines.join("\n");
+}
+
 function sendConfirmationEmail_(payload) {
   const to = payload.email;
   if (!to) return;
 
   const lang = payload.lang || "sk";
 
-  const subject = (lang === "hu")
-    ? "Anna & Lukáš • Visszajelzés megérkezett (RSVP)"
-    : "Anna & Lukáš • RSVP potvrdenie";
+  let body;
+  let subject;
+  const contact = [];
 
-  const yourContact = "";
-
-  const lines = [];
-  lines.push(lang === "hu" ? "Szia!" : "Ahoj!");
-  lines.push("");
-  lines.push(lang === "hu"
-    ? "Köszönjük! Megkaptuk a válaszodat az esküvői RSVP űrlapon."
-    : "Ďakujeme! Dostali sme tvoju odpoveď cez RSVP formulár.");
-  lines.push("");
-  lines.push(lang === "hu" ? "Összefoglaló:" : "Zhrnutie:");
-  lines.push(`- attendance: ${payload.attendance || ""}`);
-  lines.push(`- arrival: ${payload.arrival || ""}`);
-  lines.push(`- diet: ${payload.diet || ""}${payload.diet_other ? " (" + payload.diet_other + ")" : ""}`);
-  lines.push(`- phone: ${payload.phone || ""}`);
-  lines.push("");
-  lines.push(lang === "hu" ? "Kapcsolat:" : "Kontakt:");
-  lines.push(yourContact);
-  lines.push("");
-  lines.push(lang === "hu" ? "Szép napot!" : "Pekný deň!");
-  lines.push("Anna & Lukáš");
+  if (lang === "hu") {
+    subject = "";
+    body = buildEmailBody_hu(payload.translated, contact);
+  } else {
+    subject = "Anna & Lukáš • Potvrdenie prihlásenia";
+    body = buildEmailBody_sk(payload.translated, contact);
+  }
 
   MailApp.sendEmail({
     to,
     subject,
-    body: lines.join("\n")
+    body: body
   });
 }

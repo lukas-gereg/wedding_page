@@ -1,7 +1,7 @@
 /* ================================
    CONFIG
    ================================ */
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxirLpmZ4k0yDKrQtVU9WnoQc4QKKzZU0OfWxtUm_93zKEvPi8nwMqrGsUE8kJsPfhqKw/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzlpxo2qyJ11ITDdtJ0lUVhArQkBtJf0d4iEr3Xm9diObzIWMFDqSbk_5jCoyVarycWWg/exec";
 
 /* ================================
    I18N HELPERS
@@ -294,6 +294,64 @@ function attachIntOnlyGuard(form, selector) {
   el.addEventListener("blur", sanitize);
 }
 
+function setExtraOpen(extraEl, open) {
+  extraEl.dataset.open = open ? "true" : "false";
+
+  extraEl.querySelectorAll("input, textarea, select").forEach(inp => {
+    inp.disabled = !open;
+
+    if (!open) {
+      if (inp.tagName === "SELECT") {
+        inp.selectedIndex = 0;
+        return;
+      }
+
+      if (inp.type === "radio" || inp.type === "checkbox") {
+        inp.checked = false;
+        return;
+      }
+
+      inp.value = "";
+    }
+  });
+}
+
+function matchesCondition(form, cond, negation = false) {
+  const [nameRaw, expected] = cond.split("=");
+  const expectedValue = (expected || "").trim();
+
+  let result;
+
+  if (nameRaw.endsWith("[]")) {
+    const checkedValues = Array.from(
+      form.querySelectorAll(`input[name="${nameRaw}"]:checked`)
+    ).map(el => el.value);
+
+    result = checkedValues.includes(expectedValue);
+  } else {
+    const checkedRadio = form.querySelector(
+      `input[name="${nameRaw}"]:checked`
+    );
+
+    result = checkedRadio ? checkedRadio.value === expectedValue : false;
+  }
+
+  return negation ? !result : result;
+}
+
+function refreshInlineExtras(form) {
+  form.querySelectorAll(".inline-extra[data-show-when]").forEach(extra => {
+    const cond = extra.getAttribute("data-show-when");
+    const open = matchesCondition(form, cond);
+    setExtraOpen(extra, open);
+  });
+  form.querySelectorAll(".inline-extra[data-show-when-not]").forEach(extra => {
+    const cond = extra.getAttribute("data-show-when-not");
+    const open = matchesCondition(form, cond, true);
+    setExtraOpen(extra, open);
+  });
+}
+
 /* ================================
    INIT
    ================================ */
@@ -341,10 +399,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // initialize & listen
   attachPhoneGuard(form);
+  refreshInlineExtras(form);
   attachIntOnlyGuard(form, 'input[name="car_free_seats"]');
+  attachIntOnlyGuard(form, 'input[name="register_people_count"]');
   attachEmailConfirm(form);
 
-  form.addEventListener("submit", submitForm);
+  form.addEventListener("change", () => refreshInlineExtras(form));
+
+  form.addEventListener("submit", async (e) =>
+  {
+    await submitForm(e);
+    refreshInlineExtras(form);
+  });
 });
 
 /* ================================
