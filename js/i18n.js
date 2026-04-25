@@ -36,7 +36,7 @@ const I18N = {
         q1_a2: "Svadobné obrady & Svadobná hostina",
         q1_a3: "Celý deň (Liturgia, Svadobné obrady, Agapé, Svadobná hostina)",
         q1_a4: "Nemôžem prísť",
-        q1_people_count: "Koľkých ľudí registrujem:",
+        q1_people_count: "Koho registrujem:",
 
         q2_title: "Čo by som vedel priniesť",
         q2_hint: "Radi by sme vás poprosili o pomoc s akoukoľvek z nasledujúcich vecí ak to je možné, nakoľko by nám to dosť uľahčilo nasledujúce plánovanie. Nechceme však na vás vyvýjať žiaden tlak, a tak môžete kľudne vybrať že s ničím neviete pomôcť.",
@@ -49,7 +49,7 @@ const I18N = {
         q2_none: "Nič",
 
         q3_title: "S čím by som vedel pomôcť",
-        q3_hint: "Ak by ste boli schopní pomocť s čímkoľvek z tohto listu, a nebolo by to pre vás veľkou záťažou, prosím dajte nám o tom tu vedieť. Budeme veľmi radi za akúkoľvek pomoc.",
+        q3_hint: "Ak by ste boli schopní pomocť s čímkoľvek z tohto listu, a nebolo by to pre vás veľkou záťažou, prosím dajte nám o tom tu vedieť. Ďakujeme, že nám pomáhate v prípravách!",
         q3_1: "Výzdoba deň vopred",
         q3_2: "Výzdoba v kostole v deň svadby",
         q3_3: "Upratovanie po agapé",
@@ -68,16 +68,16 @@ const I18N = {
         q4_1: "Piatok večer (ubytovanie na 2 noci)",
         q4_2: "Sobota ráno (ubytovanie na 1 noc)",
         q4_3: "Ubytovanie nepotrebujem",
-        q4_people_count: "Pre koľko ľudí potrebujem ubytovanie:",
+        q4_people_count: "Pre koho potrebujem ubytovanie:",
         q4_note: "Ak máte nejakú špeciálnu požidavavku, prosím napíšte ju tu",
 
         q5_title: "Cestovanie / Pomoc s prepravou",
-        q5_hint: "Ak by ste vedeli pomôcť ostatným hosťom s cestovaním, viete nám dať vedieť, a my vás spojíme s ľuďmi ktorí nás požiadali o pomoc.",
+        q5_hint: "Spoločné cestovanie je šetrné k životnému prostrediu! :) Ak prídete autom a máte voľné miesto ktoré chcete ponúknuť pre ostatných hostí, môžete to tu uviesť. Ak hľadáte odvoz, môžete uviesť smer s 0 voľnými miestami.",
         q5_spaces: "Voľné miesta v mojom aute",
         q5_route: "Trasa / smer z ktorého idem",
 
         q6_title: "Dietne Obmedzenia",
-        q6_hint: "Miesto kde máme svadbu nás informaovalo, že nechcú zobrať zodpovednosť za potencionálne alergické reakcie z jedla (vegánske, bezmiečne...). Preto sme pre vás pripravili špeciálne dietne menu vhodné pre alergikov, radi by sme vás však chceli poprosiť, aby ste si pre prípad potreby doniesli svoje lieky na alergiu aby sa nič nestalo. Vaše zdravie je pre nás veľmi dôležité, preto nás prosím neváhajte kontaktovať v prípade akýchkoľvek otázok!",
+        q6_hint: "Pre hostí akoukoľvek alergiou objednáme večeru od externého cateringového dodávateľa. Z pochopiteľných dôvodov prevádzka nepreberá zodpovednosť za tieto alergické reakcie. Hoci s nami bude lekár, aby tento čas prebehol hladko a bez problémov, uistite sa, prosím, že máte so sebou platné zdravotné poistenie a vaše bežné lieky!",
         q6_1: "Klasické menu",
         q6_2: "Vegánske menu",
         q6_3: "Bezlepkové menu",
@@ -102,7 +102,7 @@ const I18N = {
         q11_name: "Celé meno",
 
         consent_title: "Súhlasy",
-        consent_feedback: "Súhlasím, že dám vedieť cez email približne 30 dní pred svadbou či sa budem vedieť svadby zúčastniť.",
+        consent_feedback: "Ak to bude možné, pokúsim sa vás informovať o všetkých zmenách mojej účasti najneskôr do 14. júla (zrušenie/zmena odpovede).",
         consent_feedback_hint: "Vieme, že plány sa menia, a že aj vaše plány sa môžu zmeniť. Preto by sme vás chceli poprosiť, aby ste nám dali vedieť približne 30 dní pred svadbou vedieť, či budete vedieť na našu svadbu prísť. Vopred vám ďakujeme za vašu ústretovosť!",
         consent_media: "Súhlasím, že ja (a moje deti) môžeme byť na zverejnených fotkách/videách zo svadby (GDPR).",
         consent_media_hint: "Fotograf sa nás spýtal, či by mohol fotky z našej svadby použiť do svojho portfólia. Na to ale potrebuje GDPR povolenie od účastníkov. Za túto nepríjemnosť sa vám ospravedlňujeme.",
@@ -248,7 +248,7 @@ const I18N = {
         q1_a2: "Csak szertartás & vacsora",
         q1_a3: "Egész nap (szentmise, szertartás, agapé, vacsora)",
         q1_a4: "Nem tudok jönni",
-        q1_people_count: "How many people do I register for:",
+        q1_people_count: "Which people do I register (separate with \",\"):",
 
         q2_title: "Amit tudok hozni",
         q2_hint: "We would like to ask you to help with any of these things if possible, as it would make it a lot easier on us during the planning phase. Do not feel any pressure though, and feel free to select that you cannot help with anything.",
@@ -281,7 +281,7 @@ const I18N = {
         q4_1: "Péntek este (2 éj szállás)",
         q4_2: "Szombat reggel (1 éj szállás)",
         q4_3: "Nem kérek szállást",
-        q4_people_count: "How many people do I need accomodation for:",
+        q4_people_count: "For whom do I need accomodation for (separete with \",\"):",
         q4_note: "Megjegyzés, ha van valami kérésed itt jelezheted",
 
         q5_title: "Autó / Telekocsi",

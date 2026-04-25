@@ -163,9 +163,9 @@ function saveResponse(data) {
 
   if (sheet.getLastRow() === 0) {
     sheet.appendRow([
-      "timestamp", "attendance", "register_people_count", "bring", "bring_other", "help", "help_other",
-      "arrival", "accommodation_people_count", "accommodation_extra", "car_free_seats", "car_route", "diet", "diet_other",
-      "allergy_acknowledgement", "official_name", "email", "phone", "consent_feedback_30d", "consent_gdpr_media", "lang"
+      "timestamp", "attendance", "register_people_names", "bring", "bring_other", "help", "help_other",
+      "arrival", "accommodation_people_names", "accommodation_extra", "car_free_seats", "car_route", "diet", "diet_other",
+      "allergy_acknowledgement", "official_name", "email", "phone", "consent_feedback_30d", "lang"
     ]);
   }
 
@@ -189,7 +189,6 @@ function saveResponse(data) {
     data.email || "",
     data.phone || "",
     data.consent_feedback_30d || "",
-    data.consent_gdpr_media || "",
     data.lang || ""
   ]);
 }
@@ -215,7 +214,7 @@ function buildEmailBody_sk(translated, yourContactBlock = []) {
   if (safe(translated.attendance))
     lines.push(`• Prídem na: ${translated.attendance}`);
   if (safe(translated.register_people_count))
-    lines.push(`• Koľkých ľudí registrujem: ${translated.register_people_count}`);
+    lines.push(`• Koho registrujem: ${translated.register_people_count}`);
   lines.push("");
 
   // PRÍCHOD
@@ -223,7 +222,7 @@ function buildEmailBody_sk(translated, yourContactBlock = []) {
   if (safe(translated.arrival))
     lines.push(`• Ubytovanie na: ${translated.arrival}`);
   if (safe(translated.accommodation_people_count))
-    lines.push(`• Pre koľko ľudí potrebujem ubytovanie: ${translated.accommodation_people_count}`);
+    lines.push(`• Pre koho potrebujem ubytovanie: ${translated.accommodation_people_count}`);
   if (safe(translated.accommodation_extra))
     lines.push(`• Špeciálna požiadavka: ${translated.accommodation_extra}`);
   lines.push("");
@@ -260,8 +259,6 @@ function buildEmailBody_sk(translated, yourContactBlock = []) {
     lines.push(`• Dietne obmedzenie: ${translated.diet}`);
   if (safe(translated.diet_other))
     lines.push(`• Detail: ${translated.diet_other}`);
-  if (safe(translated.allergy_ack))
-    lines.push(`• ${translated.allergy_ack}`);
   lines.push("");
 
   // KONTAKT
@@ -276,8 +273,8 @@ function buildEmailBody_sk(translated, yourContactBlock = []) {
   lines.push("SÚHLASY");
   if (safe(translated.consent_feedback_30d))
     lines.push(`• ${translated.consent_feedback_30d}`);
-  if (safe(translated.consent_gdpr_media))
-    lines.push(`• ${translated.consent_gdpr_media}`);
+  if (safe(translated.allergy_ack))
+    lines.push(`• ${translated.allergy_ack}`);
   lines.push("");
 
   lines.push("────────────────────────────");
