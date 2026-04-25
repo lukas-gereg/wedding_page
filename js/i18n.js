@@ -374,20 +374,20 @@ const I18N = {
 
         story_p2: "Aztán valahogy előkerült egy klasszikus húzás: „nem vagyok idevalósi, kellene egy idegenvezető Budapesten.” A végére a fiú egy vendéglős gulyásleves vacsit is kerített, de ott vált érdekessé a sztori, amikor a fiú — minden józan tériszonya ellenére — felvetette, hogy ragasszanak fokoláros matricát a Szabadsághíd szerkezetére kicsit magasabban, mint az átlagosan ott üldögélők. (Fontos részlet: ez teljes mértékben az ő ötlete volt, ami akkor még jó ötletnek tűnt.)",
 
-        story_p3: "Egy csendesebb, szép pillanatban a Gül Baba rózsakertjénél jöttek rá, hogy van egy szép közös pontjuk, ami egy harmonikus ellentét. A lány nyitott és optimista gondolkodású, a fiú két lábbal a realitás talaján álló, gyakorlatias. "
+        story_p3: "Egy csendesebb, szép pillanatban a Gül Baba rózsakertjénél jöttek rá, hogy van egy szép közös pontjuk, ami egy harmonikus ellentét. A lány nyitott és optimista gondolkodású, a fiú két lábbal a realitás talaján álló, gyakorlatias. ",
             
-        story_p4: "Ekkor azonban a lány tette fel a reális kérdést, hogyan képzeli el a fiú ezt a kapcoslatot Kassa-Budapest távban? A fiú ekkor nagyot álmodott, és az elképzelésből működő jövőt építettek fel, ami csak ritkán érződött fényév távolságnak"
+        story_p4: "Ekkor azonban a lány tette fel a reális kérdést, hogyan képzeli el a fiú ezt a kapcoslatot Kassa-Budapest távban? A fiú ekkor nagyot álmodott, és az elképzelésből működő jövőt építettek fel, ami csak ritkán érződött fényév távolságnak",
 
-        story_p5: "Azóta támogatja az álmait — miközben időnként hozzáteszi az „oké, de maradjunk realisták” megjegyzéseit. Működik."
+        story_p5: "Azóta támogatja a lány álmait — miközben időnként hozzáteszi az „oké, de maradjunk realisták” megjegyzéseit.",
             
         story_quote: "„A fiú megmutatta a lánynak, hogyan lehet két lábbal a földön állva álmodni. A lány megmutatta a fiúnak, milyen bátran elindulni az álmok felé.”",
         story_quote_sub: "Valahol a kettő között találtak egymásra — és azóta is ebben vannak otthonosan.",
 
         story_moment1_title: "Multi-kulti konyháink",
-        story_moment1_text: "Még szerencse, hogy szeretjük a burgert, de amúgy hazáink ízei teljesen passzolnak",
+        story_moment1_text: "Még szerencse, hogy szeretjük a burgert, de amúgy hazáink ízei teljesen passzolnak.",
 
         story_moment2_title: "Egy kis káosz, sok öröm",
-        story_moment2_text: "Utazás, felfedezés, nevetés, nagy életkérdések — és mindig legalább még egy következő kaland terve.",
+        story_moment2_text: "Utazás, felfedezés, nevetés, nagy életkérdések — és mindig legalább még egy következő kaland tervezése.",
 
         story_moment3_title: "És most?",
         story_moment3_text: "Vagy túrázunk, vagy szakmázunk, vagy énekelgetünk valahol, ha nem mindegyik egyszerre.",
