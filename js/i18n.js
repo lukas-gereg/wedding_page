@@ -368,22 +368,20 @@ const I18N = {
 
         story_kicker: "Így kezdődött minden",
         story_title: "A történetünk",
-        story_lead: "Egy kis AI workshop, egy kis geek tény, egy kis bátorság — és a többi már a mi történetünk lett.",
+        story_lead: "2024 nyarán indul fejezetünk.",
 
-        story_p1: "Alapvetően csak azért jött Esztergomba, hogy felvágjon ezzel a pólóval — és valahogy azt gondolta, hogy egy AI workshop utáni beszélgetéssel és geek tényekkel indítani egy elég jó felszedési stratégia. Merész.",
+        story_p1: "A fiú egy kicsit későn regisztrált az esztergomi eseményre — de végül csak megérkezett. És nagyjából úgy viselkedett, mint aki titokban csak azért jött, hogy szóvicceket meséljen és felvágjon azzal a bizonyos pólóval. A lány viszont nemcsak nevetett rajta — hanem vissza is dobta a labdát több szóviccel.",
 
-        story_p2: "Ő viszont meglepődött — nemcsak azért, mert vicces volt, hanem mert tényleg kedves volt, és furcsán érdeklődött mások nézőpontjai iránt. Ami még meglepőbb? Még több geek ténnyel és apás viccekkel válaszolt vissza. Erre egyáltalán nem számított.",
+        story_p2: "Aztán valahogy előkerült egy klasszikus húzás: „nem vagyok idevalósi, kellene egy idegenvezető Budapesten.” A végére a fiú egy vendéglős gulyásleves vacsit is kerített, de ott vált érdekessé a sztori, amikor a fiú — minden józan tériszonya ellenére — felvetette, hogy ragasszanak fokoláros matricát a Szabadsághíd szerkezetére kicsit magasabban, mint az átlagosan ott üldögélők. (Fontos részlet: ez teljes mértékben az ő ötlete volt, ami akkor még jó ötletnek tűnt.)",
 
-        story_p3: "Miután későn regisztrált Esztergomba, lazán újra feltalálta magát első alkalmas turistaként Budapesten — ahol valahogy sikerült egy igazán kedves beszélgetést folytatnia és egy rendes gulyásos randit összehoznia.",
+        story_p3: "Egy csendesebb, szép pillanatban a Gül Baba rózsakertjénél jöttek rá, hogy van egy szép közös pontjuk, ami egy harmonikus ellentét. A lány nyitott és optimista gondolkodású, a fiú két lábbal a realitás talaján álló, gyakorlatias. "
+            
+        story_p4: "Ekkor azonban a lány tette fel a reális kérdést, hogyan képzeli el a fiú ezt a kapcoslatot Kassa-Budapest távban? A fiú ekkor nagyot álmodott, és az elképzelésből működő jövőt építettek fel, ami csak ritkán érződött fényév távolságnak"
 
-        story_p4: "A tériszonyával is szembenézett. Nemcsak azzal a „ugyanolyan magas, mint én” típussal — hanem azzal a nagyon is valós érzéssel, amikor a Szabadság hídra mászva azt gondolta: „miért mászok én egyáltalán fel a Szabadság hídra?”, mindez az ő javaslatának köszönhetően. Megérte.",
-
-        story_p5: "Azóta támogatja az álmait — miközben időnként hozzáteszi az „oké, de maradjunk realisták” megjegyzéseit. Működik. Ő földhözragadtabb, ő kalandvágyóbb, és együtt valami olyasmit építenek, hogy álmodj nagyot, de valósítsd is meg.",
-
-        story_p6: "Volt az a pillanat a Gül Baba rózsakertnél — amikor a neki adott rózsa ellenére átváltott „kihallgatás módba”, és megkérdezte, hogyan lehet egyszerre nagyot álmodni és közben reálisnak maradni a távkapcsolatokban. Ezúttal ő maradt a földön. Ő álmodott. Ez megmaradt.",
-
-        story_quote: "„Ő tanította meg őt okosan álmodni. Ő tanította meg őt bátran álmodni.”",
-        story_quote_sub: "És valahol a kettő között otthonra találtak.",
+        story_p5: "Azóta támogatja az álmait — miközben időnként hozzáteszi az „oké, de maradjunk realisták” megjegyzéseit. Működik."
+            
+        story_quote: "„A fiú megmutatta a lánynak, hogyan lehet két lábbal a földön állva álmodni. A lány megmutatta a fiúnak, milyen bátran elindulni az álmok felé.”",
+        story_quote_sub: "Valahol a kettő között találtak egymásra — és azóta is ebben vannak otthonosan.",
 
         story_moment1_title: "Az első hosszú beszélgetések",
         story_moment1_text: "Egy workshopból beszélgetés lett, a beszélgetésből randi — a randiból pedig valami, amit már nem akartak elengedni.",
@@ -391,7 +389,7 @@ const I18N = {
         story_moment2_title: "Egy kis káosz, sok öröm",
         story_moment2_text: "Utazás, felfedezés, nevetés, nagy életkérdések — és mindig legalább még egy következő kaland terve.",
 
-        story_moment3_title: "És most",
+        story_moment3_title: "És most?",
         story_moment3_text: "És most? Valószínűleg a konyhában énekelnek. Vagy bárhol, igazából.",
 
         story_photo_main_caption: "A téli sétáktól az összes apró-nagy pillanatig közben.",
