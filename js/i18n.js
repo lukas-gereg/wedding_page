@@ -376,10 +376,10 @@ const I18N = {
 
         story_p3: "Egy csendesebb, szép pillanatban a Gül Baba rózsakertjénél jöttek rá, hogy van egy szép közös pontjuk, ami egy harmonikus ellentét. A lány nyitott és optimista gondolkodású, a fiú két lábbal a realitás talaján álló, gyakorlatias. ",
             
-        story_p4: "Ekkor azonban a lány tette fel a reális kérdést, hogyan képzeli el a fiú ezt a kapcoslatot Kassa-Budapest távban? A fiú ekkor nagyot álmodott, és az elképzelésből működő jövőt építettek fel, ami csak ritkán érződött fényév távolságnak",
+        story_p4: "Ekkor azonban a lány tette fel a reális kérdést: hogyan képzeli el a fiú ezt a kapcsolatot Kassa-Budapest távban? A fiú ekkor nagyot álmodott, és az elképzelésből működő jövőt építettek fel, ami csak ritkán érződött fényév távolságnak",
 
         story_p5: "Azóta támogatja a lány álmait — miközben időnként hozzáteszi az „oké, de maradjunk realisták” megjegyzéseit.",
-            
+        story_p6: "  "
         story_quote: "„A fiú megmutatta a lánynak, hogyan lehet két lábbal a földön állva álmodni. A lány megmutatta a fiúnak, milyen bátran elindulni az álmok felé.”",
         story_quote_sub: "Valahol a kettő között találtak egymásra — és azóta is ebben vannak otthonosan.",
 
@@ -399,23 +399,23 @@ const I18N = {
         date: "Szombat • 2026. augusztus 15.",
 
         mass_title: "Szentmise",
-        mass_text_1: "Azok számára, akik szeretnék nyugodtan kezdeni a napot még a szertartás előtt.",
-        mass_text_2: "A szentmise a Szent Anna-templomban lesz, a Batthány térnél.",
+        mass_text_1: "Azok számára, akik szeretnének eljutni misére aznap még a szertartás előtt.",
+        mass_text_2: "A szentmise a Szent Anna-templomban lesz, a Batthány térnél, utána kis szendvics szünet.",
 
         ceremony_title: "Szertartás",
-        ceremony_text_1: "Szent Anna-templom, Budapest. Kérjük ha tehetitek, érkezzetek pár perccel korábban, a parkolás időigényes.",
-        ceremony_text_2: "Parkolási lehetőséget a Sztehlo Gábor rakparton, vagy a Csalogány utcában javasoljuk.",
+        ceremony_text_1: "Szent Anna-templom, Budapest 1. kerület. Kérjük ha tehetitek, érkezzetek pár perccel korábban, a parkolás időigényes.",
+        ceremony_text_2: "Parkolást a Sztehlo Gábor rakparton, vagy a Csalogány utcában javasoljuk, de bárhol igazából.",
 
         photos_title: "Közös fotók",
-        photos_text: "Röviddel a szertartás után közös fényképezésre kerül sor a templom előtt.",
+        photos_text: "Röviddel a szertartás után közös fényképezkedésre kerül sor a templom előtt.",
 
         agape_title: "Agapé & egy kis pihenő",
         agape_text_1: "Az agapé a templom plébániáján, az Aranyhal u. 1. címen lesz, kb. 100 méterre a templomtól.",
         agape_text_2: "Utána kis frissítő, beszélgetés, séta vagy pihenés, indulás a lakodalomba.",
 
-        venue_title: "Ünneplés",
+        venue_title: "Lakodalom",
         venue_text_1: "Örömmel várjuk a részvételeteket! Parkolás a Kinizsi u. és Mária u. környékén lehetséges.",
-        venue_text_2: "Kérjük, hagyjatok elegendő időt az átszállásra és parkolásra, hogy időben együtt kezdhessünk."
+        venue_text_2: "Kérjük, hagyjatok elegendő időt az átszállásra és parkolásra, hogy időben együtt kezdhessük a vacsorát."
     }
 };
 
