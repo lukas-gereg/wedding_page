@@ -383,18 +383,18 @@ const I18N = {
         story_quote: "„A fiú megmutatta a lánynak, hogyan lehet két lábbal a földön állva álmodni. A lány megmutatta a fiúnak, milyen bátran elindulni az álmok felé.”",
         story_quote_sub: "Valahol a kettő között találtak egymásra — és azóta is ebben vannak otthonosan.",
 
-        story_moment1_title: "Az első hosszú beszélgetések",
-        story_moment1_text: "Egy workshopból beszélgetés lett, a beszélgetésből randi — a randiból pedig valami, amit már nem akartak elengedni.",
+        story_moment1_title: "Multi-kulti konyháink",
+        story_moment1_text: "Még szerencse, hogy szeretjük a burgert, de amúgy hazáink ízei teljesen passzolnak",
 
         story_moment2_title: "Egy kis káosz, sok öröm",
         story_moment2_text: "Utazás, felfedezés, nevetés, nagy életkérdések — és mindig legalább még egy következő kaland terve.",
 
         story_moment3_title: "És most?",
-        story_moment3_text: "És most? Valószínűleg a konyhában énekelnek. Vagy bárhol, igazából.",
+        story_moment3_text: "Vagy túrázunk, vagy szakmázunk, vagy énekelgetünk valahol, ha nem mindegyik egyszerre.",
 
-        story_photo_main_caption: "A téli sétáktól az összes apró-nagy pillanatig közben.",
+        story_photo_main_caption: "A téli sétáktól a hétköznapi csendes csodákig.",
 
-        story_ending: "Vannak történetek, amelyek nagy gesztusokkal kezdődnek. A miénk egy pólóval, egy workshop utáni kérdéssel és két emberrel kezdődött, akiknek egyszerűen jó volt együtt.",
+        story_ending: "Vannak történetek, amelyek nagy léptékben kezdődnek. A miénk egy vicces pólóval, egy AI workshop utáni beszélgetéssel és két emberrel kezdődött, akik azóta is csak beszélgetnek.",
 
         date: "Szombat • 2026. augusztus 15.",
 
@@ -410,8 +410,8 @@ const I18N = {
         photos_text: "Röviddel a szertartás után közös fényképezésre kerül sor a templom előtt.",
 
         agape_title: "Agapé & egy kis pihenő",
-        agape_text_1: "Kis frissítő, beszélgetés, séta vagy pihenés.",
-        agape_text_2: "Az agapé a templom plébániáján, az Aranyhal u. 1. címen lesz, kb. 100 méterre a templomtól.",
+        agape_text_1: "Az agapé a templom plébániáján, az Aranyhal u. 1. címen lesz, kb. 100 méterre a templomtól.",
+        agape_text_2: "Utána kis frissítő, beszélgetés, séta vagy pihenés, indulás a lakodalomba.",
 
         venue_title: "Ünneplés",
         venue_text_1: "Örömmel várjuk a részvételeteket! Parkolás a Kinizsi u. és Mária u. környékén lehetséges.",
