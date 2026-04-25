@@ -77,7 +77,7 @@ const I18N = {
         q5_route: "Trasa / smer z ktorého idem",
 
         q6_title: "Dietne Obmedzenia",
-        q6_hint: "Pre hostí akoukoľvek alergiou objednáme večeru od externého cateringového dodávateľa. Z pochopiteľných dôvodov prevádzka nepreberá zodpovednosť za tieto alergické reakcie. Hoci s nami bude lekár, aby tento čas prebehol hladko a bez problémov, uistite sa, prosím, že máte so sebou platné zdravotné poistenie a vaše bežné lieky!",
+        q6_hint: "Pre hostí s akoukoľvek alergiou objednáme večeru od externého cateringového dodávateľa. Z pochopiteľných dôvodov prevádzka nepreberá zodpovednosť za tieto alergické reakcie. Hoci s nami bude lekár, aby tento čas prebehol hladko a bez problémov, uistite sa, prosím, že máte so sebou platné zdravotné poistenie a vaše bežné lieky!",
         q6_1: "Klasické menu",
         q6_2: "Vegánske menu",
         q6_3: "Bezlepkové menu",
