@@ -429,7 +429,7 @@ function getLang() {
 
   const fromHtml = document.documentElement.lang || null;
 
-  const lang = fromSelect || fromHtml || "sk";
+  const lang = fromSelect || fromHtml || "hu";
   localStorage.setItem("lang", lang);
   return lang;
 }
@@ -442,7 +442,7 @@ function setLang(lang) {
 }
 
 function updatePageTitle(lang) {
-  const dict = I18N[lang] || I18N.sk;
+  const dict = I18N[lang] || I18N.hu;
 
   // find current nav item
   const current = document.querySelector(".nav a[aria-current='page']");
@@ -458,7 +458,7 @@ function updatePageTitle(lang) {
 }
 
 function applyI18n(lang) {
-    const dict = I18N[lang] || I18N.sk;
+    const dict = I18N[lang] || I18N.hu;
 
     document.documentElement.lang = lang;
 
