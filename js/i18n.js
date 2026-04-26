@@ -248,10 +248,10 @@ const I18N = {
         q1_a2: "Csak szertartás & vacsora",
         q1_a3: "Egész nap (szentmise, szertartás, agapé, vacsora)",
         q1_a4: "Nem tudok jönni",
-        q1_people_count: "Which people do I register (separate with \",\"):",
+        q1_people_count: "Kit regisztrálok:",
 
         q2_title: "Amit tudok hozni",
-        q2_hint: "We would like to ask you to help with any of these things if possible, as it would make it a lot easier on us during the planning phase. Do not feel any pressure though, and feel free to select that you cannot help with anything.",
+        q2_hint: "A szeretet vendégsgéhez szívesen köszönjük hozzájárulásotokat egy doboz vagy tálca finomsággal! Amennyiben szívesen sütsz és nincs terhedre, kérlek jelöld be, ha hozol egy tálcával az alábbiakból:",
         q2_cookies: "Sütemény",
         q2_salty: "Sós rágcsa",
         q2_sweet: "Édesség",
@@ -261,7 +261,7 @@ const I18N = {
         q2_none: "Semmi",
 
         q3_title: "Amiben szívesen segítek",
-        q3_hint: "If you are able to help with any of these responsibilities, and feel like you would want to help, please let us know here. We will gladly appreciate any help in this manner.",
+        q3_hint: "Hogyha valahogy még szívesen részt veszel az ünneplés aktív részében, kérlek jelezd felénk itt. Köszönjük, hogyha már a készületben velünk tartasz!",
         q3_1: "Dekorálás előző nap",
         q3_2: "Dekorálás aznap a templomban",
         q3_3: "Elpakolás az agapé után",
@@ -276,21 +276,21 @@ const I18N = {
         q3_other: "Egyéb",
 
         q4_title: "Érkezés & Szállás",
-        q4_hint: "The accommodation is in groups of 3-4 people, in rooms that have been reconstructed about 2 years ago. If you have any special requests, we will try to honor it, but we would like to as for your understanding that we might not be able to fulfill every request.",
+        q4_hint: "A szállás a helyszín két éve felújított kollégiumában van, 3-4 fős szobákban. Ha bármilyen külön kérésetek van, megpróbáljuk teljesíteni, emellett kérjük megértéseteket és rugalmasságotokat, ha valamit mégis máshogy tudunk figyelembe venni a szervezés adta kötöttségeink miatt.",
 
         q4_1: "Péntek este (2 éj szállás)",
         q4_2: "Szombat reggel (1 éj szállás)",
         q4_3: "Nem kérek szállást",
-        q4_people_count: "For whom do I need accomodation for (separete with \",\"):",
+        q4_people_count: "Akinek még szállást igényelek:",
         q4_note: "Megjegyzés, ha van valami kérésed itt jelezheted",
 
         q5_title: "Autó / Telekocsi",
-        q5_hint: "If you have any option to help other guests with the travelling, you can let us know, and we would connect you with the people that asked us to help with that.",
+        q5_hint: "A telekocsi összefogás környezetbarát! :) Ha kocsival jössz és van nálad szabad hely, vagy szívesen beszélgetsz többi vendégünkkel, itt jelezheted. Ha fuvarra vágysz, 0 szabad hellyel jelezheted az útirányt.",
         q5_spaces: "Szabad helyek az autómban",
         q5_route: "Útvonal / irány",
 
         q6_title: "Étkezési igények",
-        q6_hint: "The venue informed us that they do not want to take responsibility for potential allergic reactions, even for dietary (vegan, dairy free) meals. For this reason, we have arranged a specialist dietary menu for allergy-friendly options, but we kindly ask that you come prepared with any personal medication (the one you usually use) just to be safe. Your health and wellbeing matter most to us — please don't hesitate to reach out if you have any concerns!",
+        q6_hint: "A gluténmentes és fokozottan allergiás vendégek számára külső cateringtől rendelünk lakomát. Érthető okokból a helyszín nem vállal felelősséget a véletlen, súlyos allergiás reakciókért. Noha lesz velünk orvos, ahhoz hogy jelenléted gördülékenyen és felhőtlenül teljen kérjük győződj meg róla, hogy van-e érvényes egészségbiztosításod és szokásos gyógyszereid nálad vannak!",
         q6_1: "Teljes normál menü",
         q6_2: "Vegán",
         q6_3: "Gluténmentes",
@@ -299,7 +299,7 @@ const I18N = {
         q6_other: "Egyéb",
 
         q8_title: "Ajándék",
-        q8_hint: "We would like to ask you to contribute to our future with either picking and marking a wishlist item from the spreadsheet, in case you are a person of physical gifts. Alternatively, we would be grateful if you decide to contribute with an envelope gift instead wishlist item, as we are currently trying to renovate our new home together. Lastly, we would like to ask you to not to bring flowers as gifts. If you want to check the wishlist, please click the link below.",
+        q8_hint: "Induló friss házasként leginkább boríték ajándékokra volna szükségünk, ha mégis gondoltál valami kis apróságra emellett, hálásan köszönjük! Hogyha szívesebben adsz tárgyi ajándékot ami hasznos, az alábbi táblázatban bejelölheted hozzájárulásod mértékét és módját valamely használati tárgyhoz, ami apró otthonunknak majd kiváló és elegendő alkotóeleme lesz.",
         q8_1: "Pénzbeli hozzájárulás",
         q8_2: "Kis ajándék / meglepetés",
         q8_3: "Ajándék + pénz",
@@ -315,12 +315,12 @@ const I18N = {
         amount_placeholder: "Összeg",
         q3_other_label: "Egyéb (írd le):",
 
-        consent_title: "Hozzájárulások",
-        consent_feedback: "Hozzájárulok, hogy kb. 30 nappal az esemény előtt e-mail emlékeztetőre végső visszajelzést adjak.",
-        consent_feedback_hint: "We know that plans change, and thaat yours can change as well. Therefore we would like to ask you to let us know 30 days in advance whether you will still be able to get to our wedding. Thank you in advance for your consideration in this manner!",
+        consent_title: "Beleegyezések",
+        consent_feedback: "Amennyiben lehet, megpróbálom részvételem esetleges változását legkésőbb július 14-ig jelezni (mégse/mégis részvétel).",
+        consent_feedback_hint: "",
         consent_media: "Hozzájárulok, hogy én (és gyermekeim) szerepelhetünk az esemény fotóin/videóin (GDPR).",
         consent_media_hint: "We were asked by the photographer to allow him to use the wedding photos in his portfolio. For this, he needs to have GDPR consent from the guests. We apologize for this inconveniece.",
-        consent_dietary:"I acknowledge that I understand the venue limitations around the allergy liability, and therefore will take the responsibility onto myself.",
+        consent_dietary:"Hozzájárulok, hogy én és gyermekeim lehetséges allergiás reakció esetén az esemény alatt egészségügyi biztostással és saját szokásos gyógyszerekkel rendelkezem.",
 
         wl_item: "Wishlist tétel",
         wl_full: "Megveszem teljes egészében",
